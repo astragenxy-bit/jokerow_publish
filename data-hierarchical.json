@@ -31,7 +31,17 @@
         {"name": "Frontend Developer", "value": 1050000, "pay": 36000000, "outlook": 26, "education": "Bachelor", "postings": 3400, "competition": 3.3, "growth": 29, "skillchange": 3.8, "age": 32},
         {"name": "Full Stack Developer", "value": 850000, "pay": 40000000, "outlook": 27, "education": "Bachelor", "postings": 2800, "competition": 3.4, "growth": 30, "skillchange": 4.1, "age": 33},
         {"name": "QA Engineer", "value": 680000, "pay": 35000000, "outlook": 24, "education": "Bachelor", "postings": 2200, "competition": 3.0, "growth": 27, "skillchange": 3.8, "age": 31},
-        {"name": "Cybersecurity Engineer", "value": 380000, "pay": 52000000, "outlook": 28, "education": "Bachelor", "postings": 1600, "competition": 3.9, "growth": 32, "skillchange": 4.4, "age": 37}
+        {"name": "Cybersecurity Engineer", "value": 380000, "pay": 52000000, "outlook": 28, "education": "Bachelor", "postings": 1600, "competition": 3.9, "growth": 32, "skillchange": 4.4, "age": 37},
+        {"name": "Systems Administrator", "value": 420000, "pay": 42000000, "outlook": 22, "education": "Bachelor", "postings": 1800, "competition": 3.1, "growth": 25, "skillchange": 3.9, "age": 35},
+        {"name": "Database Administrator", "value": 380000, "pay": 48000000, "outlook": 24, "education": "Bachelor", "postings": 1400, "competition": 3.3, "growth": 27, "skillchange": 4.0, "age": 36},
+        {"name": "Network Engineer", "value": 350000, "pay": 45000000, "outlook": 23, "education": "Bachelor", "postings": 1300, "competition": 3.2, "growth": 26, "skillchange": 3.8, "age": 34},
+        {"name": "IT Project Manager", "value": 320000, "pay": 52000000, "outlook": 25, "education": "Master", "postings": 1100, "competition": 3.5, "growth": 28, "skillchange": 3.7, "age": 38},
+        {"name": "Business Analyst", "value": 550000, "pay": 48000000, "outlook": 26, "education": "Bachelor", "postings": 2100, "competition": 3.3, "growth": 29, "skillchange": 3.6, "age": 35},
+        {"name": "Solutions Architect", "value": 280000, "pay": 65000000, "outlook": 29, "education": "Master", "postings": 950, "competition": 4.0, "growth": 32, "skillchange": 4.2, "age": 40},
+        {"name": "Mobile Developer", "value": 620000, "pay": 42000000, "outlook": 28, "education": "Bachelor", "postings": 2200, "competition": 3.4, "growth": 31, "skillchange": 4.3, "age": 32},
+        {"name": "Game Developer", "value": 480000, "pay": 45000000, "outlook": 30, "education": "Bachelor", "postings": 1700, "competition": 3.6, "growth": 33, "skillchange": 4.5, "age": 31},
+        {"name": "Web Developer", "value": 720000, "pay": 38000000, "outlook": 25, "education": "Bachelor", "postings": 2800, "competition": 3.1, "growth": 28, "skillchange": 3.9, "age": 30},
+        {"name": "API Developer", "value": 350000, "pay": 42000000, "outlook": 26, "education": "Bachelor", "postings": 1300, "competition": 3.3, "growth": 29, "skillchange": 4.0, "age": 32}
       ]
     },
     {
@@ -51,7 +61,17 @@
         {"name": "Marketing Manager", "value": 380000, "pay": 38000000, "outlook": 21, "education": "Bachelor", "postings": 1450, "competition": 3.2, "growth": 26, "skillchange": 2.8, "age": 38},
         {"name": "Digital Marketing Manager", "value": 650000, "pay": 45000000, "outlook": 28, "education": "Bachelor", "postings": 2200, "competition": 3.2, "growth": 31, "skillchange": 3.2, "age": 36},
         {"name": "Social Media Manager", "value": 1250000, "pay": 28000000, "outlook": 28, "education": "Bachelor", "postings": 4200, "competition": 3.3, "growth": 31, "skillchange": 2.9, "age": 30},
-        {"name": "Content Marketing Manager", "value": 620000, "pay": 42000000, "outlook": 26, "education": "Bachelor", "postings": 2100, "competition": 3.1, "growth": 29, "skillchange": 2.7, "age": 34}
+        {"name": "Content Marketing Manager", "value": 620000, "pay": 42000000, "outlook": 26, "education": "Bachelor", "postings": 2100, "competition": 3.1, "growth": 29, "skillchange": 2.7, "age": 34},
+        {"name": "Sales Representative", "value": 980000, "pay": 32000000, "outlook": 18, "education": "High School", "postings": 4500, "competition": 2.0, "growth": 20, "skillchange": 2.1, "age": 32},
+        {"name": "Business Development Manager", "value": 520000, "pay": 52000000, "outlook": 22, "education": "Bachelor", "postings": 1600, "competition": 3.0, "growth": 25, "skillchange": 2.6, "age": 36},
+        {"name": "Product Marketing Manager", "value": 450000, "pay": 48000000, "outlook": 25, "education": "Bachelor", "postings": 1500, "competition": 3.2, "growth": 28, "skillchange": 2.9, "age": 35},
+        {"name": "Brand Manager", "value": 380000, "pay": 45000000, "outlook": 22, "education": "Bachelor", "postings": 1300, "competition": 3.1, "growth": 25, "skillchange": 2.7, "age": 36},
+        {"name": "Market Research Analyst", "value": 420000, "pay": 40000000, "outlook": 21, "education": "Bachelor", "postings": 1400, "competition": 2.9, "growth": 24, "skillchange": 2.5, "age": 34},
+        {"name": "SEO Specialist", "value": 550000, "pay": 35000000, "outlook": 26, "education": "Bachelor", "postings": 2100, "competition": 3.2, "growth": 29, "skillchange": 3.3, "age": 31},
+        {"name": "Email Marketing Specialist", "value": 480000, "pay": 32000000, "outlook": 24, "education": "Bachelor", "postings": 1800, "competition": 3.0, "growth": 27, "skillchange": 2.8, "age": 30},
+        {"name": "Advertising Manager", "value": 380000, "pay": 48000000, "outlook": 23, "education": "Bachelor", "postings": 1300, "competition": 3.1, "growth": 26, "skillchange": 2.8, "age": 37},
+        {"name": "Marketing Coordinator", "value": 650000, "pay": 28000000, "outlook": 20, "education": "Bachelor", "postings": 2500, "competition": 2.5, "growth": 23, "skillchange": 2.4, "age": 28},
+        {"name": "Demand Generation Manager", "value": 350000, "pay": 46000000, "outlook": 27, "education": "Bachelor", "postings": 1200, "competition": 3.3, "growth": 30, "skillchange": 3.0, "age": 35}
       ]
     },
     {
@@ -70,7 +90,18 @@
         {"name": "Mechanical Engineer", "value": 720000, "pay": 45000000, "outlook": 18, "education": "Bachelor", "postings": 2400, "competition": 2.0, "growth": 20, "skillchange": 2.3, "age": 37},
         {"name": "Electrical Engineer", "value": 680000, "pay": 44000000, "outlook": 17, "education": "Bachelor", "postings": 2300, "competition": 1.9, "growth": 19, "skillchange": 2.4, "age": 36},
         {"name": "Project Manager", "value": 520000, "pay": 52000000, "outlook": 20, "education": "Bachelor", "postings": 1300, "competition": 2.3, "growth": 24, "skillchange": 2.8, "age": 40},
-        {"name": "Construction Manager", "value": 380000, "pay": 42000000, "outlook": 18, "education": "Bachelor", "postings": 1650, "competition": 2.1, "growth": 22, "skillchange": 2.2, "age": 36}
+        {"name": "Construction Manager", "value": 380000, "pay": 42000000, "outlook": 18, "education": "Bachelor", "postings": 1650, "competition": 2.1, "growth": 22, "skillchange": 2.2, "age": 36},
+        {"name": "Structural Engineer", "value": 420000, "pay": 46000000, "outlook": 17, "education": "Master", "postings": 1100, "competition": 2.0, "growth": 19, "skillchange": 2.3, "age": 38},
+        {"name": "Environmental Engineer", "value": 380000, "pay": 44000000, "outlook": 19, "education": "Master", "postings": 950, "competition": 2.1, "growth": 21, "skillchange": 2.4, "age": 37},
+        {"name": "Architect", "value": 580000, "pay": 52000000, "outlook": 18, "education": "Master", "postings": 1500, "competition": 2.2, "growth": 20, "skillchange": 2.5, "age": 40},
+        {"name": "Site Supervisor", "value": 650000, "pay": 38000000, "outlook": 16, "education": "Vocational", "postings": 2200, "competition": 1.8, "growth": 18, "skillchange": 2.0, "age": 35},
+        {"name": "Safety Engineer", "value": 420000, "pay": 42000000, "outlook": 18, "education": "Bachelor", "postings": 1300, "competition": 2.1, "growth": 20, "skillchange": 2.2, "age": 36},
+        {"name": "Quantity Surveyor", "value": 380000, "pay": 40000000, "outlook": 17, "education": "Bachelor", "postings": 1100, "competition": 2.0, "growth": 19, "skillchange": 2.1, "age": 37},
+        {"name": "Building Inspector", "value": 350000, "pay": 39000000, "outlook": 15, "education": "Vocational", "postings": 950, "competition": 1.9, "growth": 17, "skillchange": 1.9, "age": 40},
+        {"name": "Piping Engineer", "value": 420000, "pay": 43000000, "outlook": 17, "education": "Bachelor", "postings": 1200, "competition": 2.0, "growth": 19, "skillchange": 2.2, "age": 37},
+        {"name": "HVAC Engineer", "value": 380000, "pay": 41000000, "outlook": 16, "education": "Vocational", "postings": 1100, "competition": 1.9, "growth": 18, "skillchange": 2.1, "age": 36},
+        {"name": "Wastewater Engineer", "value": 350000, "pay": 40000000, "outlook": 16, "education": "Bachelor", "postings": 950, "competition": 1.9, "growth": 18, "skillchange": 2.0, "age": 38},
+        {"name": "Transportation Engineer", "value": 380000, "pay": 42000000, "outlook": 17, "education": "Bachelor", "postings": 1100, "competition": 2.0, "growth": 19, "skillchange": 2.1, "age": 37}
       ]
     },
     {
@@ -89,7 +120,18 @@
         {"name": "Nurse", "value": 1850000, "pay": 32000000, "outlook": 20, "education": "Vocational", "postings": 6200, "competition": 2.4, "growth": 22, "skillchange": 2.1, "age": 32},
         {"name": "Pharmacist", "value": 450000, "pay": 45000000, "outlook": 18, "education": "Doctor", "postings": 2100, "competition": 2.2, "growth": 20, "skillchange": 2.0, "age": 36},
         {"name": "Physiotherapist", "value": 380000, "pay": 38000000, "outlook": 18, "education": "Bachelor", "postings": 2300, "competition": 2.2, "growth": 20, "skillchange": 2.2, "age": 35},
-        {"name": "Medical Technician", "value": 140000, "pay": 28000000, "outlook": 18, "education": "Vocational", "postings": 4200, "competition": 2.1, "growth": 20, "skillchange": 1.8, "age": 31}
+        {"name": "Medical Technician", "value": 140000, "pay": 28000000, "outlook": 18, "education": "Vocational", "postings": 4200, "competition": 2.1, "growth": 20, "skillchange": 1.8, "age": 31},
+        {"name": "Dentist", "value": 220000, "pay": 75000000, "outlook": 18, "education": "Doctor", "postings": 950, "competition": 2.2, "growth": 20, "skillchange": 1.9, "age": 40},
+        {"name": "Psychologist", "value": 180000, "pay": 42000000, "outlook": 20, "education": "Master", "postings": 750, "competition": 2.3, "growth": 22, "skillchange": 2.1, "age": 38},
+        {"name": "Nutritionist", "value": 150000, "pay": 35000000, "outlook": 20, "education": "Bachelor", "postings": 650, "competition": 2.2, "growth": 22, "skillchange": 2.0, "age": 34},
+        {"name": "Lab Technician", "value": 220000, "pay": 28000000, "outlook": 18, "education": "Vocational", "postings": 1800, "competition": 2.0, "growth": 20, "skillchange": 1.8, "age": 30},
+        {"name": "Radiographer", "value": 180000, "pay": 32000000, "outlook": 18, "education": "Vocational", "postings": 1400, "competition": 2.1, "growth": 20, "skillchange": 1.9, "age": 32},
+        {"name": "Health Inspector", "value": 140000, "pay": 32000000, "outlook": 16, "education": "Bachelor", "postings": 800, "competition": 2.0, "growth": 18, "skillchange": 1.8, "age": 38},
+        {"name": "Veterinarian", "value": 120000, "pay": 48000000, "outlook": 16, "education": "Doctor", "postings": 600, "competition": 2.1, "growth": 18, "skillchange": 1.9, "age": 40},
+        {"name": "Midwife", "value": 280000, "pay": 30000000, "outlook": 19, "education": "Vocational", "postings": 1600, "competition": 2.1, "growth": 21, "skillchange": 1.9, "age": 32},
+        {"name": "Clinical Counselor", "value": 160000, "pay": 38000000, "outlook": 21, "education": "Master", "postings": 900, "competition": 2.3, "growth": 23, "skillchange": 2.1, "age": 36},
+        {"name": "Medical Secretary", "value": 250000, "pay": 26000000, "outlook": 18, "education": "High School", "postings": 1600, "competition": 2.0, "growth": 20, "skillchange": 1.9, "age": 30},
+        {"name": "Hospital Manager", "value": 110000, "pay": 52000000, "outlook": 18, "education": "Master", "postings": 700, "competition": 2.2, "growth": 20, "skillchange": 2.0, "age": 42}
       ]
     },
     {
@@ -106,7 +148,20 @@
       "children": [
         {"name": "Accountant", "value": 1680000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 5650, "competition": 1.6, "growth": 16, "skillchange": 2.1, "age": 32},
         {"name": "Financial Analyst", "value": 1250000, "pay": 35000000, "outlook": 16, "education": "Bachelor", "postings": 4200, "competition": 1.8, "growth": 18, "skillchange": 2.4, "age": 32},
-        {"name": "Investment Manager", "value": 480000, "pay": 58000000, "outlook": 24, "education": "Master", "postings": 1650, "competition": 3.0, "growth": 28, "skillchange": 3.2, "age": 42}
+        {"name": "Investment Manager", "value": 480000, "pay": 58000000, "outlook": 24, "education": "Master", "postings": 1650, "competition": 3.0, "growth": 28, "skillchange": 3.2, "age": 42},
+        {"name": "Auditor", "value": 620000, "pay": 38000000, "outlook": 14, "education": "Bachelor", "postings": 2100, "competition": 1.7, "growth": 16, "skillchange": 2.2, "age": 34},
+        {"name": "Tax Specialist", "value": 420000, "pay": 40000000, "outlook": 15, "education": "Bachelor", "postings": 1400, "competition": 1.8, "growth": 17, "skillchange": 2.3, "age": 35},
+        {"name": "Banking Officer", "value": 850000, "pay": 36000000, "outlook": 14, "education": "Bachelor", "postings": 2800, "competition": 1.6, "growth": 16, "skillchange": 2.0, "age": 33},
+        {"name": "Loan Officer", "value": 580000, "pay": 34000000, "outlook": 13, "education": "Bachelor", "postings": 1900, "competition": 1.5, "growth": 15, "skillchange": 1.9, "age": 32},
+        {"name": "Credit Analyst", "value": 420000, "pay": 36000000, "outlook": 14, "education": "Bachelor", "postings": 1400, "competition": 1.7, "growth": 16, "skillchange": 2.1, "age": 31},
+        {"name": "Portfolio Manager", "value": 320000, "pay": 62000000, "outlook": 22, "education": "Master", "postings": 1100, "competition": 2.8, "growth": 25, "skillchange": 3.0, "age": 44},
+        {"name": "Compliance Officer", "value": 380000, "pay": 40000000, "outlook": 15, "education": "Bachelor", "postings": 1300, "competition": 1.8, "growth": 17, "skillchange": 2.2, "age": 35},
+        {"name": "Treasurer", "value": 280000, "pay": 48000000, "outlook": 16, "education": "Master", "postings": 950, "competition": 2.0, "growth": 18, "skillchange": 2.3, "age": 40},
+        {"name": "CFO", "value": 120000, "pay": 85000000, "outlook": 18, "education": "Master", "postings": 500, "competition": 2.5, "growth": 20, "skillchange": 2.4, "age": 46},
+        {"name": "Insurance Agent", "value": 350000, "pay": 32000000, "outlook": 13, "education": "Vocational", "postings": 1200, "competition": 1.4, "growth": 15, "skillchange": 1.8, "age": 38},
+        {"name": "Claims Adjuster", "value": 280000, "pay": 30000000, "outlook": 12, "education": "Bachelor", "postings": 900, "competition": 1.5, "growth": 14, "skillchange": 1.7, "age": 36},
+        {"name": "Risk Manager", "value": 220000, "pay": 52000000, "outlook": 17, "education": "Master", "postings": 800, "competition": 2.2, "growth": 19, "skillchange": 2.3, "age": 42},
+        {"name": "Actuary", "value": 180000, "pay": 65000000, "outlook": 18, "education": "Master", "postings": 650, "competition": 2.4, "growth": 20, "skillchange": 2.5, "age": 40}
       ]
     },
     {
@@ -124,7 +179,19 @@
         {"name": "UI/UX Designer", "value": 650000, "pay": 38000000, "outlook": 32, "education": "Bachelor", "postings": 2100, "competition": 3.4, "growth": 35, "skillchange": 3.8, "age": 35},
         {"name": "Graphic Designer", "value": 850000, "pay": 22000000, "outlook": 18, "education": "Bachelor", "postings": 2850, "competition": 2.4, "growth": 20, "skillchange": 2.9, "age": 29},
         {"name": "Motion Designer", "value": 520000, "pay": 30000000, "outlook": 26, "education": "Bachelor", "postings": 1900, "competition": 2.9, "growth": 28, "skillchange": 3.5, "age": 31},
-        {"name": "3D Artist", "value": 480000, "pay": 28000000, "outlook": 28, "education": "Bachelor", "postings": 1700, "competition": 3.1, "growth": 31, "skillchange": 3.8, "age": 32}
+        {"name": "3D Artist", "value": 480000, "pay": 28000000, "outlook": 28, "education": "Bachelor", "postings": 1700, "competition": 3.1, "growth": 31, "skillchange": 3.8, "age": 32},
+        {"name": "Web Designer", "value": 580000, "pay": 34000000, "outlook": 27, "education": "Bachelor", "postings": 2000, "competition": 3.2, "growth": 30, "skillchange": 3.6, "age": 30},
+        {"name": "Branding Designer", "value": 420000, "pay": 32000000, "outlook": 24, "education": "Bachelor", "postings": 1300, "competition": 3.0, "growth": 26, "skillchange": 3.2, "age": 32},
+        {"name": "Illustration Artist", "value": 350000, "pay": 25000000, "outlook": 22, "education": "Bachelor", "postings": 1100, "competition": 2.8, "growth": 24, "skillchange": 3.1, "age": 28},
+        {"name": "Video Editor", "value": 480000, "pay": 28000000, "outlook": 27, "education": "Bachelor", "postings": 1600, "competition": 3.1, "growth": 29, "skillchange": 3.7, "age": 30},
+        {"name": "Creative Director", "value": 280000, "pay": 52000000, "outlook": 28, "education": "Master", "postings": 950, "competition": 3.5, "growth": 30, "skillchange": 3.3, "age": 40},
+        {"name": "Art Director", "value": 320000, "pay": 48000000, "outlook": 26, "education": "Bachelor", "postings": 1100, "competition": 3.3, "growth": 28, "skillchange": 3.2, "age": 38},
+        {"name": "UX Writer", "value": 380000, "pay": 36000000, "outlook": 30, "education": "Bachelor", "postings": 1300, "competition": 3.3, "growth": 32, "skillchange": 3.5, "age": 32},
+        {"name": "Information Architect", "value": 420000, "pay": 40000000, "outlook": 29, "education": "Bachelor", "postings": 1400, "competition": 3.4, "growth": 31, "skillchange": 3.6, "age": 34},
+        {"name": "Animation Artist", "value": 380000, "pay": 32000000, "outlook": 28, "education": "Bachelor", "postings": 1200, "competition": 3.2, "growth": 30, "skillchange": 3.7, "age": 30},
+        {"name": "VFX Artist", "value": 320000, "pay": 36000000, "outlook": 29, "education": "Bachelor", "postings": 1100, "competition": 3.3, "growth": 31, "skillchange": 3.8, "age": 31},
+        {"name": "Interaction Designer", "value": 400000, "pay": 38000000, "outlook": 31, "education": "Bachelor", "postings": 1300, "competition": 3.4, "growth": 33, "skillchange": 3.6, "age": 33},
+        {"name": "Design Researcher", "value": 350000, "pay": 40000000, "outlook": 28, "education": "Master", "postings": 1200, "competition": 3.3, "growth": 30, "skillchange": 3.4, "age": 35}
       ]
     },
     {
@@ -141,7 +208,20 @@
       "children": [
         {"name": "Hotel Manager", "value": 520000, "pay": 38000000, "outlook": 18, "education": "Bachelor", "postings": 1750, "competition": 2.0, "growth": 20, "skillchange": 1.8, "age": 35},
         {"name": "Chef", "value": 620000, "pay": 42000000, "outlook": 20, "education": "Vocational", "postings": 2100, "competition": 2.2, "growth": 22, "skillchange": 2.0, "age": 38},
-        {"name": "Tour Guide", "value": 1250000, "pay": 18000000, "outlook": 14, "education": "High School", "postings": 4200, "competition": 1.5, "growth": 16, "skillchange": 1.5, "age": 27}
+        {"name": "Tour Guide", "value": 1250000, "pay": 18000000, "outlook": 14, "education": "High School", "postings": 4200, "competition": 1.5, "growth": 16, "skillchange": 1.5, "age": 27},
+        {"name": "Receptionist", "value": 850000, "pay": 20000000, "outlook": 12, "education": "High School", "postings": 3200, "competition": 1.4, "growth": 14, "skillchange": 1.4, "age": 26},
+        {"name": "Waiter/Waitress", "value": 1100000, "pay": 16000000, "outlook": 12, "education": "High School", "postings": 3800, "competition": 1.3, "growth": 14, "skillchange": 1.2, "age": 24},
+        {"name": "Housekeeping Manager", "value": 420000, "pay": 28000000, "outlook": 14, "education": "High School", "postings": 1400, "competition": 1.6, "growth": 16, "skillchange": 1.5, "age": 32},
+        {"name": "Front Desk Agent", "value": 620000, "pay": 22000000, "outlook": 13, "education": "High School", "postings": 2100, "competition": 1.5, "growth": 15, "skillchange": 1.4, "age": 26},
+        {"name": "Event Manager", "value": 380000, "pay": 35000000, "outlook": 18, "education": "Bachelor", "postings": 1300, "competition": 2.1, "growth": 20, "skillchange": 2.0, "age": 33},
+        {"name": "Sous Chef", "value": 380000, "pay": 32000000, "outlook": 18, "education": "Vocational", "postings": 1300, "competition": 2.0, "growth": 20, "skillchange": 1.9, "age": 35},
+        {"name": "Restaurant Manager", "value": 580000, "pay": 32000000, "outlook": 15, "education": "Bachelor", "postings": 1900, "competition": 1.8, "growth": 17, "skillchange": 1.6, "age": 34},
+        {"name": "Bartender", "value": 720000, "pay": 20000000, "outlook": 14, "education": "High School", "postings": 2400, "competition": 1.4, "growth": 16, "skillchange": 1.3, "age": 28},
+        {"name": "Travel Agent", "value": 480000, "pay": 26000000, "outlook": 13, "education": "Vocational", "postings": 1600, "competition": 1.6, "growth": 15, "skillchange": 1.5, "age": 32},
+        {"name": "Casino Manager", "value": 220000, "pay": 38000000, "outlook": 15, "education": "Bachelor", "postings": 750, "competition": 1.9, "growth": 17, "skillchange": 1.7, "age": 38},
+        {"name": "Cruise Director", "value": 180000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 600, "competition": 1.8, "growth": 16, "skillchange": 1.6, "age": 30},
+        {"name": "Food & Beverage Manager", "value": 350000, "pay": 34000000, "outlook": 16, "education": "Bachelor", "postings": 1200, "competition": 1.9, "growth": 18, "skillchange": 1.7, "age": 36},
+        {"name": "Hotel Concierge", "value": 420000, "pay": 26000000, "outlook": 13, "education": "High School", "postings": 1400, "competition": 1.5, "growth": 15, "skillchange": 1.4, "age": 30}
       ]
     },
     {
@@ -157,7 +237,21 @@
       "age": 40,
       "children": [
         {"name": "Teacher", "value": 1850000, "pay": 26000000, "outlook": 12, "education": "Bachelor", "postings": 6200, "competition": 1.6, "growth": 14, "skillchange": 1.8, "age": 33},
-        {"name": "University Lecturer", "value": 850000, "pay": 42000000, "outlook": 16, "education": "Master", "postings": 2850, "competition": 1.9, "growth": 18, "skillchange": 2.1, "age": 40}
+        {"name": "University Lecturer", "value": 850000, "pay": 42000000, "outlook": 16, "education": "Master", "postings": 2850, "competition": 1.9, "growth": 18, "skillchange": 2.1, "age": 40},
+        {"name": "Principal", "value": 420000, "pay": 42000000, "outlook": 12, "education": "Master", "postings": 1400, "competition": 1.8, "growth": 14, "skillchange": 1.8, "age": 45},
+        {"name": "Special Education Teacher", "value": 380000, "pay": 30000000, "outlook": 14, "education": "Master", "postings": 1300, "competition": 1.9, "growth": 16, "skillchange": 2.0, "age": 36},
+        {"name": "School Counselor", "value": 320000, "pay": 34000000, "outlook": 14, "education": "Master", "postings": 1100, "competition": 1.9, "growth": 16, "skillchange": 1.9, "age": 38},
+        {"name": "Tutor", "value": 650000, "pay": 24000000, "outlook": 14, "education": "Bachelor", "postings": 2200, "competition": 1.7, "growth": 16, "skillchange": 1.7, "age": 32},
+        {"name": "Online Educator", "value": 580000, "pay": 22000000, "outlook": 20, "education": "Bachelor", "postings": 1900, "competition": 2.0, "growth": 22, "skillchange": 2.2, "age": 30},
+        {"name": "Dean", "value": 280000, "pay": 55000000, "outlook": 12, "education": "Doctor", "postings": 950, "competition": 2.1, "growth": 14, "skillchange": 1.8, "age": 50},
+        {"name": "Curriculum Designer", "value": 420000, "pay": 35000000, "outlook": 15, "education": "Master", "postings": 1400, "competition": 1.9, "growth": 17, "skillchange": 2.0, "age": 38},
+        {"name": "Educational Administrator", "value": 380000, "pay": 40000000, "outlook": 13, "education": "Master", "postings": 1300, "competition": 1.8, "growth": 15, "skillchange": 1.9, "age": 42},
+        {"name": "Research Scientist", "value": 350000, "pay": 52000000, "outlook": 18, "education": "Doctor", "postings": 1200, "competition": 2.2, "growth": 20, "skillchange": 2.3, "age": 42},
+        {"name": "Graduate Teaching Assistant", "value": 480000, "pay": 18000000, "outlook": 14, "education": "Master", "postings": 1600, "competition": 1.8, "growth": 16, "skillchange": 1.9, "age": 28},
+        {"name": "Learning Specialist", "value": 350000, "pay": 32000000, "outlook": 15, "education": "Master", "postings": 1200, "competition": 1.9, "growth": 17, "skillchange": 2.0, "age": 35},
+        {"name": "Adjunct Professor", "value": 580000, "pay": 28000000, "outlook": 12, "education": "Master", "postings": 1900, "competition": 1.7, "growth": 14, "skillchange": 1.8, "age": 40},
+        {"name": "Admissions Counselor", "value": 320000, "pay": 30000000, "outlook": 13, "education": "Bachelor", "postings": 1100, "competition": 1.8, "growth": 15, "skillchange": 1.7, "age": 32},
+        {"name": "Library Director", "value": 280000, "pay": 38000000, "outlook": 11, "education": "Master", "postings": 950, "competition": 1.9, "growth": 13, "skillchange": 1.8, "age": 42}
       ]
     },
     {
@@ -174,7 +268,20 @@
       "children": [
         {"name": "Journalist", "value": 350000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 1200, "competition": 1.7, "growth": 16, "skillchange": 2.2, "age": 32},
         {"name": "Content Writer", "value": 1250000, "pay": 26000000, "outlook": 18, "education": "Bachelor", "postings": 4200, "competition": 2.1, "growth": 20, "skillchange": 2.4, "age": 29},
-        {"name": "Editor", "value": 380000, "pay": 38000000, "outlook": 16, "education": "Bachelor", "postings": 950, "competition": 1.9, "growth": 18, "skillchange": 2.2, "age": 35}
+        {"name": "Editor", "value": 380000, "pay": 38000000, "outlook": 16, "education": "Bachelor", "postings": 950, "competition": 1.9, "growth": 18, "skillchange": 2.2, "age": 35},
+        {"name": "News Anchor", "value": 280000, "pay": 45000000, "outlook": 13, "education": "Bachelor", "postings": 800, "competition": 2.5, "growth": 15, "skillchange": 2.3, "age": 35},
+        {"name": "Producer", "value": 420000, "pay": 40000000, "outlook": 16, "education": "Bachelor", "postings": 1400, "competition": 2.2, "growth": 18, "skillchange": 2.4, "age": 34},
+        {"name": "Broadcaster", "value": 320000, "pay": 36000000, "outlook": 14, "education": "Bachelor", "postings": 1100, "competition": 2.0, "growth": 16, "skillchange": 2.1, "age": 33},
+        {"name": "Copywriter", "value": 580000, "pay": 30000000, "outlook": 18, "education": "Bachelor", "postings": 1900, "competition": 2.2, "growth": 20, "skillchange": 2.4, "age": 30},
+        {"name": "Book Editor", "value": 320000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 1100, "competition": 1.8, "growth": 16, "skillchange": 2.1, "age": 36},
+        {"name": "Publishing Manager", "value": 380000, "pay": 40000000, "outlook": 15, "education": "Bachelor", "postings": 1300, "competition": 2.1, "growth": 17, "skillchange": 2.2, "age": 38},
+        {"name": "Media Planner", "value": 480000, "pay": 38000000, "outlook": 17, "education": "Bachelor", "postings": 1600, "competition": 2.2, "growth": 19, "skillchange": 2.3, "age": 32},
+        {"name": "Photographer", "value": 420000, "pay": 28000000, "outlook": 16, "education": "Vocational", "postings": 1400, "competition": 2.2, "growth": 18, "skillchange": 2.3, "age": 31},
+        {"name": "Videographer", "value": 380000, "pay": 30000000, "outlook": 18, "education": "Bachelor", "postings": 1300, "competition": 2.3, "growth": 20, "skillchange": 2.4, "age": 30},
+        {"name": "Screenwriter", "value": 280000, "pay": 35000000, "outlook": 18, "education": "Bachelor", "postings": 950, "competition": 2.4, "growth": 20, "skillchange": 2.5, "age": 36},
+        {"name": "Podcaster", "value": 250000, "pay": 28000000, "outlook": 22, "education": "Bachelor", "postings": 850, "competition": 2.3, "growth": 24, "skillchange": 2.4, "age": 32},
+        {"name": "Proofreader", "value": 350000, "pay": 24000000, "outlook": 15, "education": "Bachelor", "postings": 1200, "competition": 1.9, "growth": 17, "skillchange": 2.1, "age": 35},
+        {"name": "Fact Checker", "value": 320000, "pay": 26000000, "outlook": 15, "education": "Bachelor", "postings": 1100, "competition": 2.0, "growth": 17, "skillchange": 2.2, "age": 34}
       ]
     },
     {
@@ -191,7 +298,20 @@
       "children": [
         {"name": "HR Manager", "value": 620000, "pay": 62000000, "outlook": 18, "education": "Master", "postings": 2300, "competition": 2.4, "growth": 22, "skillchange": 2.1, "age": 38},
         {"name": "Recruitment Specialist", "value": 1250000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 4200, "competition": 1.8, "growth": 16, "skillchange": 1.9, "age": 31},
-        {"name": "Training Manager", "value": 520000, "pay": 45000000, "outlook": 18, "education": "Bachelor", "postings": 2100, "competition": 2.2, "growth": 22, "skillchange": 2.4, "age": 36}
+        {"name": "Training Manager", "value": 520000, "pay": 45000000, "outlook": 18, "education": "Bachelor", "postings": 2100, "competition": 2.2, "growth": 22, "skillchange": 2.4, "age": 36},
+        {"name": "Compensation Analyst", "value": 420000, "pay": 42000000, "outlook": 16, "education": "Bachelor", "postings": 1400, "competition": 2.2, "growth": 18, "skillchange": 2.2, "age": 34},
+        {"name": "Benefits Administrator", "value": 380000, "pay": 34000000, "outlook": 13, "education": "Bachelor", "postings": 1300, "competition": 1.9, "growth": 15, "skillchange": 1.9, "age": 33},
+        {"name": "Employee Relations Manager", "value": 480000, "pay": 40000000, "outlook": 15, "education": "Bachelor", "postings": 1600, "competition": 2.1, "growth": 17, "skillchange": 2.0, "age": 35},
+        {"name": "Talent Acquisition Manager", "value": 580000, "pay": 45000000, "outlook": 17, "education": "Bachelor", "postings": 1900, "competition": 2.3, "growth": 19, "skillchange": 2.2, "age": 34},
+        {"name": "HR Coordinator", "value": 620000, "pay": 28000000, "outlook": 13, "education": "Bachelor", "postings": 2100, "competition": 1.8, "growth": 15, "skillchange": 1.8, "age": 28},
+        {"name": "Onboarding Specialist", "value": 420000, "pay": 32000000, "outlook": 15, "education": "Bachelor", "postings": 1400, "competition": 2.0, "growth": 17, "skillchange": 2.0, "age": 30},
+        {"name": "Learning Development Manager", "value": 380000, "pay": 44000000, "outlook": 17, "education": "Master", "postings": 1300, "competition": 2.2, "growth": 19, "skillchange": 2.3, "age": 36},
+        {"name": "Organizational Development Manager", "value": 350000, "pay": 48000000, "outlook": 16, "education": "Master", "postings": 1200, "competition": 2.2, "growth": 18, "skillchange": 2.2, "age": 38},
+        {"name": "Payroll Manager", "value": 420000, "pay": 38000000, "outlook": 13, "education": "Bachelor", "postings": 1400, "competition": 1.9, "growth": 15, "skillchange": 2.0, "age": 35},
+        {"name": "HR Business Partner", "value": 480000, "pay": 50000000, "outlook": 17, "education": "Master", "postings": 1600, "competition": 2.3, "growth": 19, "skillchange": 2.2, "age": 37},
+        {"name": "Workforce Planning Analyst", "value": 350000, "pay": 42000000, "outlook": 15, "education": "Bachelor", "postings": 1200, "competition": 2.1, "growth": 17, "skillchange": 2.1, "age": 33},
+        {"name": "Labor Relations Manager", "value": 320000, "pay": 45000000, "outlook": 14, "education": "Bachelor", "postings": 1100, "competition": 2.1, "growth": 16, "skillchange": 2.0, "age": 38},
+        {"name": "HR Generalist", "value": 580000, "pay": 36000000, "outlook": 14, "education": "Bachelor", "postings": 1900, "competition": 1.9, "growth": 16, "skillchange": 1.9, "age": 32}
       ]
     },
     {
@@ -208,7 +328,20 @@
       "children": [
         {"name": "Startup Founder", "value": 800000, "pay": 85000000, "outlook": 38, "education": "Bachelor", "postings": 3500, "competition": 4.2, "growth": 42, "skillchange": 4.5, "age": 38},
         {"name": "Product Manager", "value": 750000, "pay": 52000000, "outlook": 32, "education": "Bachelor", "postings": 2500, "competition": 3.8, "growth": 36, "skillchange": 3.9, "age": 35},
-        {"name": "Growth Hacker", "value": 520000, "pay": 42000000, "outlook": 32, "education": "Bachelor", "postings": 1800, "competition": 3.5, "growth": 35, "skillchange": 3.8, "age": 35}
+        {"name": "Growth Hacker", "value": 520000, "pay": 42000000, "outlook": 32, "education": "Bachelor", "postings": 1800, "competition": 3.5, "growth": 35, "skillchange": 3.8, "age": 35},
+        {"name": "Startup Advisor", "value": 420000, "pay": 65000000, "outlook": 35, "education": "Master", "postings": 1400, "competition": 4.0, "growth": 38, "skillchange": 4.0, "age": 42},
+        {"name": "CTO", "value": 380000, "pay": 72000000, "outlook": 36, "education": "Master", "postings": 1300, "competition": 4.1, "growth": 39, "skillchange": 4.3, "age": 40},
+        {"name": "CEO", "value": 320000, "pay": 95000000, "outlook": 38, "education": "Master", "postings": 1100, "competition": 4.2, "growth": 40, "skillchange": 4.1, "age": 43},
+        {"name": "Venture Capitalist", "value": 280000, "pay": 85000000, "outlook": 36, "education": "Master", "postings": 950, "competition": 4.0, "growth": 38, "skillchange": 3.8, "age": 44},
+        {"name": "Business Development Manager", "value": 420000, "pay": 48000000, "outlook": 34, "education": "Bachelor", "postings": 1400, "competition": 3.9, "growth": 37, "skillchange": 3.9, "age": 34},
+        {"name": "Tech Lead", "value": 480000, "pay": 62000000, "outlook": 34, "education": "Master", "postings": 1600, "competition": 3.9, "growth": 37, "skillchange": 4.1, "age": 36},
+        {"name": "UI/UX Designer Startup", "value": 520000, "pay": 44000000, "outlook": 33, "education": "Bachelor", "postings": 1800, "competition": 3.8, "growth": 36, "skillchange": 4.0, "age": 32},
+        {"name": "Data Science Lead", "value": 380000, "pay": 68000000, "outlook": 35, "education": "Master", "postings": 1300, "competition": 4.0, "growth": 38, "skillchange": 4.2, "age": 38},
+        {"name": "Product Strategist", "value": 350000, "pay": 55000000, "outlook": 33, "education": "Master", "postings": 1200, "competition": 3.9, "growth": 36, "skillchange": 3.9, "age": 36},
+        {"name": "Operations Manager", "value": 420000, "pay": 48000000, "outlook": 32, "education": "Bachelor", "postings": 1400, "competition": 3.8, "growth": 35, "skillchange": 3.8, "age": 35},
+        {"name": "Marketing Manager Startup", "value": 480000, "pay": 45000000, "outlook": 33, "education": "Bachelor", "postings": 1600, "competition": 3.8, "growth": 36, "skillchange": 3.9, "age": 33},
+        {"name": "Angel Investor", "value": 220000, "pay": 75000000, "outlook": 34, "education": "Master", "postings": 750, "competition": 3.9, "growth": 36, "skillchange": 3.7, "age": 48},
+        {"name": "Startup Community Manager", "value": 380000, "pay": 40000000, "outlook": 32, "education": "Bachelor", "postings": 1300, "competition": 3.7, "growth": 35, "skillchange": 3.8, "age": 32}
       ]
     },
     {
@@ -224,7 +357,21 @@
       "age": 35,
       "children": [
         {"name": "Logistics Manager", "value": 650000, "pay": 38000000, "outlook": 22, "education": "Bachelor", "postings": 1600, "competition": 2.9, "growth": 26, "skillchange": 1.8, "age": 40},
-        {"name": "Supply Chain Manager", "value": 680000, "pay": 32000000, "outlook": 24, "education": "Bachelor", "postings": 1400, "competition": 3.1, "growth": 28, "skillchange": 2.0, "age": 41}
+        {"name": "Supply Chain Manager", "value": 680000, "pay": 32000000, "outlook": 24, "education": "Bachelor", "postings": 1400, "competition": 3.1, "growth": 28, "skillchange": 2.0, "age": 41},
+        {"name": "Warehouse Manager", "value": 720000, "pay": 28000000, "outlook": 12, "education": "High School", "postings": 2400, "competition": 1.8, "growth": 14, "skillchange": 1.3, "age": 36},
+        {"name": "Truck Driver", "value": 1200000, "pay": 22000000, "outlook": 10, "education": "High School", "postings": 4200, "competition": 1.5, "growth": 12, "skillchange": 1.1, "age": 38},
+        {"name": "Freight Forwarder", "value": 480000, "pay": 26000000, "outlook": 13, "education": "Bachelor", "postings": 1600, "competition": 1.9, "growth": 15, "skillchange": 1.5, "age": 34},
+        {"name": "Customs Broker", "value": 380000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 1300, "competition": 2.0, "growth": 16, "skillchange": 1.6, "age": 36},
+        {"name": "Inventory Manager", "value": 420000, "pay": 28000000, "outlook": 12, "education": "Bachelor", "postings": 1400, "competition": 1.8, "growth": 14, "skillchange": 1.4, "age": 35},
+        {"name": "Transportation Specialist", "value": 350000, "pay": 26000000, "outlook": 12, "education": "Bachelor", "postings": 1200, "competition": 1.8, "growth": 14, "skillchange": 1.4, "age": 33},
+        {"name": "Fleet Manager", "value": 450000, "pay": 30000000, "outlook": 13, "education": "Bachelor", "postings": 1500, "competition": 1.9, "growth": 15, "skillchange": 1.5, "age": 37},
+        {"name": "Distribution Manager", "value": 380000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 1300, "competition": 2.0, "growth": 16, "skillchange": 1.6, "age": 38},
+        {"name": "Procurement Manager", "value": 420000, "pay": 36000000, "outlook": 15, "education": "Bachelor", "postings": 1400, "competition": 2.1, "growth": 17, "skillchange": 1.7, "age": 39},
+        {"name": "Order Fulfillment Manager", "value": 380000, "pay": 26000000, "outlook": 12, "education": "Bachelor", "postings": 1300, "competition": 1.8, "growth": 14, "skillchange": 1.4, "age": 32},
+        {"name": "Port Operations Manager", "value": 320000, "pay": 34000000, "outlook": 13, "education": "Bachelor", "postings": 1100, "competition": 1.9, "growth": 15, "skillchange": 1.5, "age": 40},
+        {"name": "Shipping Coordinator", "value": 480000, "pay": 24000000, "outlook": 12, "education": "High School", "postings": 1600, "competition": 1.7, "growth": 14, "skillchange": 1.3, "age": 31},
+        {"name": "Dock Worker", "value": 850000, "pay": 20000000, "outlook": 10, "education": "High School", "postings": 2800, "competition": 1.4, "growth": 12, "skillchange": 1.0, "age": 34},
+        {"name": "Delivery Driver", "value": 950000, "pay": 22000000, "outlook": 11, "education": "High School", "postings": 3200, "competition": 1.5, "growth": 13, "skillchange": 1.1, "age": 36}
       ]
     },
     {
@@ -240,7 +387,21 @@
       "age": 42,
       "children": [
         {"name": "Lawyer", "value": 220000, "pay": 78000000, "outlook": 16, "education": "Master", "postings": 800, "competition": 2.2, "growth": 18, "skillchange": 1.8, "age": 45},
-        {"name": "Legal Consultant", "value": 380000, "pay": 48000000, "outlook": 18, "education": "Master", "postings": 1300, "competition": 2.3, "growth": 20, "skillchange": 1.9, "age": 40}
+        {"name": "Legal Consultant", "value": 380000, "pay": 48000000, "outlook": 18, "education": "Master", "postings": 1300, "competition": 2.3, "growth": 20, "skillchange": 1.9, "age": 40},
+        {"name": "Judge", "value": 150000, "pay": 95000000, "outlook": 8, "education": "Master", "postings": 300, "competition": 2.4, "growth": 10, "skillchange": 1.5, "age": 55},
+        {"name": "Prosecutor", "value": 180000, "pay": 72000000, "outlook": 9, "education": "Master", "postings": 400, "competition": 2.3, "growth": 11, "skillchange": 1.6, "age": 48},
+        {"name": "Legal Secretary", "value": 420000, "pay": 28000000, "outlook": 10, "education": "High School", "postings": 1400, "competition": 1.9, "growth": 12, "skillchange": 1.6, "age": 35},
+        {"name": "Paralegal", "value": 580000, "pay": 32000000, "outlook": 12, "education": "Bachelor", "postings": 1900, "competition": 2.0, "growth": 14, "skillchange": 1.7, "age": 33},
+        {"name": "Legal Analyst", "value": 350000, "pay": 40000000, "outlook": 13, "education": "Bachelor", "postings": 1200, "competition": 2.1, "growth": 15, "skillchange": 1.8, "age": 34},
+        {"name": "Notary Public", "value": 280000, "pay": 24000000, "outlook": 9, "education": "High School", "postings": 950, "competition": 1.8, "growth": 11, "skillchange": 1.4, "age": 40},
+        {"name": "Tax Attorney", "value": 220000, "pay": 85000000, "outlook": 14, "education": "Master", "postings": 700, "competition": 2.3, "growth": 16, "skillchange": 2.0, "age": 46},
+        {"name": "Patent Attorney", "value": 180000, "pay": 92000000, "outlook": 15, "education": "Master", "postings": 600, "competition": 2.4, "growth": 17, "skillchange": 2.1, "age": 45},
+        {"name": "Intellectual Property Lawyer", "value": 200000, "pay": 88000000, "outlook": 16, "education": "Master", "postings": 650, "competition": 2.4, "growth": 18, "skillchange": 2.0, "age": 44},
+        {"name": "Employment Lawyer", "value": 240000, "pay": 76000000, "outlook": 14, "education": "Master", "postings": 800, "competition": 2.2, "growth": 16, "skillchange": 1.9, "age": 43},
+        {"name": "Immigration Lawyer", "value": 260000, "pay": 68000000, "outlook": 13, "education": "Master", "postings": 850, "competition": 2.1, "growth": 15, "skillchange": 1.8, "age": 41},
+        {"name": "Corporate Lawyer", "value": 200000, "pay": 82000000, "outlook": 15, "education": "Master", "postings": 700, "competition": 2.3, "growth": 17, "skillchange": 1.9, "age": 44},
+        {"name": "Contract Manager", "value": 420000, "pay": 40000000, "outlook": 11, "education": "Bachelor", "postings": 1400, "competition": 2.0, "growth": 13, "skillchange": 1.7, "age": 36},
+        {"name": "Compliance Officer", "value": 380000, "pay": 44000000, "outlook": 12, "education": "Master", "postings": 1300, "competition": 2.1, "growth": 14, "skillchange": 1.8, "age": 38}
       ]
     },
     {
@@ -256,7 +417,21 @@
       "age": 38,
       "children": [
         {"name": "Security Guard", "value": 1450000, "pay": 15000000, "outlook": 6, "education": "High School", "postings": 4850, "competition": 1.5, "growth": 8, "skillchange": 1.0, "age": 36},
-        {"name": "Security Manager", "value": 520000, "pay": 52000000, "outlook": 28, "education": "Bachelor", "postings": 1600, "competition": 3.9, "growth": 32, "skillchange": 2.0, "age": 40}
+        {"name": "Security Manager", "value": 520000, "pay": 52000000, "outlook": 28, "education": "Bachelor", "postings": 1600, "competition": 3.9, "growth": 32, "skillchange": 2.0, "age": 40},
+        {"name": "Bodyguard", "value": 380000, "pay": 32000000, "outlook": 8, "education": "High School", "postings": 1300, "competition": 1.8, "growth": 10, "skillchange": 1.2, "age": 35},
+        {"name": "Loss Prevention Manager", "value": 420000, "pay": 38000000, "outlook": 10, "education": "Bachelor", "postings": 1400, "competition": 1.9, "growth": 12, "skillchange": 1.4, "age": 38},
+        {"name": "Security Director", "value": 280000, "pay": 58000000, "outlook": 12, "education": "Bachelor", "postings": 950, "competition": 2.1, "growth": 14, "skillchange": 1.6, "age": 42},
+        {"name": "Security Officer", "value": 620000, "pay": 18000000, "outlook": 7, "education": "High School", "postings": 2100, "competition": 1.4, "growth": 9, "skillchange": 1.0, "age": 34},
+        {"name": "Armored Car Driver", "value": 380000, "pay": 24000000, "outlook": 8, "education": "High School", "postings": 1300, "competition": 1.6, "growth": 10, "skillchange": 1.1, "age": 36},
+        {"name": "Surveillance Monitor", "value": 480000, "pay": 16000000, "outlook": 7, "education": "High School", "postings": 1600, "competition": 1.4, "growth": 9, "skillchange": 1.0, "age": 32},
+        {"name": "Risk Assessor", "value": 320000, "pay": 40000000, "outlook": 11, "education": "Bachelor", "postings": 1100, "competition": 2.0, "growth": 13, "skillchange": 1.5, "age": 39},
+        {"name": "Incident Manager", "value": 350000, "pay": 35000000, "outlook": 10, "education": "Bachelor", "postings": 1200, "competition": 1.9, "growth": 12, "skillchange": 1.4, "age": 36},
+        {"name": "Access Control Specialist", "value": 380000, "pay": 20000000, "outlook": 7, "education": "High School", "postings": 1300, "competition": 1.5, "growth": 9, "skillchange": 1.0, "age": 33},
+        {"name": "VIP Protection Officer", "value": 420000, "pay": 38000000, "outlook": 9, "education": "High School", "postings": 1400, "competition": 1.8, "growth": 11, "skillchange": 1.3, "age": 37},
+        {"name": "Fire Safety Inspector", "value": 350000, "pay": 34000000, "outlook": 10, "education": "Vocational", "postings": 1200, "competition": 1.9, "growth": 12, "skillchange": 1.4, "age": 38},
+        {"name": "Security Consultant", "value": 280000, "pay": 52000000, "outlook": 14, "education": "Bachelor", "postings": 950, "competition": 2.1, "growth": 16, "skillchange": 1.7, "age": 40},
+        {"name": "Alarm Technician", "value": 380000, "pay": 28000000, "outlook": 9, "education": "Vocational", "postings": 1300, "competition": 1.7, "growth": 11, "skillchange": 1.3, "age": 35},
+        {"name": "Corporate Security Officer", "value": 420000, "pay": 30000000, "outlook": 10, "education": "Bachelor", "postings": 1400, "competition": 1.9, "growth": 12, "skillchange": 1.4, "age": 36}
       ]
     },
     {
@@ -272,7 +447,21 @@
       "age": 36,
       "children": [
         {"name": "Real Estate Agent", "value": 850000, "pay": 28000000, "outlook": 4, "education": "High School", "postings": 2850, "competition": 1.9, "growth": 6, "skillchange": 1.4, "age": 34},
-        {"name": "Real Estate Manager", "value": 320000, "pay": 42000000, "outlook": 10, "education": "Bachelor", "postings": 1100, "competition": 2.4, "growth": 12, "skillchange": 1.8, "age": 38}
+        {"name": "Real Estate Manager", "value": 320000, "pay": 42000000, "outlook": 10, "education": "Bachelor", "postings": 1100, "competition": 2.4, "growth": 12, "skillchange": 1.8, "age": 38},
+        {"name": "Property Manager", "value": 680000, "pay": 36000000, "outlook": 8, "education": "Bachelor", "postings": 2300, "competition": 2.1, "growth": 10, "skillchange": 1.6, "age": 36},
+        {"name": "Real Estate Appraiser", "value": 380000, "pay": 40000000, "outlook": 7, "education": "Bachelor", "postings": 1300, "competition": 2.2, "growth": 9, "skillchange": 1.5, "age": 40},
+        {"name": "Real Estate Developer", "value": 220000, "pay": 65000000, "outlook": 10, "education": "Bachelor", "postings": 750, "competition": 2.4, "growth": 12, "skillchange": 1.8, "age": 42},
+        {"name": "Mortgage Broker", "value": 420000, "pay": 38000000, "outlook": 8, "education": "Bachelor", "postings": 1400, "competition": 2.2, "growth": 10, "skillchange": 1.6, "age": 37},
+        {"name": "Realtor", "value": 720000, "pay": 32000000, "outlook": 6, "education": "High School", "postings": 2400, "competition": 2.0, "growth": 8, "skillchange": 1.5, "age": 35},
+        {"name": "Real Estate Broker", "value": 480000, "pay": 48000000, "outlook": 9, "education": "Bachelor", "postings": 1600, "competition": 2.3, "growth": 11, "skillchange": 1.7, "age": 40},
+        {"name": "Property Surveyor", "value": 350000, "pay": 42000000, "outlook": 8, "education": "Bachelor", "postings": 1200, "competition": 2.1, "growth": 10, "skillchange": 1.5, "age": 38},
+        {"name": "Leasing Consultant", "value": 480000, "pay": 28000000, "outlook": 7, "education": "High School", "postings": 1600, "competition": 1.9, "growth": 9, "skillchange": 1.4, "age": 32},
+        {"name": "Title Examiner", "value": 350000, "pay": 36000000, "outlook": 7, "education": "Bachelor", "postings": 1200, "competition": 2.0, "growth": 9, "skillchange": 1.5, "age": 36},
+        {"name": "Home Inspector", "value": 420000, "pay": 38000000, "outlook": 8, "education": "Vocational", "postings": 1400, "competition": 2.1, "growth": 10, "skillchange": 1.5, "age": 40},
+        {"name": "Real Estate Photographer", "value": 380000, "pay": 24000000, "outlook": 8, "education": "Vocational", "postings": 1300, "competition": 2.1, "growth": 10, "skillchange": 1.6, "age": 31},
+        {"name": "Escrow Officer", "value": 320000, "pay": 34000000, "outlook": 7, "education": "Bachelor", "postings": 1100, "competition": 2.0, "growth": 9, "skillchange": 1.5, "age": 37},
+        {"name": "HOA Manager", "value": 480000, "pay": 30000000, "outlook": 7, "education": "Bachelor", "postings": 1600, "competition": 2.0, "growth": 9, "skillchange": 1.5, "age": 38},
+        {"name": "Real Estate Analyst", "value": 350000, "pay": 44000000, "outlook": 9, "education": "Bachelor", "postings": 1200, "competition": 2.2, "growth": 11, "skillchange": 1.6, "age": 35}
       ]
     }
   ]
