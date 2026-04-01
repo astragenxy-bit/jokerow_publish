@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vietnam Job Market 2026 - Home</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2a 100%);
+  color: #e0e0e8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  line-height: 1.6;
+}
+#wrapper { max-width: 1000px; margin: 0 auto; padding: 60px 28px; }
+header { text-align: center; margin-bottom: 50px; }
+h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+.subtitle { font-size: 18px; color: #888894; margin-bottom: 8px; }
+.tagline { font-size: 14px; color: #666; margin-bottom: 30px; }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 40px; }
+.card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.card:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-4px);
+}
+
+.card h3 { font-size: 20px; margin-bottom: 8px; color: #fff; }
+.card .icon { font-size: 32px; margin-bottom: 8px; display: inline-block; }
+.card p { font-size: 13px; color: #888894; margin-bottom: 14px; line-height: 1.5; }
+.card a {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #3d9fff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.card a:hover { background: #2a8fd6; }
+
+.features { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 28px; margin-bottom: 40px; }
+.features h2 { font-size: 20px; margin-bottom: 16px; }
+.feature-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.feature-item { font-size: 13px; color: #888894; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.feature-item::before { content: "✅ "; color: #3d9fff; font-weight: 600; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 40px; }
+.stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; text-align: center; }
+.stat .number { font-size: 28px; font-weight: 700; color: #3d9fff; margin-bottom: 4px; }
+.stat .label { font-size: 12px; color: #888894; text-transform: uppercase; letter-spacing: 0.05em; }
+
+footer { text-align: center; color: #666; font-size: 12px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+footer a { color: #3d9fff; text-decoration: none; }
+
+@media (max-width: 768px) {
+  h1 { font-size: 28px; }
+  .card-grid { grid-template-columns: 1fr; }
+  #wrapper { padding: 40px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+  <header>
+    <h1>📊 Vietnam Job Market 2026</h1>
+    <p class="subtitle">Interactive Treemap Visualization</p>
+    <p class="tagline">28.5M workers × 15 sectors × 100+ occupations</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="number">28.5M</div>
+      <div class="label">Workers</div>
+    </div>
+    <div class="stat">
+      <div class="number">15</div>
+      <div class="label">Sectors</div>
+    </div>
+    <div class="stat">
+      <div class="number">100+</div>
+      <div class="label">Occupations</div>
+    </div>
+    <div class="stat">
+      <div class="number">8</div>
+      <div class="label">Display Modes</div>
+    </div>
+  </div>
+
+  <div class="features">
+    <h2>✨ Tính Năng</h2>
+    <div class="feature-list">
+      <div class="feature-item">Interactive treemap</div>
+      <div class="feature-item">Drill-down navigation</div>
+      <div class="feature-item">8 color-coded dimensions</div>
+      <div class="feature-item">Real-time statistics</div>
+      <div class="feature-item">Top 3 rankings</div>
+      <div class="feature-item">Responsive design</div>
+      <div class="feature-item">Mobile optimized</div>
+      <div class="feature-item">Performance optimized</div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">🗺️</div>
+      <h3>Main Visualizer</h3>
+      <p>Explore the interactive treemap with drill-down navigation through 15 sectors and 100+ occupations.</p>
+      <a href="index-hierarchical.html">Mở Ứng Dụng →</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">📚</div>
+      <h3>Reference Guide</h3>
+      <p>Learn about 8 display dimensions, sector descriptions, and data interpretation tips.</p>
+      <a href="reference.html">Xem Tài Liệu →</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">📖</div>
+      <h3>Documentation</h3>
+      <p>Complete guides: README, deployment, features, and project completion summary.</p>
+      <a href="#">Tải README →</a>
+    </div>
+  </div>
+
+  <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 28px; margin-bottom: 40px;">
+    <h2 style="font-size: 18px; margin-bottom: 16px;">8️⃣ Display Modes (Chiều Hiển Thị)</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; font-size: 13px;">
+      <div>💰 <strong>Lương</strong> - Salary 10M-250M VND</div>
+      <div>📈 <strong>Triển vọng</strong> - Outlook -10% to 70%</div>
+      <div>🎓 <strong>Học vấn</strong> - Education HS-PhD</div>
+      <div>📊 <strong>Nhu cầu</strong> - Postings 200-17.6K</div>
+      <div>🏆 <strong>Cạnh tranh</strong> - Competition 1:1-5.3:1</div>
+      <div>🚀 <strong>Tăng trưởng</strong> - Growth 10-45%</div>
+      <div>🔧 <strong>Kỹ năng</strong> - Skill Change 0-5</div>
+      <div>👥 <strong>Độ tuổi</strong> - Age 15-65 years</div>
+    </div>
+  </div>
+
+  <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 28px; margin-bottom: 40px;">
+    <h2 style="font-size: 18px; margin-bottom: 16px;">📁 15 Sectors (Ngành)</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; font-size: 13px; color: #888894;">
+      <div>1. Công nghệ thông tin (5.8M)</div>
+      <div>2. Bán hàng & Marketing (4.5M)</div>
+      <div>3. Kỹ thuật & Xây dựng (3.2M)</div>
+      <div>4. Y tế (3.2M)</div>
+      <div>5. Tài chính & Ngân hàng (2.2M)</div>
+      <div>6. Thiết kế & Sáng tạo (2.2M)</div>
+      <div>7. Dịch vụ & Du lịch (1.5M)</div>
+      <div>8. Giáo dục (1.3M)</div>
+      <div>9. Truyền thông & Xuất bản (950K)</div>
+      <div>10. Nhân sự (1.0M)</div>
+      <div>11. Startup & Công nghệ mới (1.2M)</div>
+      <div>12. Logistics & Vận chuyển (850K)</div>
+      <div>13. Pháp lý (350K)</div>
+      <div>14. Bảo vệ & An ninh (180K)</div>
+      <div>15. Bất động sản (120K)</div>
+    </div>
+  </div>
+
+  <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 28px;">
+    <h2 style="font-size: 18px; margin-bottom: 16px;">🚀 Quick Start</h2>
+    <ol style="margin-left: 20px; font-size: 13px; color: #888894; line-height: 2;">
+      <li><a href="index-hierarchical.html" style="color: #3d9fff; text-decoration: none; font-weight: 600;">Open the visualizer</a> - Start exploring the treemap</li>
+      <li><strong>Click a sector</strong> - Drill down to see 100+ occupations</li>
+      <li><strong>Click buttons at top</strong> - Switch between 8 display modes</li>
+      <li><strong>Check reference</strong> - Learn what each dimension means</li>
+      <li><strong>Hover tiles</strong> - See detailed information</li>
+    </ol>
+  </div>
+
+  <footer>
+    <p style="margin-bottom: 8px;">
+      <strong>Project Status:</strong> ✅ Production Ready | 
+      <strong>Version:</strong> 2.1 | 
+      <strong>Last Update:</strong> Q1/2026
+    </p>
+    <p>
+      <a href="https://github.com" target="_blank">GitHub</a> • 
+      <a href="#">Documentation</a> • 
+      <a href="reference.html">Reference</a> • 
+      <a href="#">Completion Report</a>
+    </p>
+  </footer>
+</div>
+
+</body>
+</html>

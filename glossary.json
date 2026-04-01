@@ -1,0 +1,347 @@
+{
+  "dimensions": {
+    "pay": {
+      "label": "💰 Lương",
+      "description": "Mức lương trung bình hàng năm (VND)",
+      "unit": "VND",
+      "range": {
+        "min": 10000000,
+        "max": 250000000,
+        "label_min": "10M",
+        "label_max": "250M"
+      },
+      "scale_type": "logarithmic",
+      "color_meaning": {
+        "green": "Mức lương thấp (10-30M VND)",
+        "yellow": "Mức lương trung bình (30-80M VND)",
+        "red": "Mức lương cao (80-250M VND)"
+      },
+      "interpretation": "Ô càng xanh = lương thấp, ô càng đỏ = lương cao. Dùng để so sánh mức thu nhập giữa các ngành và nghề.",
+      "use_cases": [
+        "So sánh lương giữa các ngành",
+        "Lựa chọn nghề dựa trên tiềm năng thu nhập",
+        "Phân tích khoảng lương theo cấp bậc",
+        "Đàm phán lương khi tuyển dụng hoặc xin việc"
+      ],
+      "data_source": "Thống kê lương trung bình từ báo cáo thị trường lao động 2026",
+      "last_updated": "2026-Q1",
+      "notes": "Lương được tính trên cơ sở full-time, chưa bao gồm thưởng, bảo hiểm xã hội, và phúc lợi khác."
+    },
+    "outlook": {
+      "label": "📈 Triển vọng",
+      "description": "Tốc độ tăng trưởng dự kiến hàng năm (%)",
+      "unit": "%",
+      "range": {
+        "min": -10,
+        "max": 70,
+        "label_min": "Giảm",
+        "label_max": "Tăng mạnh"
+      },
+      "scale_type": "linear",
+      "color_meaning": {
+        "green": "Tối ưu: -10% đến 10% (ổn định)",
+        "yellow": "Trung bình: 10% đến 40%",
+        "red": "Cao: 40% đến 70% (tăng nhanh)"
+      },
+      "interpretation": "Ô xanh = triển vọng ổn định/tốt, ô đỏ = triển vọng rất tốt (tăng nhanh). Chỉ ra tiềm năng tuyển dụng và nhu cầu lao động trong tương lai.",
+      "use_cases": [
+        "Dự đoán nhu cầu tuyển dụng trong tương lai",
+        "Lựa chọn ngành có triển vọng tăng trưởng",
+        "Phân tích độ an toàn việc làm",
+        "Đánh giá sự bền vững của một vị trí"
+      ],
+      "data_source": "Dự báo thị trường lao động từ các tổ chức kinh tế quốc tế và địa phương",
+      "last_updated": "2026-Q1",
+      "notes": "Số liệu là dự báo cộng hưởng, có thể thay đổi dựa trên tình hình kinh tế, công nghệ, và chính sách. Giá trị âm cho thấy ngành suy giảm."
+    },
+    "education": {
+      "label": "🎓 Học vấn",
+      "description": "Yêu cầu trình độ học vấn tối thiểu",
+      "unit": "Bậc học",
+      "range": {
+        "levels": [
+          "High School",
+          "Vocational",
+          "Bachelor",
+          "Master",
+          "Doctor"
+        ]
+      },
+      "scale_type": "ordinal",
+      "color_meaning": {
+        "green": "High School - Yêu cầu thấp",
+        "yellow": "Vocational/Bachelor - Yêu cầu trung bình",
+        "red": "Master/Doctor - Yêu cầu cao"
+      },
+      "interpretation": "Ô xanh = yêu cầu trình độ học thấp (có thể học việc), ô đỏ = yêu cầu trình độ cao (Master/PhD). Giúp xác định đường dẫn học tập cần thiết.",
+      "use_cases": [
+        "Lựa chọn hướng học tập phù hợp",
+        "Đánh giá chi phí giáo dục cần thiết",
+        "Xác định yêu cầu cấp bằng cho một vị trí",
+        "So sánh cơ hội việc làm giữa các bậc học"
+      ],
+      "data_source": "Mô tả công việc từ các công ty tuyển dụng và tiêu chuẩn ngành",
+      "last_updated": "2026-Q1",
+      "notes": "Đây là yêu cầu tối thiểu. Nhiều vị trí sẽ ưu tiên ứng viên có bằng cao hơn. Kinh nghiệm thực tế có thể thay thế để cấp bằng trong một số trường hợp."
+    },
+    "postings": {
+      "label": "📊 Nhu cầu",
+      "description": "Số lượng job postings/tin tuyển dụng hiện có",
+      "unit": "Tin tuyển dụng",
+      "range": {
+        "min": 200,
+        "max": 17650,
+        "label_min": "Ít",
+        "label_max": "Nhiều"
+      },
+      "scale_type": "logarithmic",
+      "color_meaning": {
+        "green": "Nhiều tin: 8000+ postings (dễ tìm việc)",
+        "yellow": "Vừa phải: 2000-8000 postings",
+        "red": "Ít: 200-2000 postings (khó tìm việc)"
+      },
+      "interpretation": "Ô xanh = có nhiều cơ hội tuyển dụng (tìm việc dễ), ô đỏ = có ít cơ hội (tìm việc khó). Phản ánh nhu cầu thực tế hiện tại trên thị trường.",
+      "use_cases": [
+        "Đánh giá khả năng tìm việc dễ/khó",
+        "So sánh cơ hội tuyển dụng giữa các ngành",
+        "Xác định ngành có nhu cầu cao (cơ hội tốt)",
+        "Phân tích tình hình việc làm hiện tại"
+      ],
+      "data_source": "Dữ liệu tổng hợp từ các trang tuyển dụng: Linkedin, Indeed, TopCV, ITviec, v.v.",
+      "last_updated": "2026-Q1",
+      "notes": "Số liệu được cập nhật hàng tháng. Số postings cao không nhất thiết có nghĩa lương cao, mà có thể do yêu cầu tuyển dụng lớn hoặc chuyên biệt."
+    },
+    "competition": {
+      "label": "🏆 Cạnh tranh",
+      "description": "Tỷ lệ ứng viên trên mỗi vị trí (ứng viên:vị trí)",
+      "unit": "Ratio (:1)",
+      "range": {
+        "min": 1.0,
+        "max": 5.3,
+        "label_min": "Thấp (1:1)",
+        "label_max": "Cao (5.3:1)"
+      },
+      "scale_type": "linear",
+      "color_meaning": {
+        "green": "Thấp: 1-2 ứng viên/vị trí (dễ được nhận)",
+        "yellow": "Trung bình: 2-3.5 ứng viên/vị trí",
+        "red": "Cao: 3.5-5.3 ứng viên/vị trí (khó được nhận)"
+      },
+      "interpretation": "Ô xanh = cạnh tranh thấp (dễ có việc), ô đỏ = cạnh tranh cao (khó có việc). Cho thấy độ khó khi xin việc.",
+      "use_cases": [
+        "Đánh giá độ khó khi xin việc",
+        "So sánh cạnh tranh giữa các ngành",
+        "Xác định ngành có ít cạnh tranh (cơ hội lớn hơn)",
+        "Lên kế hoạch khóa đào tạo để giảm cạnh tranh"
+      ],
+      "data_source": "Tính toán từ dữ liệu lực lượng lao động và số postings",
+      "last_updated": "2026-Q1",
+      "notes": "Tỷ lệ 1:1 là lý tưởng nhất (nhiều việc, ít ứng viên). Tỷ lệ cao (3+) cho thấy ngành quá bão hòa hoặc yêu cầu chuyên biệt."
+    },
+    "growth": {
+      "label": "🚀 Tăng trưởng",
+      "description": "Tốc độ tăng trưởng doanh số/lợi nhuận ngành (%)",
+      "unit": "%",
+      "range": {
+        "min": 10,
+        "max": 45,
+        "label_min": "Chậm (10%)",
+        "label_max": "Nhanh (45%)"
+      },
+      "scale_type": "linear",
+      "color_meaning": {
+        "green": "Chậm: 10-20% (ổn định)",
+        "yellow": "Trung bình: 20-30%",
+        "red": "Nhanh: 30-45% (phát triển mạnh)"
+      },
+      "interpretation": "Ô xanh = ngành ổn định, ô đỏ = ngành phát triển nhanh (nhiều cơ hội, nhu cầu tuyển dụng lớn). Khác với 'Triển vọng' là về lực lượng lao động.",
+      "use_cases": [
+        "Xác định ngành phát triển nhanh (cơ hội tốt)",
+        "Dự đoán tuyển dụng trong tương lai",
+        "Phân tích tiềm năng thị trường",
+        "Lựa chọn ngành để khởi nghiệp"
+      ],
+      "data_source": "Báo cáo tài chính từ các công ty hàng đầu, dữ liệu GDP ngành",
+      "last_updated": "2026-Q1",
+      "notes": "Tăng trưởng cao cho thấy ngành đang mở rộng, dẫn đến nhiều cơ hội việc làm. Có thể do công nghệ mới, xu hướng tiêu dùng, hoặc chính sách."
+    },
+    "skillchange": {
+      "label": "🔧 Đổi mới Kỹ năng",
+      "description": "Mức độ thay đổi kỹ năng cần thiết (0-5 scale)",
+      "unit": "Điểm",
+      "range": {
+        "min": 0,
+        "max": 5,
+        "label_min": "Ít thay đổi (Ổn định)",
+        "label_max": "Nhiều thay đổi (Cập nhật liên tục)"
+      },
+      "scale_type": "linear",
+      "color_meaning": {
+        "green": "Ít: 0-2 (kỹ năng ổn định, ít thay đổi)",
+        "yellow": "Trung bình: 2-3.5",
+        "red": "Nhiều: 3.5-5 (cần cập nhật kỹ năng thường xuyên)"
+      },
+      "interpretation": "Ô xanh = kỹ năng ổn định (không cần học thêm nhiều), ô đỏ = kỹ năng thay đổi nhanh (cần học tập liên tục). Phản ánh tốc độ công nghệ/phương pháp thay đổi.",
+      "use_cases": [
+        "Xác định ngành yêu cầu học tập liên tục",
+        "Lựa chọn ngành ổn định (không cần học thêm)",
+        "Đánh giá chi phí đào tạo liên tục",
+        "Lên kế hoạch phát triển kỹ năng cá nhân"
+      ],
+      "data_source": "Phân tích từ các chuyên gia ngành, xu hướng công nghệ",
+      "last_updated": "2026-Q1",
+      "notes": "Ngành công nghệ thường có điểm cao (3.5-5) do thay đổi nhanh. Ngành dịch vụ truyền thống thường thấp (0-2). Điểm cao không xấu, chỉ đòi hỏi sự cập nhật."
+    },
+    "age": {
+      "label": "👥 Độ tuổi TB",
+      "description": "Độ tuổi trung bình của lực lượng lao động",
+      "unit": "Năm",
+      "range": {
+        "min": 15,
+        "max": 65,
+        "label_min": "Trẻ (Khởi nghiệp, công nghệ)",
+        "label_max": "Lớn (Kinh nghiệm, quản lý)"
+      },
+      "scale_type": "linear",
+      "color_meaning": {
+        "green": "Trẻ: 15-30 tuổi (Startup, công nghệ, năng lượng cao)",
+        "yellow": "Trung bình: 30-45 tuổi (Cân bằng)",
+        "red": "Lớn: 45-65 tuổi (Kinh nghiệm, quản lý)"
+      },
+      "interpretation": "Ô xanh = lực lượng lao động trẻ (động, sáng tạo), ô đỏ = lực lượng lao động già (kinh nghiệm, ổn định). Phản ánh cấu trúc tuổi của ngành.",
+      "use_cases": [
+        "Xác định ngành phù hợp với độ tuổi cá nhân",
+        "Đánh giá cơ hội phát triển dài hạn",
+        "Phân tích cơ hội thăng tiến theo tuổi",
+        "Lựa chọn ngành để khởi nghiệp sớm"
+      ],
+      "data_source": "Dữ liệu thống kê lực lượng lao động từ Tổng cục Thống kê",
+      "last_updated": "2026-Q1",
+      "notes": "Độ tuổi trẻ không nhất thiết xấu - có thể đồng nghĩa với năng lượng cao. Độ tuổi lớn có thể cho thấy yêu cầu kinh nghiệm cao hoặc ngành đang suy giảm."
+    }
+  },
+  "sector_descriptions": {
+    "Công nghệ thông tin": {
+      "description": "Phát triển phần mềm, công nghệ đám mây, AI/ML, cybersecurity, v.v.",
+      "key_roles": ["Software Engineer", "Data Scientist", "DevOps Engineer", "AI Engineer"],
+      "opportunities": "Rất cao - ngành tăng trưởng nhanh nhất",
+      "salary_range": "35M - 85M VND (trung bình 52M VND)",
+      "growth_rate": "32% hàng năm",
+      "skills_change": "Rất cao (4.2/5) - công nghệ thay đổi nhanh"
+    },
+    "Bán hàng & Marketing": {
+      "description": "Kinh doanh bán hàng, marketing kỹ thuật số, quản lý tài khoản, v.v.",
+      "key_roles": ["Sales Manager", "Account Manager", "Digital Marketing Manager", "Social Media Manager"],
+      "opportunities": "Cao - luôn có nhu cầu",
+      "salary_range": "28M - 68M VND (trung bình 38M VND)",
+      "growth_rate": "24% hàng năm",
+      "skills_change": "Trung bình (2.8/5) - cần cập nhật digital marketing"
+    },
+    "Kỹ thuật & Xây dựng": {
+      "description": "Kỹ sư dân dụng, xây dựng, cơ khí, điện, v.v.",
+      "key_roles": ["Civil Engineer", "Mechanical Engineer", "Project Manager", "Construction Manager"],
+      "opportunities": "Vừa phải - phụ thuộc vào đầu tư cơ sở hạ tầng",
+      "salary_range": "30M - 52M VND (trung bình 40M VND)",
+      "growth_rate": "20% hàng năm",
+      "skills_change": "Trung bình (2.5/5) - BIM, CAD phát triển"
+    },
+    "Y tế": {
+      "description": "Bác sĩ, y tá, dược sĩ, vật lý trị liệu, v.v.",
+      "key_roles": ["Doctor", "Nurse", "Pharmacist", "Physiotherapist"],
+      "opportunities": "Cao - nhu cầu xã hội luôn tồn tại",
+      "salary_range": "28M - 85M VND (trung bình 42M VND)",
+      "growth_rate": "22% hàng năm",
+      "skills_change": "Thấp (2.2/5) - kỹ năng cơ bản ổn định"
+    },
+    "Tài chính & Ngân hàng": {
+      "description": "Kế toán, phân tích tài chính, ngân hàng, bảo hiểm, v.v.",
+      "key_roles": ["Accountant", "Financial Analyst", "Investment Manager"],
+      "opportunities": "Vừa phải - tập trung vào ngành ngân hàng, Fintech",
+      "salary_range": "32M - 58M VND (trung bình 44M VND)",
+      "growth_rate": "18% hàng năm",
+      "skills_change": "Cao (2.8/5) - Fintech, blockchain ảnh hưởng"
+    },
+    "Thiết kế & Sáng tạo": {
+      "description": "UX/UI, graphic design, motion design, 3D art, video, v.v.",
+      "key_roles": ["UI/UX Designer", "Graphic Designer", "Motion Designer", "3D Artist"],
+      "opportunities": "Cao - nhu cầu sáng tạo tăng nhanh",
+      "salary_range": "22M - 38M VND (trung bình 35M VND)",
+      "growth_rate": "28% hàng năm",
+      "skills_change": "Rất cao (3.5/5) - công cụ, xu hướng thay đổi nhanh"
+    },
+    "Dịch vụ & Du lịch": {
+      "description": "Khách sạn, nhà hàng, du lịch, sự kiện, v.v.",
+      "key_roles": ["Hotel Manager", "Chef", "Tour Guide"],
+      "opportunities": "Vừa phải - phục hồi sau COVID",
+      "salary_range": "18M - 42M VND (trung bình 28M VND)",
+      "growth_rate": "16% hàng năm",
+      "skills_change": "Thấp (1.8/5) - kỹ năng truyền thống"
+    },
+    "Giáo dục": {
+      "description": "Giáo viên, giảng viên đại học, đào tạo, v.v.",
+      "key_roles": ["Teacher", "University Lecturer"],
+      "opportunities": "Thấp - ổn định nhưng không tăng",
+      "salary_range": "26M - 42M VND (trung bình 32M VND)",
+      "growth_rate": "14% hàng năm",
+      "skills_change": "Thấp (1.9/5) - nền tảng ổn định"
+    }
+  },
+  "color_scale_guide": {
+    "green": {
+      "hex": "#1e9d4f",
+      "meaning": "Tích cực, tốt, ít cạnh tranh, lương cao (tùy chiều)",
+      "examples": "Xanh lương = lương cao, xanh cạnh tranh = ít ứng viên (dễ xin việc)"
+    },
+    "yellow": {
+      "hex": "#f4c430",
+      "meaning": "Trung bình, cân bằng",
+      "examples": "Giữa lương cao và thấp, giữa ít và nhiều cạnh tranh"
+    },
+    "red": {
+      "hex": "#e24545",
+      "meaning": "Tiêu cực, xấu, nhiều cạnh tranh, lương thấp (tùy chiều)",
+      "examples": "Đỏ lương = lương thấp, đỏ cạnh tranh = nhiều ứng viên (khó xin việc)"
+    }
+  },
+  "interpretation_tips": {
+    "tip1": {
+      "title": "Làm thế nào để chọn ngành tốt?",
+      "content": "Tìm ngành có: (1) Lương cao 💰, (2) Tuyển dụng tốt 📊, (3) Cạnh tranh thấp 🏆, (4) Tăng trưởng nhanh 🚀. Ngành công nghệ thường đáp ứng tất cả tiêu chí."
+    },
+    "tip2": {
+      "title": "Cạnh tranh cao có xấu không?",
+      "content": "Không nhất thiết. Cạnh tranh cao cho thấy nhu cầu cao. Nếu bạn có kỹ năng tốt, cơ hội việc làm vẫn lớn. Tập trung vào phát triển kỹ năng thay vì tránh cạnh tranh."
+    },
+    "tip3": {
+      "title": "Kỹ năng thay đổi nhanh có tốt không?",
+      "content": "Tốt - cho thấy ngành năng động, có nhu cầu học tập. Yêu cầu bạn cập nhật liên tục, nhưng cơ hội việc làm thường cao hơn. Công nghệ là ví dụ điển hình."
+    },
+    "tip4": {
+      "title": "Độ tuổi nhỏ có ưu điểm gì?",
+      "content": "Độ tuổi TB nhỏ cho thấy lực lượng lao động trẻ, năng động, sáng tạo. Thường là ngành mới, startup, công nghệ. Cơ hội khởi nghiệp hoặc học tập cao."
+    },
+    "tip5": {
+      "title": "Làm sao so sánh các ngành?",
+      "content": "Nhấp vào các ngành khác nhau, chuyển đổi giữa các chiều hiển thị (💰, 📈, 🏆, v.v.). Xem các ngành xếp hạng thế nào theo từng tiêu chí. Tìm ngành phù hợp với mục tiêu của bạn."
+    }
+  },
+  "data_quality": {
+    "completeness": "95%",
+    "last_update": "2026-03-15",
+    "next_update": "2026-06-15",
+    "coverage": "28.5M lao động, 15 ngành chính, 100+ nghề",
+    "sources": [
+      "Tổng cục Thống kê Việt Nam",
+      "Tổng Liên đoàn Lao động Việt Nam",
+      "Các trang tuyển dụng: LinkedIn, Indeed, TopCV, ITviec",
+      "Báo cáo kinh tế ngành từ các công ty hàng đầu",
+      "Dự báo từ Tổ chức Lao động Quốc tế (ILO)"
+    ],
+    "limitations": [
+      "Dữ liệu là ước lượng từ các nguồn công khai",
+      "Lương trung bình, không bao gồm phúc lợi, thưởng",
+      "Không tính đến các vị trí freelance, bán thời gian",
+      "Cạnh tranh được tính từ tỷ lệ lực lượng lao động / job postings"
+    ]
+  }
+}

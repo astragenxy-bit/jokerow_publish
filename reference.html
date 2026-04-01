@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cơ sở tham chiếu - Bản đồ Thị trường Lao động Việt Nam</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --fg: #e0e0e8;
+  --fg2: #888894;
+  --accent: #3d9fff;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+#wrapper { max-width: 1200px; margin: 0 auto; padding: 40px 28px; }
+header { margin-bottom: 40px; }
+h1 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+p.subtitle { color: var(--fg2); font-size: 16px; line-height: 1.6; margin-bottom: 20px; }
+
+nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+nav a, nav button {
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--fg);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+nav a:hover, nav button:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.3);
+}
+
+nav a.back {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.tab-btn {
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--fg2);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.dimension-card {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.dimension-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--fg);
+}
+
+.dimension-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dimension-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.meta-item { display: flex; flex-direction: column; }
+.meta-label { color: var(--fg2); font-size: 11px; text-transform: uppercase; }
+.meta-value { color: var(--fg); font-weight: 600; }
+
+.description { color: var(--fg2); line-height: 1.6; margin-bottom: 16px; }
+
+.section { margin-bottom: 16px; }
+.section h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--fg); }
+
+.section ul { margin-left: 20px; }
+.section ul li { margin-bottom: 6px; color: var(--fg2); line-height: 1.5; font-size: 13px; }
+
+.color-scale {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.color-box {
+  flex: 1;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: white;
+}
+
+.color-box.green { background: #1e9d4f; }
+.color-box.yellow { background: #f4c430; color: #000; }
+.color-box.red { background: #e24545; }
+
+.sectors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.sector-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.sector-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sector-card p {
+  font-size: 12px;
+  color: var(--fg2);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.sector-stat {
+  font-size: 12px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sector-stat .label { color: var(--fg2); }
+.sector-stat .value { color: var(--fg); font-weight: 600; }
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.tip-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.tip-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.tip-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--fg2);
+}
+
+.sources {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.sources h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+.sources ul { margin-left: 20px; }
+.sources ul li { font-size: 13px; margin-bottom: 6px; color: var(--fg2); }
+
+footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  color: var(--fg2);
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  #wrapper { padding: 20px 16px; }
+  h1 { font-size: 24px; }
+  .tabs { flex-direction: column; }
+  .tab-btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+  <header>
+    <h1>📚 Cơ sở Tham Chiếu</h1>
+    <p class="subtitle">Hướng dẫn chi tiết về 8 chiều hiển thị và các ngành kinh tế</p>
+  </header>
+
+  <nav>
+    <a href="index-hierarchical.html" class="back">← Quay lại Bản đồ</a>
+  </nav>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('dimensions')">📊 Chiều Hiển Thị</button>
+    <button class="tab-btn" onclick="switchTab('sectors')">🏢 Các Ngành</button>
+    <button class="tab-btn" onclick="switchTab('tips')">💡 Mẹo & Lời Khuyên</button>
+    <button class="tab-btn" onclick="switchTab('sources')">📖 Cơ Sở Dữ Liệu</button>
+  </div>
+
+  <!-- Chiều Hiển Thị Tab -->
+  <div id="dimensions" class="tab-content active">
+    <div id="dimensionsContainer"></div>
+  </div>
+
+  <!-- Các Ngành Tab -->
+  <div id="sectors" class="tab-content">
+    <div id="sectorsContainer"></div>
+  </div>
+
+  <!-- Tips Tab -->
+  <div id="tips" class="tab-content">
+    <div id="tipsContainer"></div>
+  </div>
+
+  <!-- Sources Tab -->
+  <div id="sources" class="tab-content">
+    <div id="sourcesContainer"></div>
+  </div>
+
+  <footer>
+    <p>Dữ liệu được cập nhật: Q1/2026 | Tiếp tục cập nhật: Q2/2026 | <a href="/" style="color:var(--accent)">Trang chính</a></p>
+  </footer>
+</div>
+
+<script>
+let glossary = null;
+
+// Load glossary data
+fetch('glossary.json')
+  .then(r => r.json())
+  .then(data => {
+    glossary = data;
+    renderDimensions();
+    renderSectors();
+    renderTips();
+    renderSources();
+  });
+
+function switchTab(tab) {
+  // Hide all tabs
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  
+  // Show selected tab
+  document.getElementById(tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function renderDimensions() {
+  if (!glossary) return;
+  
+  const container = document.getElementById('dimensionsContainer');
+  const dims = glossary.dimensions;
+  
+  Object.keys(dims).forEach(key => {
+    const d = dims[key];
+    const html = `
+      <div class="dimension-card">
+        <div class="dimension-header">
+          <h3>${d.label}</h3>
+        </div>
+        
+        <div class="dimension-meta">
+          <div class="meta-item">
+            <span class="meta-label">Đơn vị</span>
+            <span class="meta-value">${d.unit}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Loại Thang</span>
+            <span class="meta-value">${d.scale_type}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Khoảng</span>
+            <span class="meta-value">${d.range.label_min} - ${d.range.label_max}</span>
+          </div>
+        </div>
+        
+        <p class="description">${d.description}</p>
+        
+        <div class="section">
+          <h4>🎨 Ý nghĩa màu sắc:</h4>
+          ${Object.keys(d.color_meaning).map(color => 
+            `<p style="margin-bottom: 6px; font-size: 13px; color: var(--fg2);">
+              <strong style="color: var(--fg);">${color.toUpperCase()}:</strong> ${d.color_meaning[color]}
+            </p>`
+          ).join('')}
+        </div>
+        
+        <p class="description" style="margin-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px;">
+          <strong style="color: var(--fg);">💡 Cách diễn giải:</strong> ${d.interpretation}
+        </p>
+        
+        <div class="section" style="margin-top: 16px;">
+          <h4>📋 Trường hợp sử dụng:</h4>
+          <ul>
+            ${d.use_cases.map(uc => `<li>${uc}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="section" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <h4>📊 Nguồn dữ liệu:</h4>
+          <p style="font-size: 13px; color: var(--fg2);">${d.data_source}</p>
+          <p style="font-size: 12px; color: var(--fg2); margin-top: 6px;">
+            <strong>Cập nhật lần cuối:</strong> ${d.last_updated}<br>
+            <strong>Ghi chú:</strong> ${d.notes}
+          </p>
+        </div>
+      </div>
+    `;
+    container.innerHTML += html;
+  });
+}
+
+function renderSectors() {
+  if (!glossary) return;
+  
+  const container = document.getElementById('sectorsContainer');
+  const sectors = glossary.sector_descriptions;
+  
+  const html = `
+    <div class="sectors-grid">
+      ${Object.keys(sectors).map(key => {
+        const s = sectors[key];
+        return `
+          <div class="sector-card">
+            <h4>${key}</h4>
+            <p>${s.description}</p>
+            
+            <div style="background: rgba(255,255,255,0.04); padding: 8px; border-radius: 4px; margin: 8px 0;">
+              <p style="font-size: 12px; color: var(--fg2); margin-bottom: 6px;"><strong style="color: var(--fg);">💼 Vai trò chính:</strong></p>
+              <p style="font-size: 11px; color: var(--fg2);">${s.key_roles.join(', ')}</p>
+            </div>
+            
+            <div class="sector-stat">
+              <span class="label">💰 Lương:</span>
+              <span class="value">${s.salary_range}</span>
+            </div>
+            <div class="sector-stat">
+              <span class="label">📈 Cơ hội:</span>
+              <span class="value">${s.opportunities}</span>
+            </div>
+            <div class="sector-stat">
+              <span class="label">🚀 Tăng trưởng:</span>
+              <span class="value">${s.growth_rate}</span>
+            </div>
+            <div class="sector-stat">
+              <span class="label">🔧 Kỹ năng:</span>
+              <span class="value">${s.skills_change}</span>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+  
+  container.innerHTML = html;
+}
+
+function renderTips() {
+  if (!glossary) return;
+  
+  const container = document.getElementById('tipsContainer');
+  const tips = glossary.interpretation_tips;
+  
+  const html = `
+    <div class="tips-grid">
+      ${Object.keys(tips).map(key => {
+        const t = tips[key];
+        return `
+          <div class="tip-card">
+            <h4>💡 ${t.title}</h4>
+            <p>${t.content}</p>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+  
+  container.innerHTML = html;
+}
+
+function renderSources() {
+  if (!glossary) return;
+  
+  const container = document.getElementById('sourcesContainer');
+  const quality = glossary.data_quality;
+  
+  const html = `
+    <div class="sources">
+      <h3>📊 Chất lượng dữ liệu</h3>
+      <div class="sector-stat" style="margin-bottom: 8px;">
+        <span class="label">Độ hoàn chỉnh:</span>
+        <span class="value">${quality.completeness}</span>
+      </div>
+      <div class="sector-stat" style="margin-bottom: 8px;">
+        <span class="label">Cập nhật:</span>
+        <span class="value">${quality.last_update}</span>
+      </div>
+      <div class="sector-stat">
+        <span class="label">Phạm vi:</span>
+        <span class="value">${quality.coverage}</span>
+      </div>
+    </div>
+    
+    <div class="sources">
+      <h3>📚 Nguồn dữ liệu chính</h3>
+      <ul>
+        ${quality.sources.map(s => `<li>${s}</li>`).join('')}
+      </ul>
+    </div>
+    
+    <div class="sources">
+      <h3>⚠️ Giới hạn & Ghi chú</h3>
+      <ul>
+        ${quality.limitations.map(l => `<li>${l}</li>`).join('')}
+      </ul>
+    </div>
+  `;
+  
+  container.innerHTML = html;
+}
+</script>
+</body>
+</html>

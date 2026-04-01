@@ -1,0 +1,279 @@
+{
+  "name": "Vietnam Job Market",
+  "value": 28500000,
+  "pay": 39100000,
+  "outlook": 18,
+  "education": "Bachelor",
+  "postings": 62150,
+  "competition": 2.8,
+  "growth": 19,
+  "skillchange": 2.5,
+  "age": 34,
+  "children": [
+    {
+      "name": "Công nghệ thông tin",
+      "value": 5800000,
+      "pay": 52000000,
+      "outlook": 28,
+      "education": "Bachelor",
+      "postings": 8500,
+      "competition": 3.8,
+      "growth": 32,
+      "skillchange": 4.2,
+      "age": 32,
+      "children": [
+        {"name": "Senior Software Engineer", "value": 350000, "pay": 75000000, "outlook": 32, "education": "Master", "postings": 1400, "competition": 4.2, "growth": 36, "skillchange": 4.5, "age": 41},
+        {"name": "Machine Learning Engineer", "value": 320000, "pay": 62000000, "outlook": 32, "education": "Master", "postings": 1500, "competition": 4.2, "growth": 36, "skillchange": 4.8, "age": 39},
+        {"name": "Data Scientist", "value": 420000, "pay": 58000000, "outlook": 30, "education": "Master", "postings": 1600, "competition": 4.0, "growth": 34, "skillchange": 4.5, "age": 38},
+        {"name": "Cloud Architect", "value": 250000, "pay": 68000000, "outlook": 30, "education": "Master", "postings": 1200, "competition": 4.1, "growth": 34, "skillchange": 4.6, "age": 40},
+        {"name": "DevOps Engineer", "value": 300000, "pay": 52000000, "outlook": 28, "education": "Bachelor", "postings": 1200, "competition": 4.0, "growth": 32, "skillchange": 4.3, "age": 36},
+        {"name": "Backend Developer", "value": 950000, "pay": 38000000, "outlook": 25, "education": "Bachelor", "postings": 3200, "competition": 3.2, "growth": 28, "skillchange": 4.0, "age": 32},
+        {"name": "Frontend Developer", "value": 1050000, "pay": 36000000, "outlook": 26, "education": "Bachelor", "postings": 3400, "competition": 3.3, "growth": 29, "skillchange": 3.8, "age": 32},
+        {"name": "Full Stack Developer", "value": 850000, "pay": 40000000, "outlook": 27, "education": "Bachelor", "postings": 2800, "competition": 3.4, "growth": 30, "skillchange": 4.1, "age": 33},
+        {"name": "QA Engineer", "value": 680000, "pay": 35000000, "outlook": 24, "education": "Bachelor", "postings": 2200, "competition": 3.0, "growth": 27, "skillchange": 3.8, "age": 31},
+        {"name": "Cybersecurity Engineer", "value": 380000, "pay": 52000000, "outlook": 28, "education": "Bachelor", "postings": 1600, "competition": 3.9, "growth": 32, "skillchange": 4.4, "age": 37}
+      ]
+    },
+    {
+      "name": "Bán hàng & Marketing",
+      "value": 4500000,
+      "pay": 38000000,
+      "outlook": 20,
+      "education": "Bachelor",
+      "postings": 6200,
+      "competition": 3.2,
+      "growth": 24,
+      "skillchange": 2.8,
+      "age": 33,
+      "children": [
+        {"name": "Sales Manager", "value": 680000, "pay": 68000000, "outlook": 20, "education": "Bachelor", "postings": 1750, "competition": 2.9, "growth": 25, "skillchange": 2.5, "age": 38},
+        {"name": "Account Manager", "value": 1050000, "pay": 38000000, "outlook": 20, "education": "Bachelor", "postings": 3550, "competition": 2.1, "growth": 22, "skillchange": 2.3, "age": 35},
+        {"name": "Marketing Manager", "value": 380000, "pay": 38000000, "outlook": 21, "education": "Bachelor", "postings": 1450, "competition": 3.2, "growth": 26, "skillchange": 2.8, "age": 38},
+        {"name": "Digital Marketing Manager", "value": 650000, "pay": 45000000, "outlook": 28, "education": "Bachelor", "postings": 2200, "competition": 3.2, "growth": 31, "skillchange": 3.2, "age": 36},
+        {"name": "Social Media Manager", "value": 1250000, "pay": 28000000, "outlook": 28, "education": "Bachelor", "postings": 4200, "competition": 3.3, "growth": 31, "skillchange": 2.9, "age": 30},
+        {"name": "Content Marketing Manager", "value": 620000, "pay": 42000000, "outlook": 26, "education": "Bachelor", "postings": 2100, "competition": 3.1, "growth": 29, "skillchange": 2.7, "age": 34}
+      ]
+    },
+    {
+      "name": "Kỹ thuật & Xây dựng",
+      "value": 3200000,
+      "pay": 40000000,
+      "outlook": 18,
+      "education": "Bachelor",
+      "postings": 4100,
+      "competition": 2.9,
+      "growth": 20,
+      "skillchange": 2.5,
+      "age": 36,
+      "children": [
+        {"name": "Civil Engineer", "value": 850000, "pay": 42000000, "outlook": 16, "education": "Bachelor", "postings": 2850, "competition": 1.9, "growth": 18, "skillchange": 2.2, "age": 36},
+        {"name": "Mechanical Engineer", "value": 720000, "pay": 45000000, "outlook": 18, "education": "Bachelor", "postings": 2400, "competition": 2.0, "growth": 20, "skillchange": 2.3, "age": 37},
+        {"name": "Electrical Engineer", "value": 680000, "pay": 44000000, "outlook": 17, "education": "Bachelor", "postings": 2300, "competition": 1.9, "growth": 19, "skillchange": 2.4, "age": 36},
+        {"name": "Project Manager", "value": 520000, "pay": 52000000, "outlook": 20, "education": "Bachelor", "postings": 1300, "competition": 2.3, "growth": 24, "skillchange": 2.8, "age": 40},
+        {"name": "Construction Manager", "value": 380000, "pay": 42000000, "outlook": 18, "education": "Bachelor", "postings": 1650, "competition": 2.1, "growth": 22, "skillchange": 2.2, "age": 36}
+      ]
+    },
+    {
+      "name": "Y tế",
+      "value": 3200000,
+      "pay": 42000000,
+      "outlook": 22,
+      "education": "Bachelor",
+      "postings": 3800,
+      "competition": 2.6,
+      "growth": 22,
+      "skillchange": 2.2,
+      "age": 38,
+      "children": [
+        {"name": "Doctor", "value": 380000, "pay": 85000000, "outlook": 18, "education": "Doctor", "postings": 1300, "competition": 2.1, "growth": 20, "skillchange": 2.0, "age": 42},
+        {"name": "Nurse", "value": 1850000, "pay": 32000000, "outlook": 20, "education": "Vocational", "postings": 6200, "competition": 2.4, "growth": 22, "skillchange": 2.1, "age": 32},
+        {"name": "Pharmacist", "value": 450000, "pay": 45000000, "outlook": 18, "education": "Doctor", "postings": 2100, "competition": 2.2, "growth": 20, "skillchange": 2.0, "age": 36},
+        {"name": "Physiotherapist", "value": 380000, "pay": 38000000, "outlook": 18, "education": "Bachelor", "postings": 2300, "competition": 2.2, "growth": 20, "skillchange": 2.2, "age": 35},
+        {"name": "Medical Technician", "value": 140000, "pay": 28000000, "outlook": 18, "education": "Vocational", "postings": 4200, "competition": 2.1, "growth": 20, "skillchange": 1.8, "age": 31}
+      ]
+    },
+    {
+      "name": "Tài chính & Ngân hàng",
+      "value": 2200000,
+      "pay": 44000000,
+      "outlook": 16,
+      "education": "Bachelor",
+      "postings": 3200,
+      "competition": 3.1,
+      "growth": 18,
+      "skillchange": 2.8,
+      "age": 37,
+      "children": [
+        {"name": "Accountant", "value": 1680000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 5650, "competition": 1.6, "growth": 16, "skillchange": 2.1, "age": 32},
+        {"name": "Financial Analyst", "value": 1250000, "pay": 35000000, "outlook": 16, "education": "Bachelor", "postings": 4200, "competition": 1.8, "growth": 18, "skillchange": 2.4, "age": 32},
+        {"name": "Investment Manager", "value": 480000, "pay": 58000000, "outlook": 24, "education": "Master", "postings": 1650, "competition": 3.0, "growth": 28, "skillchange": 3.2, "age": 42}
+      ]
+    },
+    {
+      "name": "Thiết kế & Sáng tạo",
+      "value": 2200000,
+      "pay": 35000000,
+      "outlook": 26,
+      "education": "Bachelor",
+      "postings": 2900,
+      "competition": 3.4,
+      "growth": 28,
+      "skillchange": 3.5,
+      "age": 31,
+      "children": [
+        {"name": "UI/UX Designer", "value": 650000, "pay": 38000000, "outlook": 32, "education": "Bachelor", "postings": 2100, "competition": 3.4, "growth": 35, "skillchange": 3.8, "age": 35},
+        {"name": "Graphic Designer", "value": 850000, "pay": 22000000, "outlook": 18, "education": "Bachelor", "postings": 2850, "competition": 2.4, "growth": 20, "skillchange": 2.9, "age": 29},
+        {"name": "Motion Designer", "value": 520000, "pay": 30000000, "outlook": 26, "education": "Bachelor", "postings": 1900, "competition": 2.9, "growth": 28, "skillchange": 3.5, "age": 31},
+        {"name": "3D Artist", "value": 480000, "pay": 28000000, "outlook": 28, "education": "Bachelor", "postings": 1700, "competition": 3.1, "growth": 31, "skillchange": 3.8, "age": 32}
+      ]
+    },
+    {
+      "name": "Dịch vụ & Du lịch",
+      "value": 1500000,
+      "pay": 28000000,
+      "outlook": 14,
+      "education": "High School",
+      "postings": 3500,
+      "competition": 2.1,
+      "growth": 16,
+      "skillchange": 1.8,
+      "age": 29,
+      "children": [
+        {"name": "Hotel Manager", "value": 520000, "pay": 38000000, "outlook": 18, "education": "Bachelor", "postings": 1750, "competition": 2.0, "growth": 20, "skillchange": 1.8, "age": 35},
+        {"name": "Chef", "value": 620000, "pay": 42000000, "outlook": 20, "education": "Vocational", "postings": 2100, "competition": 2.2, "growth": 22, "skillchange": 2.0, "age": 38},
+        {"name": "Tour Guide", "value": 1250000, "pay": 18000000, "outlook": 14, "education": "High School", "postings": 4200, "competition": 1.5, "growth": 16, "skillchange": 1.5, "age": 27}
+      ]
+    },
+    {
+      "name": "Giáo dục",
+      "value": 1300000,
+      "pay": 32000000,
+      "outlook": 12,
+      "education": "Master",
+      "postings": 2100,
+      "competition": 2.2,
+      "growth": 14,
+      "skillchange": 1.9,
+      "age": 40,
+      "children": [
+        {"name": "Teacher", "value": 1850000, "pay": 26000000, "outlook": 12, "education": "Bachelor", "postings": 6200, "competition": 1.6, "growth": 14, "skillchange": 1.8, "age": 33},
+        {"name": "University Lecturer", "value": 850000, "pay": 42000000, "outlook": 16, "education": "Master", "postings": 2850, "competition": 1.9, "growth": 18, "skillchange": 2.1, "age": 40}
+      ]
+    },
+    {
+      "name": "Truyền thông & Xuất bản",
+      "value": 950000,
+      "pay": 30000000,
+      "outlook": 15,
+      "education": "Bachelor",
+      "postings": 1800,
+      "competition": 2.3,
+      "growth": 16,
+      "skillchange": 2.4,
+      "age": 32,
+      "children": [
+        {"name": "Journalist", "value": 350000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 1200, "competition": 1.7, "growth": 16, "skillchange": 2.2, "age": 32},
+        {"name": "Content Writer", "value": 1250000, "pay": 26000000, "outlook": 18, "education": "Bachelor", "postings": 4200, "competition": 2.1, "growth": 20, "skillchange": 2.4, "age": 29},
+        {"name": "Editor", "value": 380000, "pay": 38000000, "outlook": 16, "education": "Bachelor", "postings": 950, "competition": 1.9, "growth": 18, "skillchange": 2.2, "age": 35}
+      ]
+    },
+    {
+      "name": "Nhân sự",
+      "value": 1000000,
+      "pay": 36000000,
+      "outlook": 14,
+      "education": "Bachelor",
+      "postings": 2200,
+      "competition": 2.4,
+      "growth": 16,
+      "skillchange": 2.1,
+      "age": 34,
+      "children": [
+        {"name": "HR Manager", "value": 620000, "pay": 62000000, "outlook": 18, "education": "Master", "postings": 2300, "competition": 2.4, "growth": 22, "skillchange": 2.1, "age": 38},
+        {"name": "Recruitment Specialist", "value": 1250000, "pay": 32000000, "outlook": 14, "education": "Bachelor", "postings": 4200, "competition": 1.8, "growth": 16, "skillchange": 1.9, "age": 31},
+        {"name": "Training Manager", "value": 520000, "pay": 45000000, "outlook": 18, "education": "Bachelor", "postings": 2100, "competition": 2.2, "growth": 22, "skillchange": 2.4, "age": 36}
+      ]
+    },
+    {
+      "name": "Startup & Công nghệ mới",
+      "value": 1200000,
+      "pay": 55000000,
+      "outlook": 32,
+      "education": "Bachelor",
+      "postings": 3500,
+      "competition": 4.1,
+      "growth": 36,
+      "skillchange": 4.0,
+      "age": 33,
+      "children": [
+        {"name": "Startup Founder", "value": 800000, "pay": 85000000, "outlook": 38, "education": "Bachelor", "postings": 3500, "competition": 4.2, "growth": 42, "skillchange": 4.5, "age": 38},
+        {"name": "Product Manager", "value": 750000, "pay": 52000000, "outlook": 32, "education": "Bachelor", "postings": 2500, "competition": 3.8, "growth": 36, "skillchange": 3.9, "age": 35},
+        {"name": "Growth Hacker", "value": 520000, "pay": 42000000, "outlook": 32, "education": "Bachelor", "postings": 1800, "competition": 3.5, "growth": 35, "skillchange": 3.8, "age": 35}
+      ]
+    },
+    {
+      "name": "Logistics & Vận chuyển",
+      "value": 850000,
+      "pay": 26000000,
+      "outlook": 12,
+      "education": "Bachelor",
+      "postings": 1500,
+      "competition": 2.0,
+      "growth": 14,
+      "skillchange": 1.5,
+      "age": 35,
+      "children": [
+        {"name": "Logistics Manager", "value": 650000, "pay": 38000000, "outlook": 22, "education": "Bachelor", "postings": 1600, "competition": 2.9, "growth": 26, "skillchange": 1.8, "age": 40},
+        {"name": "Supply Chain Manager", "value": 680000, "pay": 32000000, "outlook": 24, "education": "Bachelor", "postings": 1400, "competition": 3.1, "growth": 28, "skillchange": 2.0, "age": 41}
+      ]
+    },
+    {
+      "name": "Pháp lý",
+      "value": 350000,
+      "pay": 48000000,
+      "outlook": 10,
+      "education": "Master",
+      "postings": 850,
+      "competition": 2.2,
+      "growth": 12,
+      "skillchange": 1.8,
+      "age": 42,
+      "children": [
+        {"name": "Lawyer", "value": 220000, "pay": 78000000, "outlook": 16, "education": "Master", "postings": 800, "competition": 2.2, "growth": 18, "skillchange": 1.8, "age": 45},
+        {"name": "Legal Consultant", "value": 380000, "pay": 48000000, "outlook": 18, "education": "Master", "postings": 1300, "competition": 2.3, "growth": 20, "skillchange": 1.9, "age": 40}
+      ]
+    },
+    {
+      "name": "Bảo vệ & An ninh",
+      "value": 180000,
+      "pay": 22000000,
+      "outlook": 8,
+      "education": "High School",
+      "postings": 600,
+      "competition": 1.8,
+      "growth": 10,
+      "skillchange": 1.2,
+      "age": 38,
+      "children": [
+        {"name": "Security Guard", "value": 1450000, "pay": 15000000, "outlook": 6, "education": "High School", "postings": 4850, "competition": 1.5, "growth": 8, "skillchange": 1.0, "age": 36},
+        {"name": "Security Manager", "value": 520000, "pay": 52000000, "outlook": 28, "education": "Bachelor", "postings": 1600, "competition": 3.9, "growth": 32, "skillchange": 2.0, "age": 40}
+      ]
+    },
+    {
+      "name": "Bất động sản",
+      "value": 120000,
+      "pay": 32000000,
+      "outlook": 6,
+      "education": "Bachelor",
+      "postings": 400,
+      "competition": 2.3,
+      "growth": 8,
+      "skillchange": 1.6,
+      "age": 36,
+      "children": [
+        {"name": "Real Estate Agent", "value": 850000, "pay": 28000000, "outlook": 4, "education": "High School", "postings": 2850, "competition": 1.9, "growth": 6, "skillchange": 1.4, "age": 34},
+        {"name": "Real Estate Manager", "value": 320000, "pay": 42000000, "outlook": 10, "education": "Bachelor", "postings": 1100, "competition": 2.4, "growth": 12, "skillchange": 1.8, "age": 38}
+      ]
+    }
+  ]
+}

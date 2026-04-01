@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Bản đồ thị trường lao động Việt Nam 2026</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --fg: #e0e0e8;
+  --fg2: #888894;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+#wrapper { max-width: 1600px; width: 100%; margin: 0 auto; padding-bottom: 250px; }
+#header { padding: 20px 28px 16px; }
+.intro { margin-bottom: 18px; }
+.intro h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+.intro p { font-size: 14px; line-height: 1.6; color: var(--fg2); margin-bottom: 8px; }
+.intro strong { color: var(--fg); font-weight: 600; }
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.breadcrumb-item {
+  color: var(--fg2);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.breadcrumb-item:hover { color: var(--fg); }
+.breadcrumb-item.active { color: var(--fg); font-weight: 600; }
+.breadcrumb-separator { color: var(--fg2); }
+
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.back-button {
+  padding: 8px 14px;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+  font-weight: 500;
+  display: none;
+}
+
+.back-button.show { display: inline-block; }
+.back-button:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.3); }
+
+.color-toggle {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.color-toggle button {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--fg2);
+  cursor: pointer;
+}
+
+.color-toggle button.active {
+  background: rgba(255,255,255,0.08);
+  color: var(--fg);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.gradient-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--fg2);
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.stat-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-section h3 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg2);
+}
+
+.stat-big {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--fg2);
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 20px;
+  padding: 0 28px;
+}
+
+canvas#canvas {
+  display: block;
+  cursor: default;
+  flex: 1;
+  transition: opacity 0.3s ease;
+}
+
+canvas#canvas.transitioning { opacity: 0.5; }
+
+#top3Panel {
+  width: 280px;
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.top3-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.top3-section {
+  margin-bottom: 16px;
+}
+
+.top3-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--fg2);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.top3-item {
+  padding: 8px;
+  margin-bottom: 6px;
+  background: rgba(255,255,255,0.04);
+  border-left: 2px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.top3-item .name {
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.top3-item .value {
+  color: var(--fg2);
+  font-size: 11px;
+}
+
+#tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 300px;
+  opacity: 0;
+  transition: opacity 0.12s;
+  z-index: 20;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+
+#tooltip.visible { opacity: 1; }
+
+#tooltip .tt-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+#tooltip .tt-stats {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2px 10px;
+  font-size: 12px;
+}
+
+#tooltip .tt-stats .label { color: var(--fg2); }
+#tooltip .tt-stats .value { color: var(--fg); text-align: right; }
+
+.drill-hint {
+  font-size: 11px;
+  color: var(--fg2);
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+<div id="header">
+  <div class="intro">
+    <h1>📊 Bản đồ Thị trường Lao động Việt Nam</h1>
+    <p style="font-size: 12px; color: var(--fg2); margin-bottom: 12px;">Thời điểm cập nhật dữ liệu: Quý 1/2026</p>
+    <p>17 ngành × 455+ nghề × 28.5M lao động.</p>
+  </div>
+
+  <div class="breadcrumb" id="breadcrumb">
+    <span class="breadcrumb-item active" onclick="goToRoot()">🏠 Thị trường</span>
+  </div>
+
+  <div class="controls-row">
+    <div>
+      <button class="back-button" id="backBtn" onclick="goBack()">← Quay lại</button>
+    </div>
+    <div>
+      <div class="gradient-legend">
+        <span id="legendLow">Thấp</span>
+        <canvas id="gradientLegend" width="80" height="8"></canvas>
+        <span id="legendHigh">Cao</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 4px; flex-wrap: wrap;" class="color-toggle" id="colorToggle">
+      <button data-mode="pay" class="active">💰 Lương</button>
+      <button data-mode="outlook">📈 Triển vọng</button>
+      <button data-mode="education">🎓 Học vấn</button>
+      <button data-mode="postings">📊 Nhu cầu</button>
+      <button data-mode="competition">🏆 Cạnh tranh</button>
+      <button data-mode="growth">🚀 Tăng trưởng</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-section">
+      <h3>👥 Tổng lao động</h3>
+      <div class="stat-big" id="statTotalJobs">—</div>
+    </div>
+    <div class="stat-section">
+      <h3>📁 Mục tiêu</h3>
+      <div class="stat-big" id="statLevel">—</div>
+      <div class="stat-label" id="statLevelLabel">sectors</div>
+    </div>
+    <div class="stat-section">
+      <h3>💵 Lương TB</h3>
+      <div class="stat-big" id="statAvgPay">—</div>
+    </div>
+  </div>
+
+  <div class="drill-hint">
+    💡 Nhấp vào bất kỳ ô nào để xem chi tiết. Nhấp "Quay lại" để trở lên cấp trước. <a href="reference.html" style="color: #3d9fff; text-decoration: none; font-weight: 500;">📚 Cơ sở tham chiếu →</a>
+  </div>
+</div>
+
+<div class="content-wrapper">
+  <canvas id="canvas"></canvas>
+  <div id="top3Panel">
+    <div class="top3-title">🏆 TOP 3</div>
+    <div class="top3-section">
+      <div class="top3-section-title">⬆️ Cao nhất</div>
+      <div id="top3High"></div>
+    </div>
+    <div class="top3-section">
+      <div class="top3-section-title">⬇️ Thấp nhất</div>
+      <div id="top3Low"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div id="tooltip">
+  <div class="tt-title"></div>
+  <div class="tt-stats"></div>
+</div>
+
+<script>
+let colorMode = "pay";
+let data = null;
+let currentLevel = "root";
+let currentData = null;
+let rects = [];
+let hovered = null;
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+let dpr = window.devicePixelRatio || 1;
+const MARGIN = 12, GAP = 0.8;
+
+const dimensionConfig = {
+  pay: { key: 'pay', label: 'M VND', format: v => Math.round(v/1e6) },
+  outlook: { key: 'outlook', label: '%', format: v => v },
+  education: { key: 'education', label: '', format: v => v },
+  postings: { key: 'postings', label: ' JD', format: v => v.toLocaleString() },
+  competition: { key: 'competition', label: ':1', format: v => v.toFixed(1) },
+  growth: { key: 'growth', label: '%', format: v => v }
+};
+
+function greenRedCSS(t, alpha) {
+  t = Math.max(0, Math.min(1, t));
+  let r, g, b;
+  if (t < 0.5) {
+    const s = t / 0.5;
+    r = Math.round(30 + s * 200);
+    g = Math.round(180 - s * 20);
+    b = Math.round(40 - s * 20);
+  } else {
+    const s = (t - 0.5) / 0.5;
+    r = Math.round(230 + s * 25);
+    g = Math.round(160 - s * 130);
+    b = Math.round(20 - s * 5);
+  }
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function payColor(v, a) {
+  if (!v) return `rgba(128,128,128,${a})`;
+  const minPay = 10000000, maxPay = 250000000;
+  const t = (Math.log(Math.max(minPay, Math.min(maxPay, v))) - Math.log(minPay)) / (Math.log(maxPay) - Math.log(minPay));
+  return greenRedCSS(t, a);
+}
+
+function outlookColor(v, a) {
+  if (v == null) return `rgba(128,128,128,${a})`;
+  const t = Math.max(0, Math.min(1, (v + 10) / 70));
+  return greenRedCSS(t, a);
+}
+
+function eduColor(level, a) {
+  const levels = ["High School", "Vocational", "Bachelor", "Master", "Doctor"];
+  const idx = levels.indexOf(level);
+  if (idx < 0) return `rgba(128,128,128,${a})`;
+  return greenRedCSS(1 - (idx / (levels.length - 1)), a);
+}
+
+function postingsColor(v, a) {
+  if (!v) return `rgba(128,128,128,${a})`;
+  const minPost = 200, maxPost = 17650;
+  const t = (Math.log(Math.max(minPost, Math.min(maxPost, v))) - Math.log(minPost)) / (Math.log(maxPost) - Math.log(minPost));
+  return greenRedCSS(1 - t, a);
+}
+
+function competitionColor(v, a) {
+  if (!v) return `rgba(128,128,128,${a})`;
+  const minComp = 1.0, maxComp = 5.3;
+  const t = (v - minComp) / (maxComp - minComp);
+  return greenRedCSS(t, a);
+}
+
+function growthColor(v, a) {
+  if (!v) return `rgba(128,128,128,${a})`;
+  const t = Math.max(0, Math.min(1, (v - 10) / 35));
+  return greenRedCSS(t, a);
+}
+
+function tileColorCSS(d, alpha) {
+  if (colorMode === "pay") return payColor(d.pay, alpha);
+  if (colorMode === "outlook") return outlookColor(d.outlook, alpha);
+  if (colorMode === "education") return eduColor(d.education, alpha);
+  if (colorMode === "postings") return postingsColor(d.postings, alpha);
+  if (colorMode === "competition") return competitionColor(d.competition, alpha);
+  if (colorMode === "growth") return growthColor(d.growth, alpha);
+  return `rgba(128,128,128,${alpha})`;
+}
+
+function squarify(items, x, y, w, h) {
+  if (!items || items.length === 0) return [];
+  if (items.length === 1) return [{ ...items[0], rx: x, ry: y, rw: w, rh: h }];
+  const total = items.reduce((s, d) => s + d.value, 0);
+  if (total === 0) return [];
+  const results = [];
+  let remaining = [...items], cx = x, cy = y, cw = w, ch = h;
+  
+  while (remaining.length > 0) {
+    const remTotal = remaining.reduce((s, d) => s + d.value, 0);
+    const vertical = cw >= ch;
+    const side = vertical ? ch : cw;
+    let row = [remaining[0]], rowSum = remaining[0].value;
+    
+    for (let i = 1; i < remaining.length; i++) {
+      const candidate = [...row, remaining[i]];
+      const candidateSum = rowSum + remaining[i].value;
+      if (worstAspect(candidate, candidateSum, side, remTotal, vertical ? cw : ch) <
+          worstAspect(row, rowSum, side, remTotal, vertical ? cw : ch)) {
+        row = candidate;
+        rowSum = candidateSum;
+      } else break;
+    }
+    
+    const rowFraction = rowSum / remTotal;
+    const rowThickness = vertical ? cw * rowFraction : ch * rowFraction;
+    let offset = 0;
+    
+    for (const item of row) {
+      const itemFraction = item.value / rowSum;
+      const itemLength = side * itemFraction;
+      if (vertical) results.push({ ...item, rx: cx, ry: cy + offset, rw: rowThickness, rh: itemLength });
+      else results.push({ ...item, rx: cx + offset, ry: cy, rw: itemLength, rh: rowThickness });
+      offset += itemLength;
+    }
+    
+    if (vertical) { cx += rowThickness; cw -= rowThickness; }
+    else { cy += rowThickness; ch -= rowThickness; }
+    remaining = remaining.slice(row.length);
+  }
+  
+  return results;
+}
+
+function worstAspect(row, rowSum, side, totalArea, availableExtent) {
+  const rowExtent = availableExtent * (rowSum / totalArea);
+  if (rowExtent === 0) return Infinity;
+  let worst = 0;
+  for (const item of row) {
+    const itemLen = side * (item.value / rowSum);
+    if (itemLen === 0) continue;
+    const aspect = Math.max(rowExtent / itemLen, itemLen / rowExtent);
+    if (aspect > worst) worst = aspect;
+  }
+  return worst;
+}
+
+function layout() {
+  const canvasContainer = document.querySelector('.content-wrapper');
+  const w = canvasContainer.clientWidth * 0.7;
+  const h = w * 0.6;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + "px";
+  canvas.style.height = h + "px";
+  
+  const tx = MARGIN, ty = MARGIN, tw = w - MARGIN * 2, th = h - MARGIN * 2;
+  const items = currentData.children || [];
+  rects = squarify(items, tx, ty, tw, th);
+}
+
+function draw() {
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = "#0a0a0f";
+  ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+  
+  for (const r of rects) {
+    const isHovered = r === hovered;
+    const g = GAP / 2;
+    const rx = r.rx + g, ry = r.ry + g, rw = r.rw - g * 2, rh = r.rh - g * 2;
+    if (rw <= 0 || rh <= 0) continue;
+    
+    ctx.fillStyle = tileColorCSS(r, isHovered ? 0.8 : 0.5);
+    ctx.fillRect(rx, ry, rw, rh);
+    
+    if (isHovered) {
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(rx, ry, rw, rh);
+    }
+    
+    if (rw > 20 && rh > 20) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(rx + 1, ry + 1, rw - 2, rh - 2);
+      ctx.clip();
+      
+      ctx.font = "12px Arial";
+      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.85)";
+      ctx.textBaseline = "top";
+      const text = r.name;
+      ctx.fillText(text.substring(0, 25), rx + 2, ry + 2);
+      
+      ctx.restore();
+    }
+  }
+}
+
+function hitTest(mx, my) {
+  const rect = canvas.getBoundingClientRect();
+  const cx = mx - rect.left, cy = my - rect.top;
+  for (let i = rects.length - 1; i >= 0; i--) {
+    const r = rects[i];
+    if (cx >= r.rx && cx < r.rx + r.rw && cy >= r.ry && cy < r.ry + r.rh) return r;
+  }
+  return null;
+}
+
+function formatNumber(n) {
+  if (!n) return "—";
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";
+  if (n >= 1e3) return Math.round(n / 1e3) + "K";
+  return n.toLocaleString();
+}
+
+function formatPay(n) {
+  if (!n) return "—";
+  return Math.round(n / 1e6) + "M";
+}
+
+function showTooltip(d, mx, my) {
+  const tt = document.getElementById("tooltip");
+  tt.querySelector(".tt-title").textContent = d.name;
+  
+  let stats = `<span class="label">Workers</span><span class="value">${formatNumber(d.value)}</span>`;
+  if (d.pay) stats += `<span class="label">Salary</span><span class="value">${formatPay(d.pay)}</span>`;
+  if (d.outlook) stats += `<span class="label">Outlook</span><span class="value">${d.outlook}%</span>`;
+  if (d.age) stats += `<span class="label">Age</span><span class="value">${Math.round(d.age)}yrs</span>`;
+  
+  tt.querySelector(".tt-stats").innerHTML = stats;
+  
+  let tx = mx + 16, ty = my - 16;
+  if (tx + 300 > window.innerWidth) tx = mx - 316;
+  if (ty < 10) ty = my + 16;
+  tt.style.left = tx + "px";
+  tt.style.top = ty + "px";
+  tt.classList.add("visible");
+}
+
+function hideTooltip() {
+  document.getElementById("tooltip").classList.remove("visible");
+}
+
+function updateStats() {
+  const total = currentData.value || 0;
+  const level = currentLevel === "root" ? currentData.children.length : (currentData.children ? currentData.children.length : 0);
+  const levelLabel = currentLevel === "root" ? "sectors" : "occupations";
+  
+  document.getElementById("statTotalJobs").textContent = formatNumber(total);
+  document.getElementById("statLevel").textContent = level;
+  document.getElementById("statLevelLabel").textContent = levelLabel;
+  
+  let totalPay = 0, totalJobs = 0;
+  function traverse(node) {
+    if (node.children) {
+      for (const child of node.children) traverse(child);
+    } else if (node.pay && node.value) {
+      totalPay += node.pay * node.value;
+      totalJobs += node.value;
+    }
+  }
+  traverse(currentData);
+  
+  const avgPay = totalJobs > 0 ? totalPay / totalJobs : 0;
+  document.getElementById("statAvgPay").textContent = formatPay(avgPay);
+}
+
+function updateTop3() {
+  const config = dimensionConfig[colorMode];
+  if (!config) return;
+  
+  const items = currentData.children || [];
+  const sorted = [...items].sort((a, b) => (b[config.key] || 0) - (a[config.key] || 0));
+  
+  const top3High = sorted.slice(0, 3);
+  const top3Low = sorted.slice(-3).reverse();
+  
+  const renderTop3 = (items) => items.map((item, idx) => {
+    const val = item[config.key];
+    const formatted = config.format(val) + config.label;
+    return `<div class="top3-item"><div class="name">#${idx + 1} ${item.name}</div><div class="value">${formatted}</div></div>`;
+  }).join('');
+  
+  document.getElementById("top3High").innerHTML = renderTop3(top3High);
+  document.getElementById("top3Low").innerHTML = renderTop3(top3Low);
+}
+
+function drawGradientLegend() {
+  const c = document.getElementById("gradientLegend");
+  const gctx = c.getContext("2d");
+  for (let x = 0; x < 80; x++) {
+    const t = x / 79;
+    gctx.fillStyle = greenRedCSS(t, 1);
+    gctx.fillRect(x, 0, 1, 8);
+  }
+  
+  const labels = {
+    pay: { low: "10M", high: "250M" },
+    outlook: { low: "Giảm", high: "Tăng" },
+    education: { low: "HS", high: "PhD" },
+    postings: { low: "Ít", high: "Nhiều" },
+    competition: { low: "Thấp", high: "Cao" },
+    growth: { low: "Chậm", high: "Nhanh" }
+  };
+  const cfg = labels[colorMode] || labels.pay;
+  document.getElementById("legendLow").textContent = cfg.low;
+  document.getElementById("legendHigh").textContent = cfg.high;
+}
+
+function drillDown(item) {
+  if (!item.children) return;
+  
+  canvas.classList.add("transitioning");
+  currentLevel = item.name;
+  currentData = item;
+  
+  document.getElementById("breadcrumb").innerHTML = `
+    <span class="breadcrumb-item" onclick="goToRoot()">🏠 Thị trường</span>
+    <span class="breadcrumb-separator">›</span>
+    <span class="breadcrumb-item active">${item.name}</span>
+  `;
+  
+  document.getElementById("backBtn").classList.add("show");
+  
+  setTimeout(() => {
+    layout();
+    draw();
+    updateStats();
+    updateTop3();
+    canvas.classList.remove("transitioning");
+  }, 150);
+}
+
+function goBack() {
+  canvas.classList.add("transitioning");
+  currentLevel = "root";
+  currentData = data;
+  
+  document.getElementById("breadcrumb").innerHTML = `
+    <span class="breadcrumb-item active" onclick="goToRoot()">🏠 Thị trường</span>
+  `;
+  
+  document.getElementById("backBtn").classList.remove("show");
+  
+  setTimeout(() => {
+    layout();
+    draw();
+    updateStats();
+    updateTop3();
+    canvas.classList.remove("transitioning");
+  }, 150);
+}
+
+function goToRoot() {
+  if (currentLevel !== "root") goBack();
+}
+
+canvas.addEventListener("mousemove", (e) => {
+  const hit = hitTest(e.clientX, e.clientY);
+  if (hit !== hovered) { hovered = hit; draw(); }
+  if (hovered) {
+    showTooltip(hovered, e.clientX, e.clientY);
+    canvas.style.cursor = hovered.children ? "pointer" : "default";
+  } else {
+    hideTooltip();
+    canvas.style.cursor = "default";
+  }
+});
+
+canvas.addEventListener("mouseleave", () => { hovered = null; hideTooltip(); draw(); });
+
+canvas.addEventListener("click", (e) => {
+  const hit = hitTest(e.clientX, e.clientY);
+  if (!hit) return;
+  if (hit.children && hit.children.length > 0) {
+    drillDown(hit);
+  }
+});
+
+document.getElementById("colorToggle").addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn || !btn.dataset.mode) return;
+  colorMode = btn.dataset.mode;
+  document.querySelectorAll("#colorToggle button").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  drawGradientLegend();
+  draw();
+  updateTop3();
+});
+
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  if (data) {
+    layout();
+    draw();
+  }
+}
+
+window.addEventListener("load", () => {
+  const timestamp = Date.now();
+  fetch(`data-hierarchical.json?t=${timestamp}`)
+    .then(r => r.json())
+    .then(d => {
+      data = d;
+      currentData = d;
+      updateStats();
+      drawGradientLegend();
+      updateTop3();
+      resize();
+    })
+    .catch(e => {
+      console.error("Error:", e);
+      alert('Failed to load data');
+    });
+});
+
+window.addEventListener("resize", resize);
+
+</script>
+</body>
+</html>
