@@ -3,160 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TalentGraph ONA — Khối Sản Xuất FDI Vietnam</title>
+<title>TalentGraph ONA · IVI v5 — Khối Sản Xuất FDI</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#080C14;--s1:#0E1420;--s2:#141B2C;--s3:#1A2238;--s4:#202844;
-  --amber:#F4A020;--amb2:rgba(244,160,32,.12);--amb3:rgba(244,160,32,.25);
+  --amber:#F4A020;--amb2:rgba(244,160,32,.12);--amb3:rgba(244,160,32,.28);
   --teal:#22D3C8;--tea2:rgba(34,211,200,.1);
   --green:#34D399;--grn2:rgba(52,211,153,.1);
   --red:#F87171;--red2:rgba(248,113,113,.1);
   --purple:#A78BFA;--pur2:rgba(167,139,250,.1);
-  --blue:#60A5FA;--blu2:rgba(96,165,250,.1);
+  --blue:#60A5FA;
   --text:#D1D9E8;--muted:#4E5D78;--sub:#8895AA;
   --brd:rgba(255,255,255,.05);--brd2:rgba(255,255,255,.1);
-  /* dept colors */
   --prod:#F4A020;--eng:#22D3C8;--qc:#34D399;--sc:#A78BFA;--hse:#F87171;--mgmt:#60A5FA;--hr:#94A3B8;
+  /* objective colors */
+  --oQ:#34D399;--oP:#F4A020;--oC:#A78BFA;--oD:#60A5FA;--oS:#F87171;
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:13px;overflow:hidden}
 ::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-thumb{background:var(--s4);border-radius:2px}
 
 /* HEADER */
 .hdr{height:48px;background:var(--s1);border-bottom:1px solid var(--brd);display:flex;align-items:center;padding:0 18px;gap:12px}
-.logo{font-weight:700;font-size:15px;letter-spacing:.3px;color:var(--text)}
-.logo b{color:var(--amber)}
+.logo{font-weight:700;font-size:15px;color:var(--text)}.logo b{color:var(--amber)}
 .hdr-tag{background:var(--amb2);border:1px solid var(--amb3);border-radius:3px;padding:2px 8px;font-size:10px;color:var(--amber);font-weight:600;letter-spacing:.5px}
 .hdr-r{margin-left:auto;display:flex;gap:8px;align-items:center}
 .badge{padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
 .b-iso{background:var(--tea2);border:1px solid rgba(34,211,200,.25);color:var(--teal)}
 .b-pdpl{background:var(--red2);border:1px solid rgba(248,113,113,.2);color:var(--red)}
-.b-active{background:var(--grn2);border:1px solid rgba(52,211,153,.25);color:var(--green)}
+.b-v5{background:var(--amb2);border:1px solid var(--amber);color:var(--amber)}
 
 /* TABS */
 .tabs{height:38px;background:var(--s1);border-bottom:1px solid var(--brd);display:flex;padding:0 18px;gap:1px;align-items:flex-end}
-.tab{padding:7px 14px;font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-radius:3px 3px 0 0;border:1px solid transparent;border-bottom:none;transition:all .15s}
+.tab{padding:7px 14px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-radius:3px 3px 0 0;border:1px solid transparent;border-bottom:none;transition:all .15s}
 .tab:hover{color:var(--sub)}
 .tab.active{color:var(--amber);background:var(--bg);border-color:var(--brd)}
-.tab-n{font-size:9px;opacity:.4;margin-right:3px}
+.tab-n{font-size:9px;opacity:.35;margin-right:3px}
+.tab-new{font-size:8px;color:var(--green);margin-left:4px;font-weight:700}
 
-/* MAIN */
 .main{height:calc(100vh - 86px);overflow:hidden}
 .view{display:none;height:100%;overflow-y:auto}
 .view.on{display:block}
 .vgrid{display:none;height:100%}
 .vgrid.on{display:grid}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TAB 1: QUY TRÌNH ━━━━━━━━━━━ */
-.proc-wrap{padding:20px 20px 0}
-.proc-top{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
-.proc-title{font-size:18px;font-weight:700;color:var(--text)}
-.proc-sub{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+/* ═══ TAB 1: MỤC TIÊU ════════════════════════════════════════════════ */
+.obj-wrap{padding:20px;max-width:1100px}
+.pg-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.pg-sub{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:6px}
 .insight-bar{background:var(--s2);border:1px solid var(--amb3);border-left:3px solid var(--amber);border-radius:0 4px 4px 0;padding:10px 14px;font-size:12px;color:rgba(244,160,32,.85);line-height:1.6;margin-bottom:20px}
 
-/* process swimlane */
+/* Objective cards row */
+.obj-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:24px}
+.obj-card{background:var(--s2);border:1px solid var(--brd);border-radius:6px;padding:12px 14px;border-top:2px solid}
+.obj-card-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
+.obj-card-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.3}
+.obj-weight-row{display:flex;align-items:center;gap:8px}
+.obj-weight-val{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;min-width:42px}
+input[type=range]{-webkit-appearance:none;height:3px;background:var(--s3);border-radius:2px;outline:none;cursor:pointer;flex:1}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;cursor:pointer}
+.obj-bar{height:4px;border-radius:2px;margin-top:8px;transition:width .3s}
+.obj-total{font-size:11px;color:var(--muted);margin-bottom:20px}
+.obj-total b{font-family:'IBM Plex Mono',monospace}
+.obj-total.warn{color:var(--red)}
+
+/* Process-Objective heatmap */
+.heat-section{margin-bottom:24px}
+.heat-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.heat-sub{font-size:11px;color:var(--muted);margin-bottom:12px;line-height:1.5}
+.heat-table{width:100%;border-collapse:collapse}
+.heat-table th{padding:7px 10px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);text-align:center}
+.heat-table th.proc-th{text-align:left;min-width:220px}
+.heat-table td{padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.02);text-align:center;position:relative}
+.heat-table tr:hover td{background:var(--s2)}
+.heat-proc-name{font-size:11px;font-weight:500;text-align:left;padding-left:10px}
+.heat-proc-id{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-right:6px}
+.heat-cell{width:42px;height:28px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;cursor:pointer;margin:0 auto;transition:all .15s;user-select:none}
+.heat-cell:hover{transform:scale(1.1);z-index:2}
+.heat-sw{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:var(--amber)}
+.heat-sw-bar{height:3px;border-radius:2px;background:var(--amber);margin-top:3px;transition:width .3s}
+
+/* Obj badge mini */
+.obj-badge{display:inline-flex;padding:1px 5px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:.3px}
+
+/* ═══ TAB 2: QUY TRÌNH ═══════════════════════════════════════════════ */
+.proc-wrap{padding:20px 20px 0}
 .proc-lane{margin-bottom:16px;background:var(--s2);border:1px solid var(--brd);border-radius:6px;overflow:hidden}
-.proc-lane-hdr{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--brd);background:var(--s1);cursor:pointer;user-select:none}
+.proc-lane-hdr{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--brd);background:var(--s1);cursor:pointer;user-select:none}
 .proc-code{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber);background:var(--amb2);padding:2px 6px;border-radius:3px;flex-shrink:0}
 .proc-name{font-weight:600;font-size:13px;flex:1}
 .proc-iso{font-size:10px;color:var(--teal);background:var(--tea2);padding:1px 6px;border-radius:3px}
-.proc-crit{display:flex;gap:2px;margin-left:auto}
-.crit-dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
-.crit-dot.off{background:var(--s4)}
-.proc-toggle{color:var(--muted);font-size:12px;margin-left:8px;transition:transform .2s}
+.proc-sw-badge{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--amber)}
+.proc-crit{display:flex;gap:2px}
+.crit-dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}.crit-dot.off{background:var(--s4)}
+.proc-toggle{color:var(--muted);font-size:12px;transition:transform .2s}
 .proc-lane.open .proc-toggle{transform:rotate(180deg)}
-
 .proc-steps{display:none;padding:14px;overflow-x:auto}
 .proc-lane.open .proc-steps{display:block}
 .steps-row{display:flex;align-items:flex-start;gap:0;min-width:max-content}
-.step-card{background:var(--s3);border:1px solid var(--brd);border-radius:5px;padding:10px;width:168px;flex-shrink:0;position:relative}
-.step-card.highlighted{border-color:var(--amber);background:var(--s4)}
+.step-card{background:var(--s3);border:1px solid var(--brd);border-radius:5px;padding:10px;width:170px;flex-shrink:0}
 .step-num{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:4px}
 .step-name{font-size:11px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.3;min-height:28px}
-.step-resp{margin-bottom:6px}
 .step-resp-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
-.person-chip{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:600;margin-bottom:2px;cursor:pointer;transition:all .1s}
+.person-chip{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:600;margin-bottom:2px;cursor:pointer}
 .person-chip:hover{filter:brightness(1.2)}
 .person-chip .av{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700}
-.step-parts{margin-top:4px}
-.step-parts-lbl{font-size:9px;color:var(--muted);margin-bottom:3px}
+.step-parts-lbl{font-size:9px;color:var(--muted);margin-bottom:3px;margin-top:4px}
 .step-parts-row{display:flex;flex-wrap:wrap;gap:3px}
-
-/* Arrow between steps */
 .step-arrow{display:flex;align-items:center;padding:0 4px;color:var(--muted);flex-shrink:0;margin-top:18px}
 .step-arrow svg{width:20px;height:10px}
 
-/* proc legend */
-.proc-legend{display:flex;gap:16px;padding:0 14px 14px;flex-wrap:wrap}
-.proc-leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted)}
-.proc-leg-dot{width:8px;height:8px;border-radius:50%}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TAB 2: PHÂN CÔNG ━━━━━━━━━━ */
+/* ═══ TAB 3: PHÂN CÔNG ════════════════════════════════════════════════ */
 .assign-wrap{padding:20px;max-width:900px}
-.form-title{font-size:18px;font-weight:700;margin-bottom:4px}
-.form-sub{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.5}
-
-.proc-select-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.proc-select-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
 .proc-btn{padding:6px 12px;background:var(--s2);border:1px solid var(--brd2);border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;color:var(--sub);transition:all .15s}
 .proc-btn:hover,.proc-btn.active{background:var(--amb2);border-color:var(--amber);color:var(--amber)}
-
-.assign-table{width:100%;border-collapse:collapse;margin-bottom:20px}
-.assign-table th{padding:8px 10px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);background:var(--s1)}
-.assign-table td{padding:8px 10px;border-bottom:1px solid var(--brd);vertical-align:top}
+.assign-table{width:100%;border-collapse:collapse;margin-bottom:16px}
+.assign-table th{padding:7px 10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);background:var(--s1)}
+.assign-table td{padding:7px 10px;border-bottom:1px solid var(--brd);vertical-align:top}
 .assign-table tr:hover td{background:var(--s2)}
-.assign-table .step-id{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
-.assign-table .step-nm{font-size:12px;font-weight:500}
+.step-id{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
 .assign-crit{display:flex;gap:2px}
 .assign-crit-dot{width:7px;height:7px;border-radius:50%}
-
-/* person selector */
 .person-sel{display:flex;flex-wrap:wrap;gap:4px}
 .ps-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;cursor:pointer;background:var(--s3);border:1px solid var(--brd);color:var(--sub);transition:all .1s}
-.ps-chip:hover{border-color:var(--brd2)}
 .ps-chip.resp{border-style:solid;border-width:1.5px}
 .ps-chip.part{border-style:dashed}
-.ps-chip.none{opacity:.35}
-
-.assign-legend{display:flex;gap:14px;margin-bottom:16px;font-size:11px;color:var(--muted)}
-.al-item{display:flex;align-items:center;gap:6px}
-.al-box{width:22px;height:10px;border-radius:2px}
-.al-solid{border:1.5px solid var(--amber);background:var(--amb2)}
-.al-dashed{border:1px dashed var(--muted)}
-
-.btn-submit{padding:9px 20px;background:var(--amber);color:#000;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:700;border:none;border-radius:4px;cursor:pointer;letter-spacing:.3px}
+.ps-chip.none{opacity:.3}
+.btn-submit{padding:9px 20px;background:var(--amber);color:#000;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:700;border:none;border-radius:4px;cursor:pointer}
 .btn-submit:hover{background:#fbb040}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TAB 3: ONA NETWORK ━━━━━━━━ */
-#tab-ona{grid-template-columns:1fr 300px;grid-template-rows:1fr 120px}
+/* ═══ TAB 4: ONA NETWORK ═════════════════════════════════════════════ */
+#tab-ona{grid-template-columns:1fr 300px;grid-template-rows:1fr 130px}
 .net-canvas{position:relative;overflow:hidden}
 .net-canvas svg{width:100%;height:100%}
-.net-info{position:absolute;top:10px;left:12px}
-.net-info-box{background:rgba(8,12,20,.85);border:1px solid var(--brd2);border-radius:5px;padding:10px 12px;font-size:11px;line-height:1.7;color:var(--sub)}
+.net-info-box{position:absolute;top:10px;left:12px;background:rgba(8,12,20,.88);border:1px solid var(--brd2);border-radius:5px;padding:10px 12px;font-size:11px;line-height:1.7;color:var(--sub)}
 .net-info-box b{color:var(--amber);font-family:'IBM Plex Mono',monospace}
 .net-filters{position:absolute;top:10px;right:12px;display:flex;gap:4px;flex-direction:column}
-.nf{padding:3px 8px;background:rgba(8,12,20,.85);border:1px solid var(--brd);border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--muted);cursor:pointer;text-align:center;transition:all .15s}
+.nf{padding:3px 8px;background:rgba(8,12,20,.88);border:1px solid var(--brd);border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center}
 .nf:hover,.nf.on{background:var(--amb2);border-color:var(--amber);color:var(--amber)}
 .net-legend{position:absolute;bottom:8px;left:12px;display:flex;gap:12px;flex-wrap:wrap}
 .nl-item{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--muted)}
 .nl-dot{width:7px;height:7px;border-radius:50%}
 
-/* detail pane */
 .dp{background:var(--s1);border-left:1px solid var(--brd);padding:14px;overflow-y:auto}
 .dp-empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);text-align:center}
-.dp-empty-ico{font-size:24px;opacity:.25}
+.dp-empty-ico{font-size:24px;opacity:.2}
 .dp-show{display:none}
 .dp-show.on{display:block}
 .dp-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-bottom:8px;font-family:'IBM Plex Mono',monospace}
 .dp-nm{font-size:15px;font-weight:700;margin-bottom:1px}
-.dp-rl{font-size:11px;color:var(--muted);margin-bottom:8px}
-.dp-typebadge{display:inline-flex;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
-.ivi-row{display:flex;align-items:baseline;gap:6px;margin-bottom:12px}
-.ivi-n{font-family:'IBM Plex Mono',monospace;font-size:32px;font-weight:700;color:var(--amber)}
-.ivi-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
-.ivi-bars{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
-.ib-row{display:grid;grid-template-columns:88px 1fr 24px;gap:5px;align-items:center;font-size:10px}
+.dp-rl{font-size:11px;color:var(--muted);margin-bottom:6px}
+.dp-typebadge{display:inline-flex;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}
+.ivi-row{display:flex;align-items:baseline;gap:6px;margin-bottom:10px}
+.ivi-n{font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:700;color:var(--amber)}
+.ivi-sub-row{font-size:9px;color:var(--muted);margin-top:-6px;margin-bottom:10px}
+.ivi-bars{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.ib-row{display:grid;grid-template-columns:96px 1fr 26px;gap:5px;align-items:center;font-size:10px}
 .ib-lbl{color:var(--muted)}
 .ib-track{background:var(--s3);border-radius:2px;height:3px;overflow:hidden}
 .ib-fill{height:100%;border-radius:2px;transition:width .5s}
@@ -166,117 +171,134 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'IBM Pl
 .dp-met-v{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700}
 .dp-met-l{font-size:9px;color:var(--muted);margin-top:1px;line-height:1.3}
 .dp-proc-list{font-size:10px;color:var(--muted);line-height:1.7}
-.dp-proc-list b{color:var(--text);font-weight:600}
 .dp-insight{border-radius:4px;padding:9px 11px;font-size:10px;line-height:1.6;margin-top:8px}
 
-/* ona metrics table */
 .ona-metrics{border-top:1px solid var(--brd);overflow-x:auto;background:var(--s1);grid-column:1/3}
 .ona-metrics table{width:100%;border-collapse:collapse;font-size:10px}
-.ona-metrics th{padding:7px 10px;text-align:left;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);white-space:nowrap;background:var(--s1)}
+.ona-metrics th{padding:6px 10px;text-align:left;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);white-space:nowrap;background:var(--s1)}
 .ona-metrics td{padding:5px 10px;border-bottom:1px solid rgba(255,255,255,.02);white-space:nowrap;cursor:pointer}
 .ona-metrics tr:hover td{background:var(--s2)}
 .tbl-bar{display:inline-block;height:3px;border-radius:2px;vertical-align:middle}
 .tbl-badge{padding:1px 5px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.3px}
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ TAB 4: IVI ━━━━━━━━━━━━━━━━ */
+/* ═══ TAB 5: IVI% ════════════════════════════════════════════════════ */
 .ivi-wrap{padding:20px}
-.ivi-top-title{font-size:18px;font-weight:700;margin-bottom:4px}
-.ivi-top-sub{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6}
-.ivi-formula{background:var(--s2);border:1px solid var(--brd2);border-radius:5px;padding:12px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal);margin-bottom:20px;line-height:1.7}
-.ivi-formula .comment{color:var(--muted)}
-
-.ivi-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:24px}
+.ivi-formula-block{background:var(--s2);border:1px solid var(--brd2);border-radius:5px;padding:12px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);margin-bottom:20px;line-height:1.8}
+.ivi-formula-block .cm{color:var(--muted)}
+.ivi-formula-block b{color:var(--amber)}
+.ivi-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:24px}
 .ivi-card{background:var(--s2);border:1px solid var(--brd);border-radius:6px;padding:12px 14px;cursor:pointer;transition:all .15s}
 .ivi-card:hover{border-color:var(--brd2)}
 .ivi-card.top3{border-color:var(--amber)}
-.ivi-card-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.ivi-card-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;flex-shrink:0}
+.ivi-card-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ivi-card-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;flex-shrink:0}
 .ivi-card-nm{font-size:12px;font-weight:600}
-.ivi-card-rl{font-size:10px;color:var(--muted);margin-top:1px}
-.ivi-card-score{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:700;margin-left:auto}
-.ivi-card-bars{display:flex;flex-direction:column;gap:3px}
-.ivi-mini-bar{display:grid;grid-template-columns:48px 1fr 24px;gap:5px;align-items:center;font-size:9px;color:var(--muted)}
+.ivi-card-rl{font-size:10px;color:var(--muted)}
+.ivi-card-score{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:700;margin-left:auto;white-space:nowrap}
+.ivi-mini-bar{display:grid;grid-template-columns:56px 1fr 28px;gap:4px;align-items:center;margin-bottom:3px}
+.ivi-mini-lbl{font-size:9px;color:var(--muted)}
 .ivi-mini-track{background:var(--s3);border-radius:2px;height:3px;overflow:hidden}
 .ivi-mini-fill{height:100%;border-radius:2px}
-.ivi-proc-tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}
-.ivi-proc-tag{padding:1px 5px;border-radius:2px;font-size:9px;font-weight:600}
+.ivi-mini-val{font-family:'IBM Plex Mono',monospace;font-size:9px;text-align:right}
 
 /* TOOLTIP */
-.tip{position:fixed;background:var(--s1);border:1px solid var(--brd2);border-radius:5px;padding:8px 12px;font-size:11px;pointer-events:none;opacity:0;transition:opacity .1s;z-index:999;min-width:120px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.tip{position:fixed;background:var(--s1);border:1px solid var(--brd2);border-radius:5px;padding:8px 12px;font-size:11px;pointer-events:none;opacity:0;transition:opacity .1s;z-index:999;min-width:140px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
 .tip.on{opacity:1}
 .tip-nm{font-weight:700;margin-bottom:2px}
 .tip-rl{color:var(--muted);line-height:1.4}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.proc-lane,.ivi-card,.dp-show.on{animation:fadeUp .25s ease}
+.proc-lane,.ivi-card,.dp-show.on,.obj-card{animation:fadeUp .2s ease}
 </style>
 </head>
 <body>
 
 <header class="hdr">
   <div class="logo">Talent<b>Graph</b></div>
-  <div class="hdr-tag">ONA · PHÂN TÍCH MẠNG LƯỚI</div>
-  <span style="font-size:11px;color:var(--muted)">VinaTech Electronics · Bình Dương · 20 nhân sự</span>
+  <div class="hdr-tag">ONA · IVI v5</div>
+  <span style="font-size:11px;color:var(--muted)">VinaTech Electronics · 20 nhân sự · 6 quy trình</span>
   <div class="hdr-r">
     <span class="badge b-iso">ISO 9001:2015</span>
     <span class="badge b-pdpl">PDPL 2026</span>
-    <span class="badge b-active">6 quy trình</span>
+    <span class="badge b-v5">v5 · Objective-weighted</span>
   </div>
 </header>
 
 <nav class="tabs">
-  <div class="tab active" onclick="go('proc',this)"><span class="tab-n">01</span>QUY TRÌNH</div>
-  <div class="tab" onclick="go('assign',this)"><span class="tab-n">02</span>PHÂN CÔNG</div>
-  <div class="tab" onclick="go('ona',this)"><span class="tab-n">03</span>MẠNG ONA</div>
-  <div class="tab" onclick="go('ivi',this)"><span class="tab-n">04</span>IVI RANKING</div>
+  <div class="tab active" onclick="go('obj',this)"><span class="tab-n">01</span>MỤC TIÊU<span class="tab-new">MỚI</span></div>
+  <div class="tab" onclick="go('proc',this)"><span class="tab-n">02</span>QUY TRÌNH</div>
+  <div class="tab" onclick="go('assign',this)"><span class="tab-n">03</span>PHÂN CÔNG</div>
+  <div class="tab" onclick="go('ona',this)"><span class="tab-n">04</span>MẠNG ONA</div>
+  <div class="tab" onclick="go('ivi',this)"><span class="tab-n">05</span>IVI%</div>
 </nav>
 
 <div class="main">
 
-<!-- ══════════════════════════════════════════ TAB 1: QUY TRÌNH ══════ -->
-<div id="tab-proc" class="view on">
-<div class="proc-wrap">
-  <div class="proc-top">
-    <div class="proc-title">Bản đồ quy trình ISO — Nhà máy VinaTech</div>
-  </div>
-  <div class="proc-sub">6 quy trình ISO 9001:2015. Mỗi bước liệt kê người phụ trách (Responsible) và người tham gia (Participants). ONA được tự động sinh ra từ sự tham gia này.</div>
+<!-- ══ TAB 1: MỤC TIÊU ══════════════════════════════════════════════ -->
+<div id="tab-obj" class="view on">
+<div class="obj-wrap">
+  <div class="pg-title">Mục tiêu bộ phận sản xuất</div>
+  <div class="pg-sub">Định nghĩa mục tiêu chiến lược của nhà máy và tỷ trọng quan trọng (tổng = 100%). Thay đổi tỷ trọng → IVI% của toàn bộ nhân sự tự động tái tính.</div>
   <div class="insight-bar">
-    ◈ <b>Nguyên lý cốt lõi:</b> ONA trong TalentGraph không xây dựng từ câu hỏi "ai nói chuyện với ai" mà được tự động sinh ra khi nhân sự được phân công vào các bước quy trình. Hai người ở cùng một bước → có edge. Người ở bước N bàn giao cho người ở bước N+1 → có edge bàn giao. Mạng lưới = phản ánh công việc thực tế, không phải perception.
+    ◈ <b>Nguyên lý v5:</b> Mỗi quy trình ISO được đánh giá mức độ đóng góp vào từng mục tiêu (0.0–1.0). Trọng số chiến lược của quy trình = Σ(trọng số mục tiêu × mức đóng góp). IVI cá nhân phản ánh họ tham gia quy trình nào, tại bước nào, và quy trình đó quan trọng đến đâu với mục tiêu chung.
   </div>
+
+  <!-- Objective weight cards -->
+  <div class="obj-cards" id="obj-cards"></div>
+  <div class="obj-total" id="obj-total"></div>
+
+  <!-- Process–Objective heatmap -->
+  <div class="heat-section">
+    <div class="heat-title">Ma trận ảnh hưởng: Quy trình → Mục tiêu</div>
+    <div class="heat-sub">Nhấp vào ô để điều chỉnh mức độ đóng góp (0.0 → 0.2 → 0.4 → 0.6 → 0.8 → 1.0). Cột cuối = Trọng số chiến lược tổng hợp của quy trình.</div>
+    <table class="heat-table" id="heat-table">
+      <thead id="heat-head"></thead>
+      <tbody id="heat-body"></tbody>
+    </table>
+  </div>
+
+  <button class="btn-submit" style="margin-top:8px" onclick="applyObjectives()">Áp dụng → Tái tính IVI% toàn bộ</button>
+  <div id="obj-msg" style="display:none;margin-top:10px;font-size:12px;color:var(--green)">✓ IVI% đã được tái tính theo mục tiêu mới.</div>
+</div>
+</div>
+
+<!-- ══ TAB 2: QUY TRÌNH ══════════════════════════════════════════════ -->
+<div id="tab-proc" class="view">
+<div class="proc-wrap">
+  <div class="pg-title" style="margin-bottom:4px">Bản đồ quy trình ISO</div>
+  <div class="pg-sub" style="margin-bottom:12px">Mỗi quy trình có trọng số chiến lược (SW) tính từ ma trận mục tiêu. ONA được sinh từ phân công nhân sự vào các bước.</div>
   <div id="proc-list"></div>
 </div>
 </div>
 
-<!-- ══════════════════════════════════════════ TAB 2: PHÂN CÔNG ══════ -->
+<!-- ══ TAB 3: PHÂN CÔNG ══════════════════════════════════════════════ -->
 <div id="tab-assign" class="view">
 <div class="assign-wrap">
-  <div class="form-title">Form phân công nhân sự vào quy trình</div>
-  <div class="form-sub">Chọn quy trình → xem/chỉnh sửa phân công nhân sự cho từng bước. Khi submit, hệ thống tự động cập nhật ONA network và IVI scores.</div>
+  <div class="pg-title" style="margin-bottom:4px">Form phân công nhân sự vào quy trình</div>
+  <div class="pg-sub" style="margin-bottom:16px">Chọn quy trình → click chip để toggle Responsible/Participant → Submit cập nhật ONA + IVI.</div>
   <div class="proc-select-row" id="proc-btns"></div>
-  <div class="assign-legend">
-    <div class="al-item"><div class="al-box al-solid"></div>Người phụ trách (Responsible) — chịu trách nhiệm kết quả bước</div>
-    <div class="al-item"><div class="al-box al-dashed"></div>Người tham gia (Participant) — đóng góp vào bước, nhận/bàn giao</div>
+  <div style="display:flex;gap:14px;margin-bottom:12px;font-size:11px;color:var(--muted)">
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:8px;border-radius:2px;border:1.5px solid rgba(200,200,200,.5)"></div>Viền liền = Phụ trách</div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:8px;border-radius:2px;border:1px dashed rgba(200,200,200,.3)"></div>Viền đứt = Tham gia</div>
   </div>
   <div style="overflow-x:auto">
-    <table class="assign-table" id="assign-tbl">
-      <thead><tr><th>Bước</th><th>Tên bước</th><th>Mức độ quan trọng</th><th>Phụ trách</th><th>Tham gia</th></tr></thead>
+    <table class="assign-table">
+      <thead><tr><th>Bước</th><th>Tên bước</th><th>Quan trọng</th><th>Phụ trách</th><th>Tham gia</th></tr></thead>
       <tbody id="assign-tbody"></tbody>
     </table>
   </div>
   <button class="btn-submit" onclick="submitAssign()">Cập nhật → Tái tính ONA + IVI</button>
-  <div id="assign-msg" style="margin-top:12px;font-size:12px;color:var(--green);display:none">✓ Đã cập nhật. Chuyển sang tab Mạng ONA để xem kết quả.</div>
+  <div id="assign-msg" style="display:none;margin-top:10px;font-size:12px;color:var(--green)">✓ Đã cập nhật. Chuyển sang tab Mạng ONA để xem kết quả.</div>
 </div>
 </div>
 
-<!-- ══════════════════════════════════════════ TAB 3: MẠNG ONA ═══════ -->
+<!-- ══ TAB 4: ONA NETWORK ════════════════════════════════════════════ -->
 <div id="tab-ona" class="vgrid">
   <div class="net-canvas" id="netCanvas">
-    <div class="net-info">
-      <div class="net-info-box">
-        ONA từ <b id="edge-count">0</b> edges · <b id="node-count">0</b> nodes<br>
-        Derived từ <b>6 quy trình · 32 bước</b><br>
-        <span style="font-size:9px;color:var(--muted)">Nhấp node để xem chi tiết →</span>
-      </div>
+    <div class="net-info-box">
+      ONA derived từ <b id="edge-count">0</b> edges<br>
+      <b>6 quy trình · 32 bước</b><br>
+      <span style="font-size:9px;color:var(--muted)">Nhấp node → chi tiết →</span>
     </div>
     <div class="net-filters" id="net-filters"></div>
     <div class="net-legend">
@@ -286,23 +308,23 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'IBM Pl
       <div class="nl-item"><div class="nl-dot" style="background:var(--sc)"></div>Supply</div>
       <div class="nl-item"><div class="nl-dot" style="background:var(--hse)"></div>HSE</div>
       <div class="nl-item"><div class="nl-dot" style="background:var(--mgmt)"></div>Mgmt</div>
-      <div class="nl-item"><div class="nl-dot" style="background:var(--hr)"></div>HR</div>
-      <div class="nl-item" style="margin-left:8px"><div style="width:14px;height:1px;background:rgba(255,255,255,.3)"></div>Cùng bước</div>
-      <div class="nl-item"><div style="width:14px;height:1px;background:rgba(244,160,32,.5);border-top:1px dashed rgba(244,160,32,.5)"></div>Bàn giao</div>
+      <div class="nl-item" style="margin-left:8px"><div style="width:14px;height:1px;background:rgba(255,255,255,.25)"></div>Cùng bước</div>
+      <div class="nl-item"><div style="width:14px;height:1px;border-top:1px dashed rgba(244,160,32,.5)"></div>Bàn giao</div>
     </div>
   </div>
   <div class="dp" id="dp">
     <div class="dp-empty" id="dp-empty">
       <div class="dp-empty-ico">◎</div>
       <div style="font-size:11px;font-weight:600;color:var(--text)">Chọn một nhân sự</div>
-      <div style="font-size:10px;line-height:1.5;max-width:180px">Nhấp vào node để xem vị trí ONA và điểm IVI chi tiết</div>
+      <div style="font-size:10px;line-height:1.5;max-width:180px">Nhấp vào node để xem vị trí ONA và điểm IVI% chi tiết</div>
     </div>
     <div class="dp-show" id="dp-show">
       <div class="dp-av" id="dp-av"></div>
       <div class="dp-nm" id="dp-nm"></div>
       <div class="dp-rl" id="dp-rl"></div>
       <div class="dp-typebadge" id="dp-type"></div>
-      <div class="ivi-row"><div class="ivi-n" id="dp-ivi-n"></div><div class="ivi-lbl">IVI / 100</div></div>
+      <div class="ivi-row"><div class="ivi-n" id="dp-ivi-n"></div><div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px">IVI%</div><div style="font-size:9px;color:var(--muted)">tỷ trọng tổ chức</div></div></div>
+      <div class="ivi-sub-row" id="dp-ivi-sub"></div>
       <div class="ivi-bars" id="dp-ivi-bars"></div>
       <div class="dp-mets" id="dp-mets"></div>
       <div class="dp-proc-list" id="dp-procs"></div>
@@ -312,47 +334,52 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'IBM Pl
   <div class="ona-metrics">
     <table><thead><tr>
       <th>Nhân sự</th><th>Phòng ban</th><th>Vị trí ONA</th>
-      <th>Số quy trình</th><th>Bước phụ trách</th><th>Degree</th><th>Betweenness</th>
-      <th>IVI%</th><th>Nếu nghỉ</th>
+      <th>Quy trình</th><th>Bước PT</th><th>Degree</th><th>SW avg</th><th>IVI%</th><th>Nếu nghỉ</th>
     </tr></thead><tbody id="ona-tbody"></tbody></table>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════ TAB 4: IVI RANKING ════ -->
+<!-- ══ TAB 5: IVI% ════════════════════════════════════════════════════ -->
 <div id="tab-ivi" class="view">
 <div class="ivi-wrap">
-  <div class="ivi-top-title">IVI — Tỷ trọng giá trị cá nhân trong tổ chức</div>
-  <div class="ivi-top-sub">IVI không phải điểm tuyệt đối. IVI = <b>phần trăm đóng góp của cá nhân trong tổng giá trị toàn tổ chức</b>. Tổng tất cả IVI% = 100%. Nếu một người nghỉ việc, org mất đúng phần trăm đó.</div>
+  <div class="pg-title" style="margin-bottom:4px">IVI% — Tỷ trọng giá trị cá nhân trong tổ chức</div>
+  <div class="pg-sub" style="margin-bottom:12px">IVI = tỷ trọng % trong tổng giá trị tổ chức. Tổng = 100%. Phản ánh sự tham gia quy trình <b>có trọng số theo mục tiêu chiến lược</b>.</div>
+
+  <div class="ivi-formula-block">
+<span class="cm">// v5: IVI% = tỷ trọng của cá nhân trong tổng org value</span>
+raw_score = <b>ProcessValue_weighted</b>×0.40 + SkillGraph×0.25 + MarketSignal×0.20 + LearnVelocity×0.15
+
+<span class="cm">// ProcessValue_weighted = Σ_steps [ step.crit × proc.crit × <b>SW(proc)</b> × role_w ]</span>
+<span class="cm">// SW(proc) = Σ_objectives [ obj.weight × proc_obj_influence ]  ← điểm mới v5</span>
+<span class="cm">// role_w: Responsible=1.0, Participant=0.5</span>
+
+IVI% = raw_score / Σ(tất_cả_raw_score) × 100  <span class="cm">← Tổng = 100%</span>
+  </div>
 
   <!-- Stacked proportion bar -->
   <div style="margin-bottom:6px">
     <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:6px">
-      <span>Phân bổ giá trị tổ chức (100%)</span>
+      <span>Phân bổ giá trị tổ chức (100%) — weighted by objectives</span>
       <span id="ivi-bar-note" style="color:var(--amber)"></span>
     </div>
     <div id="ivi-stack-bar" style="display:flex;height:28px;border-radius:4px;overflow:hidden;gap:1px"></div>
     <div id="ivi-bar-legend" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:9px;color:var(--muted)"></div>
   </div>
 
-  <!-- Department breakdown -->
-  <div id="ivi-dept-row" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:20px"></div>
-
-  <!-- Concentration alert -->
+  <div id="ivi-dept-row" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:16px"></div>
   <div id="ivi-alert" style="margin-bottom:16px"></div>
 
-  <!-- Individual cards -->
   <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:12px">
     <div style="font-size:12px;font-weight:600;color:var(--text)">Xếp hạng cá nhân</div>
-    <div style="font-size:10px;color:var(--muted)">Sắp xếp theo IVI% giảm dần · Headcount avg = <span id="head-avg"></span>%</div>
+    <div style="font-size:10px;color:var(--muted)">Headcount avg = <span id="head-avg"></span>% · Thay đổi mục tiêu → IVI% tự động cập nhật</div>
   </div>
   <div class="ivi-cards" id="ivi-cards"></div>
 
   <!-- Simulate departure -->
   <div style="margin-top:24px;background:var(--s2);border:1px solid var(--brd);border-radius:6px;padding:14px 16px">
     <div style="font-size:12px;font-weight:600;margin-bottom:10px">Mô phỏng: Nếu nhân sự nghỉ việc</div>
-    <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
       <select id="sim-select" onchange="simulateDeparture()" style="background:var(--s3);border:1px solid var(--brd2);border-radius:4px;padding:6px 10px;color:var(--text);font-size:12px;flex:1"></select>
-      <span style="font-size:11px;color:var(--muted)">→</span>
       <div id="sim-result" style="font-size:12px;color:var(--sub);flex:2"></div>
     </div>
     <div id="sim-bar" style="display:flex;height:18px;border-radius:3px;overflow:hidden;gap:1px"></div>
@@ -368,99 +395,145 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'IBM Pl
 // ═══════════════════════════════════════════════════════════════════════
 // MASTER DATA
 // ═══════════════════════════════════════════════════════════════════════
-const DCOL = {prod:'#F4A020',eng:'#22D3C8',qc:'#34D399',sc:'#A78BFA',hse:'#F87171',mgmt:'#60A5FA',hr:'#94A3B8'};
-const DNAME = {prod:'Sản xuất',eng:'Kỹ thuật',qc:'Chất lượng',sc:'Supply Chain',hse:'HSE',mgmt:'Ban GĐ',hr:'HR'};
+const DCOL={prod:'#F4A020',eng:'#22D3C8',qc:'#34D399',sc:'#A78BFA',hse:'#F87171',mgmt:'#60A5FA',hr:'#94A3B8'};
+const DNAME={prod:'Sản xuất',eng:'Kỹ thuật',qc:'Chất lượng',sc:'Supply Chain',hse:'HSE',mgmt:'Ban GĐ',hr:'HR'};
 
-const PEOPLE = {
-  mgr1:{id:'mgr1',name:'Yamamoto Kenji',short:'Yamamoto',role:'Plant Manager',dept:'mgmt',init:'YK'},
-  mgr2:{id:'mgr2',name:'Nguyễn Thị Lan',short:'N.T.Lan',role:'Operations Director',dept:'mgmt',init:'NL'},
-  mgr3:{id:'mgr3',name:'Park Min-jun',short:'Park',role:'Quality Director',dept:'mgmt',init:'PJ'},
-  prd1:{id:'prd1',name:'Trần Văn Hùng',short:'T.V.Hùng',role:'Production Lead',dept:'prod',init:'TH'},
-  prd2:{id:'prd2',name:'Lê Thị Hoa',short:'L.T.Hoa',role:'Line Supervisor A',dept:'prod',init:'LH'},
-  prd3:{id:'prd3',name:'Phạm Minh Đức',short:'P.M.Đức',role:'Line Supervisor B',dept:'prod',init:'PD'},
-  prd4:{id:'prd4',name:'Bùi Thị Ngân',short:'B.T.Ngân',role:'Senior Operator',dept:'prod',init:'BN'},
-  prd5:{id:'prd5',name:'Đinh Văn Toàn',short:'Đ.V.Toàn',role:'Machine Operator',dept:'prod',init:'DT'},
-  eng1:{id:'eng1',name:'Võ Quang Minh',short:'V.Q.Minh',role:'Chief Engineer',dept:'eng',init:'VM'},
-  eng2:{id:'eng2',name:'Hoàng Thị Bích',short:'H.T.Bích',role:'Process Engineer',dept:'eng',init:'HB'},
-  eng3:{id:'eng3',name:'Nguyễn Văn Khánh',short:'N.V.Khánh',role:'Maintenance Spec.',dept:'eng',init:'NK'},
-  qc1:{id:'qc1',name:'Kim So-young',short:'Kim S.',role:'QC Supervisor',dept:'qc',init:'KS'},
-  qc2:{id:'qc2',name:'Trần Thị Mai',short:'T.T.Mai',role:'QC Inspector Lead',dept:'qc',init:'TM'},
-  qc3:{id:'qc3',name:'Lê Văn Sơn',short:'L.V.Sơn',role:'QC Analyst',dept:'qc',init:'LS'},
-  sc1:{id:'sc1',name:'Đỗ Minh Tuấn',short:'Đ.M.Tuấn',role:'Supply Chain Lead',dept:'sc',init:'DT'},
-  sc2:{id:'sc2',name:'Nguyễn Thị Thảo',short:'N.T.Thảo',role:'Procurement Spec.',dept:'sc',init:'NT'},
-  hse1:{id:'hse1',name:'Lý Văn Nam',short:'L.V.Nam',role:'HSE Manager',dept:'hse',init:'LN'},
-  hse2:{id:'hse2',name:'Trần Thị Phương',short:'T.T.Phương',role:'HSE Officer',dept:'hse',init:'TP'},
-  hr1:{id:'hr1',name:'Chu Thị Lan',short:'C.T.Lan',role:'HR Manager',dept:'hr',init:'CL'},
-  hr2:{id:'hr2',name:'Vũ Minh Quân',short:'V.M.Quân',role:'HR Specialist',dept:'hr',init:'VQ'},
+// ── MỤC TIÊU BỘ PHẬN SẢN XUẤT ──────────────────────────────────────
+const OBJECTIVES = {
+  Q:{id:'Q', name:'Chất lượng sản phẩm',     short:'Chất lượng',  col:'#34D399', weight:0.30},
+  P:{id:'P', name:'Năng suất & sản lượng',    short:'Năng suất',   col:'#F4A020', weight:0.25},
+  C:{id:'C', name:'Kiểm soát chi phí',        short:'Chi phí',     col:'#A78BFA', weight:0.20},
+  D:{id:'D', name:'Giao hàng đúng tiến độ',   short:'Tiến độ',     col:'#60A5FA', weight:0.15},
+  S:{id:'S', name:'An toàn lao động (HSE)',   short:'An toàn',     col:'#F87171', weight:0.10},
 };
 
-// ── 6 ISO processes, each with steps, each step has resp + parts ─────
-const PROCS = [
-  {
-    id:'P01',name:'Kiểm soát nguyên vật liệu đầu vào',iso:'ISO 9001 §8.4.3',crit:4,
-    steps:[
-      {id:'P01S1',name:'Tiếp nhận hàng từ NCC',resp:'sc1',parts:['sc2','prd3'],crit:3},
-      {id:'P01S2',name:'Kiểm tra số lượng & chứng từ',resp:'sc2',parts:['sc1'],crit:2},
-      {id:'P01S3',name:'IQC — Kiểm tra chất lượng đầu vào',resp:'qc2',parts:['qc1','sc1'],crit:5},
-      {id:'P01S4',name:'Phê duyệt / Từ chối NVL',resp:'qc1',parts:['mgr3','sc1'],crit:5},
-      {id:'P01S5',name:'Nhập kho & cập nhật WMS',resp:'sc2',parts:['prd3'],crit:2},
-    ]
-  },{
-    id:'P02',name:'Lập kế hoạch sản xuất',iso:'ISO 9001 §8.1',crit:5,
-    steps:[
-      {id:'P02S1',name:'Nhận đơn hàng từ khách hàng',resp:'mgr2',parts:['sc1'],crit:3},
-      {id:'P02S2',name:'Đánh giá năng lực sản xuất',resp:'prd1',parts:['eng1','mgr2'],crit:4},
-      {id:'P02S3',name:'Lập kế hoạch & phân bổ nguồn lực',resp:'prd1',parts:['prd2','prd3','sc1'],crit:5},
-      {id:'P02S4',name:'Phê duyệt kế hoạch sản xuất',resp:'mgr1',parts:['mgr2','prd1'],crit:4},
-      {id:'P02S5',name:'Ban hành kế hoạch cho các bộ phận',resp:'mgr2',parts:['prd1','prd2','prd3','sc1'],crit:3},
-    ]
-  },{
-    id:'P03',name:'Vận hành dây chuyền sản xuất',iso:'ISO 9001 §8.5.1',crit:5,
-    steps:[
-      {id:'P03S1',name:'Setup thiết bị & dụng cụ sản xuất',resp:'eng1',parts:['eng3','prd1'],crit:4},
-      {id:'P03S2',name:'Cấp phát nguyên vật liệu vào line',resp:'prd3',parts:['sc1','prd1'],crit:3},
-      {id:'P03S3',name:'Sản xuất / Lắp ráp linh kiện',resp:'prd2',parts:['prd4','prd5','prd1'],crit:5},
-      {id:'P03S4',name:'IPQC — Kiểm tra trong quá trình',resp:'eng2',parts:['qc2','prd2'],crit:5},
-      {id:'P03S5',name:'Sửa chữa / Rework sản phẩm lỗi',resp:'qc3',parts:['prd4','eng1'],crit:3},
-      {id:'P03S6',name:'Bàn giao bán thành phẩm sang QC',resp:'prd1',parts:['eng2','qc1'],crit:4},
-    ]
-  },{
-    id:'P04',name:'Kiểm soát chất lượng thành phẩm (FQC)',iso:'ISO 9001 §8.6',crit:5,
-    steps:[
-      {id:'P04S1',name:'Nhận bàn giao từ dây chuyền SX',resp:'qc1',parts:['prd1','eng2'],crit:3},
-      {id:'P04S2',name:'Kiểm tra ngoại quan 100%',resp:'qc2',parts:['qc3','qc1'],crit:4},
-      {id:'P04S3',name:'Kiểm tra chức năng & thông số',resp:'qc2',parts:['eng2','qc3'],crit:5},
-      {id:'P04S4',name:'Lấy mẫu kiểm tra thống kê (AQL)',resp:'qc3',parts:['mgr3'],crit:4},
-      {id:'P04S5',name:'Phê duyệt xuất kho thành phẩm',resp:'mgr3',parts:['qc1','mgr1'],crit:5},
-      {id:'P04S6',name:'Ghi nhận kết quả kiểm tra vào hệ thống',resp:'qc3',parts:['qc2'],crit:2},
-    ]
-  },{
-    id:'P05',name:'Kiểm soát sản phẩm không phù hợp (NCR)',iso:'ISO 9001 §8.7',crit:4,
-    steps:[
-      {id:'P05S1',name:'Phát hiện & ghi nhận phiếu NCR',resp:'qc2',parts:['qc3','prd2'],crit:3},
-      {id:'P05S2',name:'Cách ly & gắn thẻ sản phẩm lỗi',resp:'qc1',parts:['prd1'],crit:4},
-      {id:'P05S3',name:'Phân tích nguyên nhân gốc rễ (RCA)',resp:'eng2',parts:['eng1','qc1','prd1'],crit:5},
-      {id:'P05S4',name:'Quyết định xử lý (rework/scrap)',resp:'mgr3',parts:['eng2','prd1'],crit:5},
-      {id:'P05S5',name:'Thực hiện hành động khắc phục (CA)',resp:'eng1',parts:['eng2','prd2'],crit:4},
-      {id:'P05S6',name:'Xác nhận hiệu quả CA & đóng NCR',resp:'qc1',parts:['mgr3'],crit:3},
-    ]
-  },{
-    id:'P06',name:'Quản lý bảo trì thiết bị (PM/CM)',iso:'ISO 9001 §7.1.3 · ISO 45001',crit:4,
-    steps:[
-      {id:'P06S1',name:'Lập kế hoạch bảo trì định kỳ (PM)',resp:'eng1',parts:['eng3','prd1'],crit:3},
-      {id:'P06S2',name:'Thực hiện bảo trì phòng ngừa',resp:'eng3',parts:['hse1','hse2'],crit:4},
-      {id:'P06S3',name:'Xử lý sự cố hỏng hóc (CM repair)',resp:'eng3',parts:['eng1','prd1'],crit:5},
-      {id:'P06S4',name:'Ghi chép nhật ký thiết bị & lịch sử',resp:'eng3',parts:['eng1'],crit:3},
-      {id:'P06S5',name:'Nghiệm thu bảo trì & kiểm tra an toàn',resp:'eng1',parts:['eng3','hse1'],crit:4},
-    ]
-  }
+// ── MA TRẬN ảnh hưởng: process → objective (0.0–1.0) ────────────────
+// Giá trị = mức độ quy trình này đóng góp vào mục tiêu tương ứng
+const PROC_OBJ = {
+  P01:{Q:0.8, P:0.6, C:0.7, D:0.8, S:0.2}, // Incoming material control
+  P02:{Q:0.4, P:1.0, C:0.8, D:1.0, S:0.1}, // Production planning
+  P03:{Q:0.6, P:1.0, C:0.6, D:0.8, S:0.5}, // Production line operation
+  P04:{Q:1.0, P:0.3, C:0.4, D:0.6, S:0.2}, // FQC
+  P05:{Q:0.9, P:0.2, C:0.8, D:0.4, S:0.3}, // NCR control
+  P06:{Q:0.3, P:0.8, C:0.7, D:0.6, S:1.0}, // Maintenance
+};
+
+// ── PEOPLE ─────────────────────────────────────────────────────────
+const PEOPLE={
+  mgr1:{id:'mgr1',name:'Yamamoto Kenji',  short:'Yamamoto',  role:'Plant Manager',        dept:'mgmt',init:'YK'},
+  mgr2:{id:'mgr2',name:'Nguyễn Thị Lan',  short:'N.T.Lan',   role:'Operations Director',  dept:'mgmt',init:'NL'},
+  mgr3:{id:'mgr3',name:'Park Min-jun',     short:'Park',      role:'Quality Director',     dept:'mgmt',init:'PJ'},
+  prd1:{id:'prd1',name:'Trần Văn Hùng',   short:'T.V.Hùng',  role:'Production Lead',      dept:'prod', init:'TH'},
+  prd2:{id:'prd2',name:'Lê Thị Hoa',      short:'L.T.Hoa',   role:'Line Supervisor A',    dept:'prod', init:'LH'},
+  prd3:{id:'prd3',name:'Phạm Minh Đức',   short:'P.M.Đức',   role:'Line Supervisor B',    dept:'prod', init:'PD'},
+  prd4:{id:'prd4',name:'Bùi Thị Ngân',    short:'B.T.Ngân',  role:'Senior Operator',      dept:'prod', init:'BN'},
+  prd5:{id:'prd5',name:'Đinh Văn Toàn',   short:'Đ.V.Toàn',  role:'Machine Operator',     dept:'prod', init:'DT'},
+  eng1:{id:'eng1',name:'Võ Quang Minh',   short:'V.Q.Minh',  role:'Chief Engineer',       dept:'eng',  init:'VM'},
+  eng2:{id:'eng2',name:'Hoàng Thị Bích',  short:'H.T.Bích',  role:'Process Engineer',     dept:'eng',  init:'HB'},
+  eng3:{id:'eng3',name:'Nguyễn Văn Khánh',short:'N.V.Khánh', role:'Maintenance Spec.',    dept:'eng',  init:'NK'},
+  qc1:{id:'qc1', name:'Kim So-young',     short:'Kim S.',    role:'QC Supervisor',        dept:'qc',   init:'KS'},
+  qc2:{id:'qc2', name:'Trần Thị Mai',     short:'T.T.Mai',   role:'QC Inspector Lead',    dept:'qc',   init:'TM'},
+  qc3:{id:'qc3', name:'Lê Văn Sơn',       short:'L.V.Sơn',   role:'QC Analyst',           dept:'qc',   init:'LS'},
+  sc1:{id:'sc1', name:'Đỗ Minh Tuấn',     short:'Đ.M.Tuấn',  role:'Supply Chain Lead',    dept:'sc',   init:'DT2'},
+  sc2:{id:'sc2', name:'Nguyễn Thị Thảo',  short:'N.T.Thảo',  role:'Procurement Spec.',    dept:'sc',   init:'NT'},
+  hse1:{id:'hse1',name:'Lý Văn Nam',      short:'L.V.Nam',   role:'HSE Manager',          dept:'hse',  init:'LN'},
+  hse2:{id:'hse2',name:'Trần Thị Phương', short:'T.T.Phương',role:'HSE Officer',          dept:'hse',  init:'TP'},
+  hr1:{id:'hr1', name:'Chu Thị Lan',      short:'C.T.Lan',   role:'HR Manager',           dept:'hr',   init:'CL'},
+  hr2:{id:'hr2', name:'Vũ Minh Quân',     short:'V.M.Quân',  role:'HR Specialist',        dept:'hr',   init:'VQ'},
+};
+
+const PROCS=[
+  {id:'P01',name:'Kiểm soát nguyên vật liệu đầu vào',iso:'ISO 9001 §8.4.3',crit:4,steps:[
+    {id:'P01S1',name:'Tiếp nhận hàng từ NCC',resp:'sc1',parts:['sc2','prd3'],crit:3},
+    {id:'P01S2',name:'Kiểm tra số lượng & chứng từ',resp:'sc2',parts:['sc1'],crit:2},
+    {id:'P01S3',name:'IQC — Kiểm tra chất lượng đầu vào',resp:'qc2',parts:['qc1','sc1'],crit:5},
+    {id:'P01S4',name:'Phê duyệt / Từ chối NVL',resp:'qc1',parts:['mgr3','sc1'],crit:5},
+    {id:'P01S5',name:'Nhập kho & cập nhật WMS',resp:'sc2',parts:['prd3'],crit:2},
+  ]},{id:'P02',name:'Lập kế hoạch sản xuất',iso:'ISO 9001 §8.1',crit:5,steps:[
+    {id:'P02S1',name:'Nhận đơn hàng từ khách hàng',resp:'mgr2',parts:['sc1'],crit:3},
+    {id:'P02S2',name:'Đánh giá năng lực sản xuất',resp:'prd1',parts:['eng1','mgr2'],crit:4},
+    {id:'P02S3',name:'Lập kế hoạch & phân bổ nguồn lực',resp:'prd1',parts:['prd2','prd3','sc1'],crit:5},
+    {id:'P02S4',name:'Phê duyệt kế hoạch sản xuất',resp:'mgr1',parts:['mgr2','prd1'],crit:4},
+    {id:'P02S5',name:'Ban hành kế hoạch cho bộ phận',resp:'mgr2',parts:['prd1','prd2','prd3','sc1'],crit:3},
+  ]},{id:'P03',name:'Vận hành dây chuyền sản xuất',iso:'ISO 9001 §8.5.1',crit:5,steps:[
+    {id:'P03S1',name:'Setup thiết bị & dụng cụ SX',resp:'eng1',parts:['eng3','prd1'],crit:4},
+    {id:'P03S2',name:'Cấp phát NVL vào line',resp:'prd3',parts:['sc1','prd1'],crit:3},
+    {id:'P03S3',name:'Sản xuất / Lắp ráp linh kiện',resp:'prd2',parts:['prd4','prd5','prd1'],crit:5},
+    {id:'P03S4',name:'IPQC — Kiểm tra trong quá trình',resp:'eng2',parts:['qc2','prd2'],crit:5},
+    {id:'P03S5',name:'Sửa chữa / Rework sản phẩm lỗi',resp:'qc3',parts:['prd4','eng1'],crit:3},
+    {id:'P03S6',name:'Bàn giao bán thành phẩm sang QC',resp:'prd1',parts:['eng2','qc1'],crit:4},
+  ]},{id:'P04',name:'Kiểm soát chất lượng thành phẩm (FQC)',iso:'ISO 9001 §8.6',crit:5,steps:[
+    {id:'P04S1',name:'Nhận bàn giao từ dây chuyền SX',resp:'qc1',parts:['prd1','eng2'],crit:3},
+    {id:'P04S2',name:'Kiểm tra ngoại quan 100%',resp:'qc2',parts:['qc3','qc1'],crit:4},
+    {id:'P04S3',name:'Kiểm tra chức năng & thông số',resp:'qc2',parts:['eng2','qc3'],crit:5},
+    {id:'P04S4',name:'Lấy mẫu kiểm tra thống kê (AQL)',resp:'qc3',parts:['mgr3'],crit:4},
+    {id:'P04S5',name:'Phê duyệt xuất kho thành phẩm',resp:'mgr3',parts:['qc1','mgr1'],crit:5},
+    {id:'P04S6',name:'Ghi nhận kết quả kiểm tra',resp:'qc3',parts:['qc2'],crit:2},
+  ]},{id:'P05',name:'Kiểm soát sản phẩm không phù hợp (NCR)',iso:'ISO 9001 §8.7',crit:4,steps:[
+    {id:'P05S1',name:'Phát hiện & ghi nhận phiếu NCR',resp:'qc2',parts:['qc3','prd2'],crit:3},
+    {id:'P05S2',name:'Cách ly & gắn thẻ sản phẩm lỗi',resp:'qc1',parts:['prd1'],crit:4},
+    {id:'P05S3',name:'Phân tích nguyên nhân gốc rễ (RCA)',resp:'eng2',parts:['eng1','qc1','prd1'],crit:5},
+    {id:'P05S4',name:'Quyết định xử lý (rework/scrap)',resp:'mgr3',parts:['eng2','prd1'],crit:5},
+    {id:'P05S5',name:'Thực hiện hành động khắc phục (CA)',resp:'eng1',parts:['eng2','prd2'],crit:4},
+    {id:'P05S6',name:'Xác nhận hiệu quả CA & đóng NCR',resp:'qc1',parts:['mgr3'],crit:3},
+  ]},{id:'P06',name:'Quản lý bảo trì thiết bị (PM/CM)',iso:'ISO 9001 §7.1.3',crit:4,steps:[
+    {id:'P06S1',name:'Lập kế hoạch bảo trì định kỳ (PM)',resp:'eng1',parts:['eng3','prd1'],crit:3},
+    {id:'P06S2',name:'Thực hiện bảo trì phòng ngừa',resp:'eng3',parts:['hse1','hse2'],crit:4},
+    {id:'P06S3',name:'Xử lý sự cố hỏng hóc (CM)',resp:'eng3',parts:['eng1','prd1'],crit:5},
+    {id:'P06S4',name:'Ghi chép nhật ký thiết bị',resp:'eng3',parts:['eng1'],crit:3},
+    {id:'P06S5',name:'Nghiệm thu bảo trì & kiểm tra AT',resp:'eng1',parts:['eng3','hse1'],crit:4},
+  ]}
 ];
 
+const STATIC_IVI={
+  mgr1:{skill:70,mkt:80,lrn:68},mgr2:{skill:78,mkt:85,lrn:76},mgr3:{skill:75,mkt:80,lrn:72},
+  prd1:{skill:85,mkt:80,lrn:78},prd2:{skill:72,mkt:68,lrn:74},prd3:{skill:68,mkt:65,lrn:72},
+  prd4:{skill:76,mkt:65,lrn:80},prd5:{skill:54,mkt:50,lrn:62},
+  eng1:{skill:86,mkt:78,lrn:76},eng2:{skill:82,mkt:86,lrn:88},eng3:{skill:94,mkt:76,lrn:86},
+  qc1:{skill:80,mkt:78,lrn:76}, qc2:{skill:74,mkt:74,lrn:78}, qc3:{skill:62,mkt:60,lrn:68},
+  sc1:{skill:74,mkt:80,lrn:74}, sc2:{skill:64,mkt:68,lrn:70},
+  hse1:{skill:74,mkt:70,lrn:72},hse2:{skill:62,mkt:58,lrn:66},
+  hr1:{skill:70,mkt:72,lrn:74}, hr2:{skill:40,mkt:36,lrn:48},
+};
+
+const NT_INFO={
+  hub:    {label:'Central Hub',     col:'#F4A020',bg:'rgba(244,160,32,.15)'},
+  broker: {label:'Broker/Bridge',   col:'#22D3C8',bg:'rgba(34,211,200,.15)'},
+  expert: {label:'Peripheral Expert',col:'#A78BFA',bg:'rgba(167,139,250,.15)'},
+  silo:   {label:'Isolated Node',   col:'#F87171',bg:'rgba(248,113,113,.15)'},
+  peripheral:{label:'Peripheral',   col:'#8895AA',bg:'rgba(136,149,170,.1)'},
+};
+const NT_INSIGHT={
+  hub:'Central Hub — tham gia nhiều quy trình quan trọng và được giao nhiều bước phụ trách. Kiểm tra quá tải. IVI% cao vì quy trình họ dẫn dắt đóng góp nhiều cho mục tiêu chiến lược.',
+  broker:'Broker Bridge — mắt xích duy nhất nối 2 nhóm chức năng trong quy trình. Undervalued nhất tổ chức. IVI% phản ánh vai trò cầu nối không thể thay thế.',
+  expert:'Peripheral Expert — ít bước nhưng là người duy nhất phụ trách bước kỹ thuật chuyên sâu trong quy trình có trọng số cao (e.g., P06 Bảo trì = trọng số An toàn cao).',
+  silo:'Isolated Node — hầu như không có trong bất kỳ bước quy trình nào. IVI% thấp phản ánh đóng góp thực tế vào mục tiêu tổ chức còn hạn chế.',
+  peripheral:'Peripheral Node — tham gia chọn lọc. IVI% cân bằng. Tiềm năng tăng nếu được assign thêm bước trong quy trình có trọng số mục tiêu cao.',
+};
+
 // ═══════════════════════════════════════════════════════════════════════
-// COMPUTE ONA EDGES FROM PROCESSES
+// STRATEGIC WEIGHT COMPUTATION
+// ═══════════════════════════════════════════════════════════════════════
+function computeSW(procId){
+  const po = PROC_OBJ[procId];
+  if(!po) return 1;
+  return Object.keys(OBJECTIVES).reduce((sum, oid)=>{
+    return sum + OBJECTIVES[oid].weight * (po[oid]||0);
+  }, 0);
+  // SW ranges ~0.2–0.8, normalize to meaningful range
+}
+
+function getSWAll(){
+  const sw={};
+  PROCS.forEach(p=>{ sw[p.id]=computeSW(p.id); });
+  return sw;
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// ONA EDGES
 // ═══════════════════════════════════════════════════════════════════════
 function deriveEdges(){
-  const edgeMap = {};
+  const edgeMap={};
   function addEdge(a,b,type,weight){
     if(a===b)return;
     const k=a<b?`${a}|${b}`:`${b}|${a}`;
@@ -468,121 +541,86 @@ function deriveEdges(){
     edgeMap[k].types.add(type);
     edgeMap[k].weight+=weight;
   }
+  const sw=getSWAll();
   PROCS.forEach(proc=>{
-    const pc = proc.crit;
+    const pc=proc.crit, psw=sw[proc.id];
     proc.steps.forEach((step,i)=>{
-      const sc = step.crit;
-      const all = [step.resp,...step.parts];
-      // co-participation edges
-      for(let x=0;x<all.length;x++){
-        for(let y=x+1;y<all.length;y++){
-          const w = (sc/5) * (pc/5) * 2;
-          addEdge(all[x],all[y],'copart',w);
-        }
-      }
-      // handoff edge: resp of step N → resp of step N+1
+      const sc=step.crit;
+      const all=[step.resp,...step.parts];
+      for(let x=0;x<all.length;x++)
+        for(let y=x+1;y<all.length;y++)
+          addEdge(all[x],all[y],'copart',(sc/5)*(pc/5)*psw*2);
       if(i<proc.steps.length-1){
-        const nextResp = proc.steps[i+1].resp;
-        if(step.resp!==nextResp){
-          addEdge(step.resp,nextResp,'handoff',sc/5*pc/5*1.5);
-        }
+        const nr=proc.steps[i+1].resp;
+        if(step.resp!==nr) addEdge(step.resp,nr,'handoff',(sc/5)*(pc/5)*psw*1.5);
       }
     });
   });
   return Object.values(edgeMap);
 }
 
-// Compute per-person metrics
+// ═══════════════════════════════════════════════════════════════════════
+// COMPUTE IVI METRICS (v5)
+// ═══════════════════════════════════════════════════════════════════════
 function computeMetrics(){
-  const m = {};
+  const m={};
   Object.keys(PEOPLE).forEach(id=>{
-    m[id]={id, procs:new Set(), stepsResp:0, stepsPart:0, procVal:0, degree:0, btw:0};
+    m[id]={id,procs:new Set(),stepsResp:0,stepsPart:0,procVal:0,degree:0,btw:0,swSum:0,swCount:0};
   });
-  const edges = deriveEdges();
-  // degree
-  edges.forEach(e=>{
-    m[e.a] && m[e.a].degree++;
-    m[e.b] && m[e.b].degree++;
-  });
-  // process participation + IVI process value
+  const edges=deriveEdges();
+  edges.forEach(e=>{ m[e.a]&&m[e.a].degree++; m[e.b]&&m[e.b].degree++; });
+
+  const sw=getSWAll();
   PROCS.forEach(proc=>{
+    const psw=sw[proc.id];
     proc.steps.forEach(step=>{
       if(m[step.resp]){
         m[step.resp].procs.add(proc.id);
         m[step.resp].stepsResp++;
-        m[step.resp].procVal += step.crit * proc.crit * 1.0; // responsible
+        // v5: weighted by SW
+        m[step.resp].procVal += step.crit * proc.crit * psw * 1.0;
+        m[step.resp].swSum += psw; m[step.resp].swCount++;
       }
       step.parts.forEach(p=>{
         if(m[p]){
           m[p].procs.add(proc.id);
           m[p].stepsPart++;
-          m[p].procVal += step.crit * proc.crit * 0.5; // participant
+          m[p].procVal += step.crit * proc.crit * psw * 0.5;
+          m[p].swSum += psw; m[p].swCount++;
         }
       });
     });
   });
 
-  // Normalize procVal score (0–100)
-  const maxPV = Math.max(...Object.values(m).map(x=>x.procVal));
   edges.forEach(e=>{
     const pa=PEOPLE[e.a], pb=PEOPLE[e.b];
-    if(pa&&pb&&pa.dept!==pb.dept){
-      m[e.a].btw += e.weight;
-      m[e.b].btw += e.weight;
-    }
+    if(pa&&pb&&pa.dept!==pb.dept){ m[e.a].btw+=e.weight; m[e.b].btw+=e.weight; }
   });
-  const maxBtw = Math.max(...Object.values(m).map(x=>x.btw),1);
+  const maxPV=Math.max(...Object.values(m).map(x=>x.procVal),1);
+  const maxBtw=Math.max(...Object.values(m).map(x=>x.btw),1);
 
-  // Step 1: raw IVI score per person
   Object.values(m).forEach(pm=>{
-    const procScore = (pm.procVal/maxPV)*100;
-    const base = STATIC_IVI[pm.id]||{skill:55,mkt:55,lrn:55};
+    const procScore=(pm.procVal/maxPV)*100;
+    const base=STATIC_IVI[pm.id]||{skill:55,mkt:55,lrn:55};
     pm.skill=base.skill; pm.mkt=base.mkt; pm.lrn=base.lrn;
-    pm.procScore = Math.round(procScore);
-    pm.iviRaw = procScore*0.40 + base.skill*0.25 + base.mkt*0.20 + base.lrn*0.15;
-    pm.btwNorm = pm.btw/maxBtw;
-    const prCnt=pm.procs.size;
+    pm.procScore=Math.round(procScore);
+    pm.swAvg=pm.swCount>0?(pm.swSum/pm.swCount):0;
+    pm.iviRaw=procScore*0.40+base.skill*0.25+base.mkt*0.20+base.lrn*0.15;
+    pm.btwNorm=pm.btw/maxBtw;
     if(pm.id==='hr2') pm.type='silo';
     else if(pm.btwNorm>0.35) pm.type='broker';
     else if(pm.degree>=8) pm.type='hub';
-    else if(prCnt<=1&&pm.stepsResp>=2) pm.type='expert';
+    else if(pm.procs.size<=1&&pm.stepsResp>=2) pm.type='expert';
     else pm.type='peripheral';
   });
 
-  // Step 2: IVI% = tỷ trọng cá nhân / tổng toàn tổ chức
-  const totalRaw = Object.values(m).reduce((s,pm)=>s+pm.iviRaw, 0);
+  const totalRaw=Object.values(m).reduce((s,pm)=>s+pm.iviRaw,0);
   Object.values(m).forEach(pm=>{
-    pm.iviPct = parseFloat((pm.iviRaw/totalRaw*100).toFixed(2)); // X.XX %
-    pm.ivi = pm.iviPct; // IVI IS the percentage share
+    pm.iviPct=parseFloat((pm.iviRaw/totalRaw*100).toFixed(2));
+    pm.ivi=pm.iviPct;
   });
   return m;
 }
-
-const STATIC_IVI = {
-  mgr1:{skill:70,mkt:80,lrn:68},mgr2:{skill:78,mkt:85,lrn:76},mgr3:{skill:75,mkt:80,lrn:72},
-  prd1:{skill:85,mkt:80,lrn:78},prd2:{skill:72,mkt:68,lrn:74},prd3:{skill:68,mkt:65,lrn:72},
-  prd4:{skill:76,mkt:65,lrn:80},prd5:{skill:54,mkt:50,lrn:62},
-  eng1:{skill:86,mkt:78,lrn:76},eng2:{skill:82,mkt:86,lrn:88},eng3:{skill:94,mkt:76,lrn:86},
-  qc1:{skill:80,mkt:78,lrn:76},qc2:{skill:74,mkt:74,lrn:78},qc3:{skill:62,mkt:60,lrn:68},
-  sc1:{skill:74,mkt:80,lrn:74},sc2:{skill:64,mkt:68,lrn:70},
-  hse1:{skill:74,mkt:70,lrn:72},hse2:{skill:62,mkt:58,lrn:66},
-  hr1:{skill:70,mkt:72,lrn:74},hr2:{skill:40,mkt:36,lrn:48},
-};
-
-const NT_INFO = {
-  hub:    {label:'Central Hub',  col:'#F4A020',bg:'rgba(244,160,32,.15)'},
-  broker: {label:'Broker/Bridge',col:'#22D3C8',bg:'rgba(34,211,200,.15)'},
-  expert: {label:'Peripheral Expert',col:'#A78BFA',bg:'rgba(167,139,250,.15)'},
-  silo:   {label:'Isolated Node',col:'#F87171',bg:'rgba(248,113,113,.15)'},
-  peripheral:{label:'Peripheral Node',col:'#8895AA',bg:'rgba(136,149,170,.1)'},
-};
-const NT_INSIGHT = {
-  hub:'Central Hub trong luồng quy trình — được assign vào nhiều bước quan trọng. Kiểm tra dấu hiệu quá tải: nếu họ vắng mặt, nhiều quy trình bị gián đoạn đồng thời.',
-  broker:'Broker Bridge — người duy nhất nối 2 nhóm chức năng trong quy trình. Thường là kỹ sư nằm ở bước IPQC/RCA nơi Engineering gặp QC. Undervalued nhất trong tổ chức.',
-  expert:'Peripheral Expert — ít bước tham gia nhưng là người duy nhất phụ trách các bước kỹ thuật chuyên sâu (bảo trì, setup). Knowledge concentration risk cao.',
-  silo:'Isolated Node — hầu như không xuất hiện trong bất kỳ bước quy trình nào. Không phải do năng lực kém mà do role assignment chưa phù hợp hoặc onboarding chưa hoàn chỉnh.',
-  peripheral:'Peripheral Node — tham gia chọn lọc, phù hợp với vai trò support. Theo dõi learning velocity để đánh giá tiềm năng đảm nhận thêm bước quan trọng.',
-};
 
 // ═══════════════════════════════════════════════════════════════════════
 // TAB SWITCHING
@@ -594,30 +632,145 @@ function go(name,el){
   document.getElementById('tab-'+name).classList.add('on');
   if(name==='ona'&&!window.onaInited){initONA();window.onaInited=true;}
   if(name==='ivi'&&!window.iviInited){initIVI();window.iviInited=true;}
+  if(name==='proc') buildProcList();
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// TAB 1: PROCESS MAP
+// TAB 1: OBJECTIVES
 // ═══════════════════════════════════════════════════════════════════════
-function personChip(id, isResp){
-  const p = PEOPLE[id]; if(!p) return '';
-  const col = DCOL[p.dept];
-  const bg = col+'22', border = isResp ? `border:1.5px solid ${col}` : `border:1px dashed ${col}77`;
-  return `<div class="person-chip" style="background:${bg};${border};color:${col}" title="${p.name} — ${p.role}" onclick="showDetailById('${id}')">
-    <div class="av" style="background:${col}33;color:${col}">${p.init}</div>
-    ${p.short}
+function buildObjectivesTab(){
+  // Objective cards with sliders
+  const oids=Object.keys(OBJECTIVES);
+  document.getElementById('obj-cards').innerHTML=oids.map(oid=>{
+    const o=OBJECTIVES[oid];
+    const pct=Math.round(o.weight*100);
+    return `<div class="obj-card" style="border-top-color:${o.col}">
+      <div class="obj-card-label" style="color:${o.col}">${o.id} — ${o.short}</div>
+      <div class="obj-card-name">${o.name}</div>
+      <div class="obj-weight-row">
+        <div class="obj-weight-val" id="wv-${oid}" style="color:${o.col}">${pct}%</div>
+        <input type="range" min="0" max="100" step="5" value="${pct}" id="ws-${oid}"
+          style="accent-color:${o.col}"
+          oninput="updateObjWeight('${oid}',this.value)">
+      </div>
+      <div class="obj-bar" style="background:${o.col};width:${pct}%" id="ob-${oid}"></div>
+    </div>`;
+  }).join('');
+  updateObjTotal();
+  buildHeatmap();
+}
+
+function updateObjWeight(oid,val){
+  OBJECTIVES[oid].weight=parseInt(val)/100;
+  document.getElementById('wv-'+oid).textContent=val+'%';
+  document.getElementById('ob-'+oid).style.width=val+'%';
+  updateObjTotal();
+  refreshHeatmapSW();
+}
+
+function updateObjTotal(){
+  const total=Object.values(OBJECTIVES).reduce((s,o)=>s+o.weight,0);
+  const el=document.getElementById('obj-total');
+  const pct=Math.round(total*100);
+  el.innerHTML=`Tổng trọng số: <b style="color:${Math.abs(pct-100)<=2?'#34D399':'#F87171'}">${pct}%</b> ${Math.abs(pct-100)<=2?'✓ hợp lệ':'⚠ cần điều chỉnh về 100%'}`;
+  el.className='obj-total'+(Math.abs(pct-100)>2?' warn':'');
+}
+
+// Heatmap
+const HEAT_LEVELS=[0,0.2,0.4,0.6,0.8,1.0];
+function heatBg(val){
+  if(val===0) return 'rgba(255,255,255,.04)';
+  const a=0.15+val*0.55;
+  return `rgba(244,160,32,${a})`;
+}
+
+function buildHeatmap(){
+  const oids=Object.keys(OBJECTIVES);
+  // Header
+  document.getElementById('heat-head').innerHTML=`<tr>
+    <th class="proc-th">Quy trình</th>
+    ${oids.map(o=>`<th title="${OBJECTIVES[o].name}"><span style="color:${OBJECTIVES[o].col}">${OBJECTIVES[o].id}</span><br><span style="font-size:8px;color:var(--muted)">${OBJECTIVES[o].short}</span></th>`).join('')}
+    <th>SW <span style="font-size:8px;font-weight:400;color:var(--muted)">Trọng số<br>chiến lược</span></th>
+  </tr>`;
+
+  document.getElementById('heat-body').innerHTML=PROCS.map(proc=>{
+    const sw=computeSW(proc.id);
+    const swPct=Math.round(sw*100);
+    return `<tr>
+      <td class="heat-proc-name"><span class="heat-proc-id">${proc.id}</span>${proc.name}</td>
+      ${oids.map(oid=>{
+        const val=PROC_OBJ[proc.id][oid]||0;
+        const idx=HEAT_LEVELS.indexOf(val);
+        return `<td><div class="heat-cell" id="hc-${proc.id}-${oid}" title="${proc.name} → ${OBJECTIVES[oid].name}: ${val}"
+          style="background:${heatBg(val)};color:${val>0.4?'rgba(0,0,0,.8)':'var(--sub)'}"
+          onclick="cycleHeatCell('${proc.id}','${oid}')">${val.toFixed(1)}</div></td>`;
+      }).join('')}
+      <td style="text-align:center">
+        <div class="heat-sw" id="sw-${proc.id}">${swPct}%</div>
+        <div class="heat-sw-bar" id="swb-${proc.id}" style="width:${swPct}%;max-width:60px;margin:3px auto 0"></div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function cycleHeatCell(procId,oid){
+  const cur=PROC_OBJ[procId][oid]||0;
+  const idx=HEAT_LEVELS.indexOf(cur);
+  const next=HEAT_LEVELS[(idx+1)%HEAT_LEVELS.length];
+  PROC_OBJ[procId][oid]=next;
+  const cell=document.getElementById(`hc-${procId}-${oid}`);
+  cell.textContent=next.toFixed(1);
+  cell.style.background=heatBg(next);
+  cell.style.color=next>0.4?'rgba(0,0,0,.8)':'var(--sub)';
+  refreshHeatmapSW();
+}
+
+function refreshHeatmapSW(){
+  PROCS.forEach(proc=>{
+    const sw=computeSW(proc.id);
+    const pct=Math.round(sw*100);
+    const el=document.getElementById('sw-'+proc.id);
+    const bar=document.getElementById('swb-'+proc.id);
+    if(el) el.textContent=pct+'%';
+    if(bar) bar.style.width=pct+'%';
+  });
+}
+
+function applyObjectives(){
+  window.onaInited=false; window.iviInited=false;
+  const msg=document.getElementById('obj-msg');
+  msg.style.display='block';
+  buildProcList();
+  setTimeout(()=>msg.style.display='none',3000);
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// TAB 2: PROCESS MAP
+// ═══════════════════════════════════════════════════════════════════════
+function personChip(id,isResp){
+  const p=PEOPLE[id]; if(!p) return '';
+  const col=DCOL[p.dept];
+  const border=isResp?`border:1.5px solid ${col}`:`border:1px dashed ${col}77`;
+  return `<div class="person-chip" style="background:${col}22;${border};color:${col}" title="${p.name}" onclick="showDetailById('${id}')">
+    <div class="av" style="background:${col}33;color:${col}">${p.init}</div>${p.short}
   </div>`;
 }
 
 function buildProcList(){
-  const el = document.getElementById('proc-list');
-  el.innerHTML = PROCS.map((proc,pi)=>`
-    <div class="proc-lane${pi<2?' open':''}" id="pl-${proc.id}">
+  const sw=getSWAll();
+  document.getElementById('proc-list').innerHTML=PROCS.map((proc,pi)=>{
+    const swPct=Math.round(sw[proc.id]*100);
+    // objective tags for this proc
+    const objTags=Object.keys(OBJECTIVES).filter(oid=>(PROC_OBJ[proc.id][oid]||0)>=0.6)
+      .map(oid=>`<span class="obj-badge" style="background:${OBJECTIVES[oid].col}22;color:${OBJECTIVES[oid].col};border:1px solid ${OBJECTIVES[oid].col}44">${OBJECTIVES[oid].short}</span>`).join('');
+    return `<div class="proc-lane${pi<2?' open':''}" id="pl-${proc.id}">
       <div class="proc-lane-hdr" onclick="toggleLane('${proc.id}')">
         <span class="proc-code">${proc.id}</span>
         <span class="proc-name">${proc.name}</span>
         <span class="proc-iso">${proc.iso}</span>
+        <span style="font-size:10px;color:var(--muted);margin-left:4px">${objTags}</span>
         <div class="proc-crit">${[1,2,3,4,5].map(i=>`<div class="crit-dot${i<=proc.crit?'':' off'}"></div>`).join('')}</div>
+        <span class="proc-sw-badge" title="Strategic Weight">SW:${swPct}%</span>
         <span style="font-size:10px;color:var(--muted)">${proc.steps.length} bước</span>
         <span class="proc-toggle">▾</span>
       </div>
@@ -625,151 +778,111 @@ function buildProcList(){
         <div class="steps-row">
           ${proc.steps.map((step,si)=>`
             ${si>0?`<div class="step-arrow"><svg viewBox="0 0 20 10"><line x1="0" y1="5" x2="16" y2="5" stroke="rgba(255,255,255,.2)" stroke-width="1"/><polygon points="14,2 20,5 14,8" fill="rgba(255,255,255,.2)"/></svg></div>`:''}
-            <div class="step-card" id="sc-${step.id}">
-              <div class="step-num">${step.id} · Crit: ${'★'.repeat(step.crit)}${'☆'.repeat(5-step.crit)}</div>
+            <div class="step-card">
+              <div class="step-num">${step.id} · ${'★'.repeat(step.crit)}${'☆'.repeat(5-step.crit)}</div>
               <div class="step-name">${step.name}</div>
-              <div class="step-resp">
-                <div class="step-resp-lbl">Phụ trách</div>
-                ${personChip(step.resp,true)}
-              </div>
-              ${step.parts.length?`
-              <div class="step-parts">
-                <div class="step-parts-lbl">Tham gia</div>
-                <div class="step-parts-row">${step.parts.map(p=>personChip(p,false)).join('')}</div>
-              </div>`:''}
+              <div class="step-resp-lbl">Phụ trách</div>
+              ${personChip(step.resp,true)}
+              ${step.parts.length?`<div class="step-parts-lbl">Tham gia</div><div class="step-parts-row">${step.parts.map(p=>personChip(p,false)).join('')}</div>`:''}
             </div>`).join('')}
         </div>
-        <div class="proc-legend">
-          <div class="proc-leg-item"><div class="proc-leg-dot" style="border:1.5px solid #aaa;width:8px;height:8px;border-radius:50%"></div>Viền liền = Phụ trách</div>
-          <div class="proc-leg-item"><div class="proc-leg-dot" style="border:1px dashed #aaa;width:8px;height:8px;border-radius:50%"></div>Viền đứt = Tham gia</div>
-          <div class="proc-leg-item">★ = Mức độ quan trọng của bước (1–5)</div>
-        </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function toggleLane(id){
-  const el = document.getElementById('pl-'+id);
-  el.classList.toggle('open');
+  document.getElementById('pl-'+id).classList.toggle('open');
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// TAB 2: ASSIGN FORM
+// TAB 3: ASSIGN
 // ═══════════════════════════════════════════════════════════════════════
-let curProc = 'P01';
+let curProc='P01';
 function buildAssignTab(){
-  const btns = document.getElementById('proc-btns');
-  btns.innerHTML = PROCS.map(p=>`<div class="proc-btn${p.id===curProc?' active':''}" onclick="selectProc('${p.id}',this)">${p.id} — ${p.name.substring(0,28)}</div>`).join('');
+  document.getElementById('proc-btns').innerHTML=PROCS.map(p=>
+    `<div class="proc-btn${p.id===curProc?' active':''}" onclick="selProc('${p.id}',this)">${p.id}</div>`).join('');
   renderAssignTable();
 }
-function selectProc(id,el){
+function selProc(id,el){
   curProc=id;
   document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   renderAssignTable();
 }
 function renderAssignTable(){
-  const proc = PROCS.find(p=>p.id===curProc);
-  const tbody = document.getElementById('assign-tbody');
-  tbody.innerHTML = proc.steps.map(step=>`
+  const proc=PROCS.find(p=>p.id===curProc);
+  document.getElementById('assign-tbody').innerHTML=proc.steps.map(step=>`
     <tr>
       <td class="step-id">${step.id}</td>
-      <td class="step-nm">${step.name}</td>
+      <td style="font-size:12px;font-weight:500">${step.name}</td>
       <td><div class="assign-crit">${[1,2,3,4,5].map(i=>`<div class="assign-crit-dot" style="background:${i<=step.crit?'#F4A020':'#1A2238'}"></div>`).join('')}</div></td>
-      <td>
-        <div class="person-sel">
-          ${Object.keys(PEOPLE).map(pid=>{
-            const p=PEOPLE[pid], isR=(p.id===step.resp);
-            const col=DCOL[p.dept];
-            return `<div class="ps-chip resp${isR?'':' none'}" style="${isR?`background:${col}18;border-color:${col};color:${col}`:`border-color:${col}44;color:${col}66`}" 
-              onclick="toggleResp('${step.id}','${pid}')" title="${p.name}">${p.init}</div>`;
-          }).join('')}
-        </div>
-      </td>
-      <td>
-        <div class="person-sel">
-          ${Object.keys(PEOPLE).map(pid=>{
-            const p=PEOPLE[pid], isP=step.parts.includes(p.id);
-            const col=DCOL[p.dept];
-            return `<div class="ps-chip part${isP?'':' none'}" style="${isP?`background:${col}10;border-color:${col}66;color:${col}`:`border-color:${col}33;color:${col}44`}"
-              onclick="togglePart('${step.id}','${pid}')" title="${p.name}">${p.init}</div>`;
-          }).join('')}
-        </div>
-      </td>
+      <td><div class="person-sel">${Object.keys(PEOPLE).map(pid=>{
+        const p=PEOPLE[pid],isR=(p.id===step.resp),col=DCOL[p.dept];
+        return `<div class="ps-chip resp${isR?'':' none'}" style="${isR?`background:${col}18;border-color:${col};color:${col}`:`border-color:${col}44;color:${col}66`}" onclick="toggleResp('${step.id}','${pid}')" title="${p.name}">${p.init}</div>`;
+      }).join('')}</div></td>
+      <td><div class="person-sel">${Object.keys(PEOPLE).map(pid=>{
+        const p=PEOPLE[pid],isP=step.parts.includes(p.id),col=DCOL[p.dept];
+        return `<div class="ps-chip part${isP?'':' none'}" style="${isP?`background:${col}10;border-color:${col}66;color:${col}`:`border-color:${col}33;color:${col}44`}" onclick="togglePart('${step.id}','${pid}')" title="${p.name}">${p.init}</div>`;
+      }).join('')}</div></td>
     </tr>`).join('');
 }
-function toggleResp(stepId,pid){
-  PROCS.forEach(proc=>proc.steps.forEach(step=>{
-    if(step.id===stepId) step.resp=pid;
-  }));
+function toggleResp(sid,pid){
+  PROCS.forEach(pr=>pr.steps.forEach(s=>{ if(s.id===sid)s.resp=pid; }));
   renderAssignTable();
 }
-function togglePart(stepId,pid){
-  PROCS.forEach(proc=>proc.steps.forEach(step=>{
-    if(step.id===stepId){
-      const i=step.parts.indexOf(pid);
-      if(i>=0) step.parts.splice(i,1); else step.parts.push(pid);
-    }
+function togglePart(sid,pid){
+  PROCS.forEach(pr=>pr.steps.forEach(s=>{
+    if(s.id===sid){ const i=s.parts.indexOf(pid); i>=0?s.parts.splice(i,1):s.parts.push(pid); }
   }));
   renderAssignTable();
 }
 function submitAssign(){
   window.onaInited=false; window.iviInited=false;
-  document.getElementById('assign-msg').style.display='block';
-  setTimeout(()=>document.getElementById('assign-msg').style.display='none',3000);
+  const msg=document.getElementById('assign-msg');
+  msg.style.display='block';
+  setTimeout(()=>msg.style.display='none',3000);
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// TAB 3: ONA NETWORK
+// TAB 4: ONA NETWORK
 // ═══════════════════════════════════════════════════════════════════════
 let simRef;
 function initONA(){
-  const metrics = computeMetrics();
-  const edges = deriveEdges();
+  const metrics=computeMetrics();
+  const edges=deriveEdges();
+  document.getElementById('edge-count').textContent=edges.length;
 
-  document.getElementById('edge-count').textContent = edges.length;
-  document.getElementById('node-count').textContent = Object.keys(PEOPLE).length;
-
-  // build filters
-  const fEl = document.getElementById('net-filters');
-  fEl.innerHTML = ['ALL',...PROCS.map(p=>p.id)].map(f=>
+  const fEl=document.getElementById('net-filters');
+  fEl.innerHTML=['ALL',...PROCS.map(p=>p.id)].map(f=>
     `<div class="nf${f==='ALL'?' on':''}" id="nf-${f}" onclick="filterONA('${f}',this)">${f}</div>`).join('');
 
-  const panel = document.getElementById('netCanvas');
-  const W=panel.clientWidth, H=panel.clientHeight;
-  const svg = d3.select('#netCanvas').append('svg').attr('width',W).attr('height',H);
+  const panel=document.getElementById('netCanvas');
+  const W=panel.clientWidth,H=panel.clientHeight;
+  const svg=d3.select('#netCanvas').append('svg').attr('width',W).attr('height',H);
   svg.append('defs').html(`<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
     <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(244,160,32,.5)" stroke-width="1.5"/></marker>
     <filter id="glow"><feGaussianBlur stdDeviation="4" result="c"/><feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`);
 
-  const nodes = Object.values(PEOPLE).map(p=>({...p,...metrics[p.id]}));
-  const links = edges.map(e=>({source:e.a,target:e.b,types:e.types,weight:e.weight}));
+  const nodes=Object.values(PEOPLE).map(p=>({...p,...metrics[p.id]}));
+  const links=edges.map(e=>({source:e.a,target:e.b,types:e.types,weight:e.weight}));
+  const isH=l=>l.types.has('handoff');
 
-  const isHandoff = l => l.types.has('handoff');
+  simRef=d3.forceSimulation(nodes)
+    .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>isH(d)?100:65).strength(d=>isH(d)?.5:.8))
+    .force('charge',d3.forceManyBody().strength(-260))
+    .force('center',d3.forceCenter(W/2,H/2))
+    .force('collision',d3.forceCollide(d=>metrics[d.id]?.degree>=8?22:17));
 
-  simRef = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id(d=>d.id).distance(d=>isHandoff(d)?100:70).strength(d=>isHandoff(d)?.5:.8))
-    .force('charge', d3.forceManyBody().strength(-280))
-    .force('center', d3.forceCenter(W/2,H/2))
-    .force('collision', d3.forceCollide(d=>metrics[d.id]?.degree>=8?22:18));
+  const linkEl=svg.append('g').selectAll('line').data(links).enter().append('line')
+    .attr('stroke',d=>isH(d)?'rgba(244,160,32,.4)':'rgba(255,255,255,.08)')
+    .attr('stroke-width',d=>Math.min(d.weight*.4+.5,3))
+    .attr('stroke-dasharray',d=>isH(d)?'5,3':null)
+    .attr('marker-end',d=>isH(d)?'url(#arr)':null);
 
-  const linkEl = svg.append('g').selectAll('line').data(links).enter().append('line')
-    .attr('stroke', d=>isHandoff(d)?'rgba(244,160,32,.4)':'rgba(255,255,255,.1)')
-    .attr('stroke-width', d=>Math.min(d.weight*.5+.5, 3))
-    .attr('stroke-dasharray', d=>isHandoff(d)?'5,3':null)
-    .attr('marker-end', d=>isHandoff(d)?'url(#arr)':null);
+  const rScale=d=>{const t=metrics[d.id]?.type;return t==='hub'?18:t==='broker'?15:t==='expert'?14:t==='silo'?8:11;};
 
-  const r = d => {
-    const deg = metrics[d.id]?.degree||0;
-    const type = metrics[d.id]?.type||'peripheral';
-    if(type==='hub') return 18;
-    if(type==='broker') return 15;
-    if(type==='expert') return 14;
-    if(type==='silo') return 8;
-    return 11;
-  };
-
-  const nodeEl = svg.append('g').selectAll('.nd').data(nodes).enter().append('g').attr('class','nd')
+  const nodeEl=svg.append('g').selectAll('.nd').data(nodes).enter().append('g').attr('class','nd')
     .style('cursor','pointer')
     .call(d3.drag()
       .on('start',(e,d)=>{if(!e.active)simRef.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y})
@@ -777,95 +890,80 @@ function initONA(){
       .on('end',  (e,d)=>{if(!e.active)simRef.alphaTarget(0);d.fx=null;d.fy=null}))
     .on('click',(e,d)=>showDetailById(d.id))
     .on('mouseover',(e,d)=>{
-      const t=document.getElementById('tip');
-      const m=metrics[d.id];
-      t.innerHTML=`<div class="tip-nm">${d.name}</div><div class="tip-rl">${d.role} · ${DNAME[d.dept]}<br>Quy trình: <b style="color:#F4A020">${m?.procs?.size||0}</b> · IVI: <b style="color:#F4A020">${m?.ivi||0}</b><br>${NT_INFO[m?.type||'peripheral'].label}</div>`;
+      const t=document.getElementById('tip'),m=metrics[d.id];
+      t.innerHTML=`<div class="tip-nm">${d.name}</div><div class="tip-rl">${d.role} · ${DNAME[d.dept]}<br>Quy trình: <b style="color:#F4A020">${m?.procs?.size||0}</b> · SW avg: <b style="color:#F4A020">${Math.round((m?.swAvg||0)*100)}%</b><br>IVI: <b style="color:#F4A020">${m?.iviPct?.toFixed(2)||0}%</b> · ${NT_INFO[m?.type||'peripheral'].label}</div>`;
       t.style.left=(e.clientX+12)+'px';t.style.top=(e.clientY-8)+'px';
       t.classList.add('on');
     })
     .on('mouseout',()=>document.getElementById('tip').classList.remove('on'));
 
   nodeEl.append('circle')
-    .attr('r',r)
+    .attr('r',rScale)
     .attr('fill',d=>DCOL[d.dept])
-    .attr('fill-opacity',d=>metrics[d.id]?.type==='silo'?.18:.75)
+    .attr('fill-opacity',d=>metrics[d.id]?.type==='silo'?.18:.78)
     .attr('stroke',d=>DCOL[d.dept])
     .attr('stroke-width',d=>metrics[d.id]?.type==='broker'?2.5:1.5)
-    .attr('stroke-opacity',d=>metrics[d.id]?.type==='silo'?.3:1)
+    .attr('stroke-opacity',d=>metrics[d.id]?.type==='silo'?.25:1)
     .attr('filter',d=>{const t=metrics[d.id]?.type;return(t==='hub'||t==='expert')?'url(#glow)':null});
 
   nodeEl.append('text').text(d=>d.init)
     .attr('text-anchor','middle').attr('dominant-baseline','central')
     .attr('fill',d=>metrics[d.id]?.type==='silo'?`${DCOL[d.dept]}55`:'rgba(0,0,0,.75)')
-    .attr('font-family','IBM Plex Mono,monospace').attr('font-weight','700')
-    .attr('font-size','8px').attr('pointer-events','none');
+    .attr('font-family','IBM Plex Mono,monospace').attr('font-weight','700').attr('font-size','8px').attr('pointer-events','none');
 
   nodeEl.append('text').text(d=>d.short.split(/[\s.]/)[0])
-    .attr('dy','3em').attr('text-anchor','middle')
-    .attr('fill','rgba(209,217,232,.5)').attr('font-family','IBM Plex Sans,sans-serif')
-    .attr('font-size','9px').attr('pointer-events','none');
+    .attr('dy','3.2em').attr('text-anchor','middle')
+    .attr('fill','rgba(209,217,232,.45)').attr('font-family','IBM Plex Sans,sans-serif').attr('font-size','9px').attr('pointer-events','none');
 
   simRef.on('tick',()=>{
-    linkEl.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y)
-          .attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+    linkEl.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
     nodeEl.attr('transform',d=>`translate(${d.x},${d.y})`);
   });
 
-  // metrics table
   buildONATable(metrics);
-
-  window._onaNodeEl = nodeEl;
-  window._onaMetrics = metrics;
+  window._onaNodeEl=nodeEl; window._onaMetrics=metrics;
 }
 
-function filterONA(procId, el){
+function filterONA(procId,el){
   document.querySelectorAll('.nf').forEach(n=>n.classList.remove('on'));
   el.classList.add('on');
-  const metrics = window._onaMetrics;
-  if(!metrics||!window._onaNodeEl) return;
-  window._onaNodeEl.selectAll('circle').attr('fill-opacity', d=>{
-    if(procId==='ALL') return metrics[d.id]?.type==='silo'?.18:.75;
-    const m = metrics[d.id];
-    return m?.procs?.has(procId)?.85:.08;
+  const m=window._onaMetrics;
+  if(!m||!window._onaNodeEl) return;
+  window._onaNodeEl.selectAll('circle').attr('fill-opacity',d=>{
+    if(procId==='ALL') return m[d.id]?.type==='silo'?.18:.78;
+    return m[d.id]?.procs?.has(procId)?.88:.06;
+  });
+  window._onaNodeEl.selectAll('text').attr('fill-opacity',d=>{
+    if(procId==='ALL') return 1;
+    return m[d.id]?.procs?.has(procId)?1:.06;
   });
 }
 
 function showDetailById(id){
-  const p = PEOPLE[id];
-  const m = (window._onaMetrics||computeMetrics())[id];
+  const p=PEOPLE[id], m=(window._onaMetrics||computeMetrics())[id];
   if(!p||!m) return;
-
   document.getElementById('dp-empty').style.display='none';
-  const ds = document.getElementById('dp-show');
-  ds.classList.add('on');
+  document.getElementById('dp-show').classList.add('on');
 
   const av=document.getElementById('dp-av');
-  av.textContent=p.init;
-  av.style.background=DCOL[p.dept]+'22';av.style.color=DCOL[p.dept];
-  av.style.border=`2px solid ${DCOL[p.dept]}66`;
-
+  av.textContent=p.init; av.style.background=DCOL[p.dept]+'22'; av.style.color=DCOL[p.dept]; av.style.border=`2px solid ${DCOL[p.dept]}66`;
   document.getElementById('dp-nm').textContent=p.name;
   document.getElementById('dp-rl').textContent=`${p.role} · ${DNAME[p.dept]}`;
 
   const nt=NT_INFO[m.type];
   const tb=document.getElementById('dp-type');
-  tb.textContent=nt.label;tb.style.background=nt.bg;tb.style.color=nt.col;
-  tb.style.border=`1px solid ${nt.col}33`;
+  tb.textContent=nt.label; tb.style.background=nt.bg; tb.style.color=nt.col; tb.style.border=`1px solid ${nt.col}33`;
 
-  // IVI shown as % of total org value
-  document.getElementById('dp-ivi-n').textContent = m.iviPct.toFixed(2) + '%';
-
-  // Headcount share = 1/20 = 5% → if IVI% > 5% = above avg
-  const headPct = (1/Object.keys(PEOPLE).length*100).toFixed(1);
-  const ratio = (m.iviPct/(1/Object.keys(PEOPLE).length*100)).toFixed(1);
-  document.getElementById('dp-ivi-sub') && (document.getElementById('dp-ivi-sub').textContent =
-    `Headcount: ${headPct}% · Tỷ lệ: ${ratio}× avg`);
+  document.getElementById('dp-ivi-n').textContent=m.iviPct.toFixed(2)+'%';
+  const headPct=(1/Object.keys(PEOPLE).length*100);
+  const ratio=(m.iviPct/headPct).toFixed(1);
+  document.getElementById('dp-ivi-sub').textContent=`SW avg: ${Math.round(m.swAvg*100)}% · ${ratio}× headcount avg · Quy trình: ${m.procs.size}`;
 
   const bars=[
-    {l:'Process Value (40%)',v:m.procScore,c:'#F4A020'},
-    {l:'Skill Graph (25%)',v:m.skill,c:'#22D3C8'},
-    {l:'Market Signal (20%)',v:m.mkt,c:'#A78BFA'},
-    {l:'Learn Velocity (15%)',v:m.lrn,c:'#34D399'},
+    {l:'Process × SW (40%)', v:m.procScore, c:'#F4A020'},
+    {l:'Skill Graph (25%)',   v:m.skill,     c:'#22D3C8'},
+    {l:'Market Signal (20%)',v:m.mkt,        c:'#A78BFA'},
+    {l:'Learn Velocity (15%)',v:m.lrn,       c:'#34D399'},
   ];
   document.getElementById('dp-ivi-bars').innerHTML=bars.map(b=>`
     <div class="ib-row">
@@ -878,177 +976,157 @@ function showDetailById(id){
     <div class="dp-met"><div class="dp-met-v" style="color:${DCOL[p.dept]}">${m.procs.size}</div><div class="dp-met-l">Quy trình<br>tham gia</div></div>
     <div class="dp-met"><div class="dp-met-v" style="color:var(--amber)">${m.stepsResp}</div><div class="dp-met-l">Bước<br>phụ trách</div></div>
     <div class="dp-met"><div class="dp-met-v" style="color:var(--sub)">${m.stepsPart}</div><div class="dp-met-l">Bước<br>tham gia</div></div>
-    <div class="dp-met"><div class="dp-met-v" style="color:var(--teal)">${m.degree}</div><div class="dp-met-l">Degree<br>centrality</div></div>`;
+    <div class="dp-met"><div class="dp-met-v" style="color:var(--teal)">${Math.round(m.swAvg*100)}%</div><div class="dp-met-l">SW avg<br>chiến lược</div></div>`;
 
   const procNames=[...m.procs].map(pid=>{
-    const proc=PROCS.find(p=>p.id===pid);
-    return proc?`<b>${proc.id}</b> ${proc.name}`:pid;
+    const proc=PROCS.find(x=>x.id===pid);
+    const sw=Math.round(computeSW(pid)*100);
+    return proc?`<b>${proc.id}</b> ${proc.name} <span style="color:var(--amber);font-size:9px">[SW:${sw}%]</span>`:pid;
   });
-  document.getElementById('dp-procs').innerHTML=
-    `<div style="font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px">Tham gia các quy trình</div>`+
+  document.getElementById('dp-procs').innerHTML=`<div style="font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px">Quy trình tham gia & trọng số chiến lược</div>`+
     (procNames.length?procNames.map(n=>`<div>▸ ${n}</div>`).join(''):'<div style="color:var(--muted)">Không tham gia quy trình nào</div>');
 
   const ins=document.getElementById('dp-insight');
-  const insData = m.type==='hub'?'dp-insight-amber':m.type==='broker'?'dp-insight-sky':m.type==='silo'?'dp-insight-red':'';
-  ins.textContent=NT_INSIGHT[m.type];
-  ins.style.background=nt.bg;ins.style.border=`1px solid ${nt.col}30`;ins.style.color=nt.col;
+  ins.textContent=NT_INSIGHT[m.type]; ins.style.background=nt.bg; ins.style.border=`1px solid ${nt.col}30`; ins.style.color=nt.col;
 }
 
 function buildONATable(metrics){
-  const sorted = Object.values(metrics).sort((a,b)=>b.iviPct-a.iviPct);
-  const headAvg = (100/Object.keys(PEOPLE).length).toFixed(1);
+  const sorted=Object.values(metrics).sort((a,b)=>b.iviPct-a.iviPct);
+  const headAvg=(100/Object.keys(PEOPLE).length).toFixed(1);
   document.getElementById('ona-tbody').innerHTML=sorted.map(m=>{
-    const p=PEOPLE[m.id]; const nt=NT_INFO[m.type];
-    const impact = m.type==='expert'?'⚠ Knowledge gap':m.type==='broker'?'↔ Workflow đứt':m.type==='silo'?'Không ảnh hưởng nhiều':'Cần thay thế';
-    const ratio = (m.iviPct/parseFloat(headAvg)).toFixed(1);
-    const ratioColor = ratio>=1.5?'#34D399':ratio>=1.0?'#F4A020':'#F87171';
+    const p=PEOPLE[m.id],nt=NT_INFO[m.type];
+    const impact=m.type==='expert'?'⚠ Knowledge gap':m.type==='broker'?'↔ Workflow đứt':m.type==='silo'?'Minimal impact':'Cần thay thế';
+    const ratio=(m.iviPct/parseFloat(headAvg)).toFixed(1);
     return `<tr onclick="showDetailById('${m.id}')">
       <td><b>${p.name}</b></td>
       <td style="color:${DCOL[p.dept]};font-weight:600;font-size:10px">${DNAME[p.dept]}</td>
       <td><span class="tbl-badge" style="background:${nt.bg};color:${nt.col}">${nt.label}</span></td>
-      <td>${m.procs.size} <span class="tbl-bar" style="width:${m.procs.size*14}px;background:${DCOL[p.dept]};opacity:.5"></span></td>
+      <td>${m.procs.size}<span class="tbl-bar" style="width:${m.procs.size*12}px;background:${DCOL[p.dept]};opacity:.5;margin-left:4px"></span></td>
       <td>${m.stepsResp}</td>
       <td>${m.degree}</td>
-      <td>${(m.btwNorm*100).toFixed(0)}%</td>
-      <td>
-        <b style="color:${m.iviPct>=6?'#34D399':m.iviPct>=4?'#F4A020':'#F87171'}">${m.iviPct.toFixed(2)}%</b>
-        <span style="font-size:9px;color:${ratioColor};margin-left:3px">${ratio}× avg</span>
-      </td>
+      <td style="font-family:'IBM Plex Mono',monospace;color:var(--amber)">${Math.round(m.swAvg*100)}%</td>
+      <td><b style="color:${m.iviPct>=6?'#34D399':m.iviPct>=4?'#F4A020':'#F87171'}">${m.iviPct.toFixed(2)}%</b>
+        <span style="font-size:9px;color:${parseFloat(ratio)>=1.5?'#34D399':parseFloat(ratio)>=1?'#F4A020':'#F87171'};margin-left:3px">${ratio}×</span></td>
       <td style="font-size:9px;color:${m.type==='silo'?'var(--muted)':m.type==='expert'?'#A78BFA':m.type==='broker'?'#22D3C8':'var(--sub)'}">−${m.iviPct.toFixed(2)}% · ${impact}</td>
     </tr>`;
   }).join('');
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// TAB 4: IVI PROPORTIONAL
+// TAB 5: IVI PROPORTIONAL
 // ═══════════════════════════════════════════════════════════════════════
 function initIVI(){
-  const metrics = computeMetrics();
-  const sorted = Object.values(metrics).sort((a,b)=>b.iviPct-a.iviPct);
-  const headAvg = (100/sorted.length).toFixed(2);
-  document.getElementById('head-avg').textContent = headAvg;
+  const metrics=computeMetrics();
+  const sorted=Object.values(metrics).sort((a,b)=>b.iviPct-a.iviPct);
+  const headAvg=(100/sorted.length).toFixed(2);
+  document.getElementById('head-avg').textContent=headAvg;
 
-  // ── Stacked proportion bar ───────────────────────────────────────────
-  const bar = document.getElementById('ivi-stack-bar');
-  bar.innerHTML = sorted.map(m=>{
+  // Stacked bar
+  const bar=document.getElementById('ivi-stack-bar');
+  bar.innerHTML=sorted.map(m=>{
     const p=PEOPLE[m.id];
-    return `<div title="${p.name}: ${m.iviPct.toFixed(2)}%" style="width:${m.iviPct}%;background:${DCOL[p.dept]};opacity:${m.type==='silo'?.3:.85};cursor:pointer;transition:opacity .15s;min-width:1px"
-      onmouseover="document.getElementById('ivi-bar-note').textContent='${p.name} — ${m.iviPct.toFixed(2)}% (${NT_INFO[m.type].label})'"
+    return `<div title="${p.name}: ${m.iviPct.toFixed(2)}%" style="width:${m.iviPct}%;background:${DCOL[p.dept]};opacity:${m.type==='silo'?.25:.85};cursor:pointer;min-width:1px"
+      onmouseover="document.getElementById('ivi-bar-note').textContent='${p.name} — ${m.iviPct.toFixed(2)}% · SW avg:${Math.round(m.swAvg*100)}% · ${NT_INFO[m.type].label}'"
       onmouseout="document.getElementById('ivi-bar-note').textContent=''"
       onclick="showIVICard('${m.id}')"></div>`;
   }).join('');
 
-  // ── Bar legend (dept colors) ──────────────────────────────────────────
-  document.getElementById('ivi-bar-legend').innerHTML = Object.keys(DCOL).map(d=>{
-    const total = sorted.filter(m=>PEOPLE[m.id].dept===d).reduce((s,m)=>s+m.iviPct,0);
-    if(total===0) return '';
+  document.getElementById('ivi-bar-legend').innerHTML=Object.keys(DCOL).map(d=>{
+    const total=sorted.filter(m=>PEOPLE[m.id].dept===d).reduce((s,m)=>s+m.iviPct,0);
+    if(!total) return '';
     return `<div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:${DCOL[d]}"></div>${DNAME[d]} ${total.toFixed(1)}%</div>`;
   }).join('');
 
-  // ── Department breakdown cards ────────────────────────────────────────
-  const deptEl = document.getElementById('ivi-dept-row');
-  const deptGroups = {};
-  sorted.forEach(m=>{ const d=PEOPLE[m.id].dept; if(!deptGroups[d]) deptGroups[d]={total:0,count:0}; deptGroups[d].total+=m.iviPct; deptGroups[d].count++; });
-  deptEl.innerHTML = Object.keys(DCOL).map(d=>{
-    if(!deptGroups[d]) return `<div style="background:var(--s2);border:1px solid var(--brd);border-radius:5px;padding:8px 10px;opacity:.3"><div style="font-size:16px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--muted)">—</div><div style="font-size:9px;color:var(--muted);margin-top:2px">${DNAME[d]}</div></div>`;
-    const g=deptGroups[d];
-    const perHead = (g.total/g.count).toFixed(1);
+  // Dept breakdown
+  const deptEl=document.getElementById('ivi-dept-row');
+  const deptG={};
+  sorted.forEach(m=>{ const d=PEOPLE[m.id].dept; if(!deptG[d]){deptG[d]={total:0,count:0};} deptG[d].total+=m.iviPct; deptG[d].count++; });
+  deptEl.innerHTML=Object.keys(DCOL).map(d=>{
+    if(!deptG[d]) return `<div style="background:var(--s2);border:1px solid var(--brd);border-radius:5px;padding:8px 10px;opacity:.25"><div style="font-size:16px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--muted)">—</div><div style="font-size:9px;color:var(--muted);margin-top:2px">${DNAME[d]}</div></div>`;
+    const g=deptG[d],ph=(g.total/g.count).toFixed(1);
     return `<div style="background:var(--s2);border:1px solid ${DCOL[d]}33;border-top:2px solid ${DCOL[d]};border-radius:5px;padding:8px 10px">
-      <div style="font-size:18px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:${DCOL[d]}">${g.total.toFixed(1)}%</div>
-      <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.4">${DNAME[d]}<br>${g.count} người · ${perHead}%/người</div>
+      <div style="font-size:17px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:${DCOL[d]}">${g.total.toFixed(1)}%</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.4">${DNAME[d]}<br>${g.count} người · ${ph}%/người</div>
     </div>`;
   }).join('');
 
-  // ── Concentration alert ───────────────────────────────────────────────
-  const top3total = sorted.slice(0,3).reduce((s,m)=>s+m.iviPct,0);
-  const alertEl = document.getElementById('ivi-alert');
-  const alertColor = top3total>35?'#F87171':top3total>28?'#F4A020':'#34D399';
-  alertEl.innerHTML = `<div style="background:${alertColor}15;border:1px solid ${alertColor}33;border-left:3px solid ${alertColor};border-radius:0 5px 5px 0;padding:10px 14px;font-size:11px;color:${alertColor};line-height:1.6">
-    <b>Concentration Risk:</b> Top 3 cá nhân (${sorted.slice(0,3).map(m=>PEOPLE[m.id].short).join(', ')}) chiếm <b>${top3total.toFixed(1)}%</b> tổng giá trị tổ chức.
-    ${top3total>35?'⚠ Rủi ro tập trung cao — org phụ thuộc quá nhiều vào ít người.':top3total>28?'Trung bình — nên phân bổ thêm trách nhiệm.':'Phân bổ lành mạnh.'}
+  // Concentration alert
+  const top3total=sorted.slice(0,3).reduce((s,m)=>s+m.iviPct,0);
+  const ac=top3total>35?'#F87171':top3total>28?'#F4A020':'#34D399';
+  document.getElementById('ivi-alert').innerHTML=`<div style="background:${ac}15;border:1px solid ${ac}33;border-left:3px solid ${ac};border-radius:0 5px 5px 0;padding:10px 14px;font-size:11px;color:${ac};line-height:1.6">
+    <b>Concentration Risk:</b> Top 3 (${sorted.slice(0,3).map(m=>PEOPLE[m.id].short).join(', ')}) chiếm <b>${top3total.toFixed(1)}%</b> giá trị tổ chức.
+    ${top3total>35?'⚠ Quá tập trung — thay đổi objective weights có thể phân bổ lại.':top3total>28?'Trung bình — theo dõi.':'Phân bổ lành mạnh.'}
   </div>`;
 
-  // ── Individual cards ──────────────────────────────────────────────────
-  const el = document.getElementById('ivi-cards');
-  el.innerHTML = sorted.map((m,i)=>{
-    const p=PEOPLE[m.id]; const nt=NT_INFO[m.type];
-    const ratio = (m.iviPct/parseFloat(headAvg)).toFixed(1);
-    const ratioColor = ratio>=1.5?'#34D399':ratio>=1.0?'#F4A020':'#F87171';
+  // Cards
+  document.getElementById('ivi-cards').innerHTML=sorted.map((m,i)=>{
+    const p=PEOPLE[m.id],nt=NT_INFO[m.type];
+    const ratio=(m.iviPct/parseFloat(headAvg)).toFixed(1);
+    const rCol=parseFloat(ratio)>=1.5?'#34D399':parseFloat(ratio)>=1?'#F4A020':'#F87171';
     const procs=[...m.procs];
-    return `<div class="ivi-card${i<3?' top3':''}" id="ivicard-${m.id}" onclick="go('ona',document.querySelectorAll('.tab')[2]);setTimeout(()=>showDetailById('${m.id}'),300)">
+    const sw=getSWAll();
+    return `<div class="ivi-card${i<3?' top3':''}" id="ivicard-${m.id}" onclick="go('ona',document.querySelectorAll('.tab')[3]);setTimeout(()=>showDetailById('${m.id}'),300)">
       <div class="ivi-card-top">
         <div class="ivi-card-av" style="background:${DCOL[p.dept]}22;color:${DCOL[p.dept]};border:${i<3?`2px solid ${DCOL[p.dept]}`:`1px solid ${DCOL[p.dept]}44`}">${p.init}</div>
         <div style="flex:1">
           <div class="ivi-card-nm">${p.name}</div>
           <div class="ivi-card-rl">${p.role}</div>
-          <div style="font-size:9px;margin-top:2px">
-            <span class="ivi-proc-tag" style="background:${nt.bg};color:${nt.col}">${nt.label}</span>
-          </div>
+          <span class="tbl-badge" style="background:${nt.bg};color:${nt.col};font-size:8px">${nt.label}</span>
         </div>
         <div style="text-align:right">
-          <div class="ivi-card-score" style="font-size:20px;color:${m.iviPct>=6?'#34D399':m.iviPct>=4?'#F4A020':'#F87171'}">${m.iviPct.toFixed(2)}%</div>
-          <div style="font-size:9px;color:${ratioColor}">${ratio}× avg</div>
+          <div class="ivi-card-score" style="color:${m.iviPct>=6?'#34D399':m.iviPct>=4?'#F4A020':'#F87171'}">${m.iviPct.toFixed(2)}%</div>
+          <div style="font-size:9px;color:${rCol}">${ratio}× avg</div>
         </div>
       </div>
-      <!-- proportion mini-bar relative to org -->
       <div style="background:var(--s3);border-radius:2px;height:3px;margin:6px 0 8px;overflow:hidden">
         <div style="height:100%;background:${DCOL[p.dept]};width:${Math.min(m.iviPct/sorted[0].iviPct*100,100)}%;border-radius:2px;opacity:.8"></div>
       </div>
-      <div class="ivi-card-bars">
-        ${[
-          {l:'Process',v:m.procScore,c:'#F4A020'},
-          {l:'Skill',v:m.skill,c:'#22D3C8'},
-          {l:'Market',v:m.mkt,c:'#A78BFA'},
-        ].map(b=>`<div class="ivi-mini-bar"><span style="font-size:9px;color:var(--muted);width:48px;flex-shrink:0">${b.l}</span><div class="ivi-mini-track" style="flex:1"><div class="ivi-mini-fill" style="width:${b.v}%;background:${b.c}"></div></div><span style="font-size:9px;font-family:'IBM Plex Mono',monospace;color:${b.c};width:24px;text-align:right">${b.v}</span></div>`).join('')}
+      <div class="ivi-mini-bar"><div class="ivi-mini-lbl">Process×SW</div><div class="ivi-mini-track"><div class="ivi-mini-fill" style="width:${m.procScore}%;background:#F4A020"></div></div><div class="ivi-mini-val" style="color:#F4A020">${m.procScore}</div></div>
+      <div class="ivi-mini-bar"><div class="ivi-mini-lbl">Skill</div><div class="ivi-mini-track"><div class="ivi-mini-fill" style="width:${m.skill}%;background:#22D3C8"></div></div><div class="ivi-mini-val" style="color:#22D3C8">${m.skill}</div></div>
+      <div class="ivi-mini-bar"><div class="ivi-mini-lbl">Market</div><div class="ivi-mini-track"><div class="ivi-mini-fill" style="width:${m.mkt}%;background:#A78BFA"></div></div><div class="ivi-mini-val" style="color:#A78BFA">${m.mkt}</div></div>
+      <div style="font-size:9px;margin-top:8px;padding-top:6px;border-top:1px solid var(--brd)">
+        ${procs.map(pid=>`<span style="background:var(--amb2);color:var(--amber);padding:1px 5px;border-radius:2px;font-size:8px;font-weight:600;margin-right:3px">${pid} <span style="opacity:.6">${Math.round(sw[pid]*100)}%</span></span>`).join('')}
       </div>
-      <div style="font-size:9px;color:var(--red);margin-top:8px;padding-top:6px;border-top:1px solid var(--brd)">
-        Nếu nghỉ → org mất <b style="color:var(--red)">${m.iviPct.toFixed(2)}%</b> giá trị · ${procs.length} quy trình cần người thay thế
-      </div>
+      <div style="font-size:9px;color:var(--red);margin-top:5px">Nếu nghỉ → −${m.iviPct.toFixed(2)}% · ${procs.length} quy trình thiếu người</div>
     </div>`;
   }).join('');
 
-  // ── Simulate departure select ─────────────────────────────────────────
-  const sel = document.getElementById('sim-select');
-  sel.innerHTML = sorted.map(m=>`<option value="${m.id}">${PEOPLE[m.id].name} (${m.iviPct.toFixed(2)}%)</option>`).join('');
-  window._iviMetrics = metrics;
-  window._iviSorted = sorted;
+  // Simulate departure
+  const sel=document.getElementById('sim-select');
+  sel.innerHTML=sorted.map(m=>`<option value="${m.id}">${PEOPLE[m.id].name} (${m.iviPct.toFixed(2)}%)</option>`).join('');
+  window._iviMetrics=metrics; window._iviSorted=sorted;
   simulateDeparture();
 }
 
 function showIVICard(id){ document.getElementById('ivicard-'+id)?.scrollIntoView({behavior:'smooth',block:'center'}); }
 
 function simulateDeparture(){
-  const sel = document.getElementById('sim-select');
-  const id = sel.value;
+  const id=document.getElementById('sim-select').value;
   if(!id||!window._iviSorted) return;
-  const sorted = window._iviSorted;
-  const leaving = sorted.find(m=>m.id===id);
+  const sorted=window._iviSorted, leaving=sorted.find(m=>m.id===id);
   if(!leaving) return;
+  const remain=sorted.filter(m=>m.id!==id);
+  const remainTotal=remain.reduce((s,m)=>s+m.iviPct,0);
+  const p=PEOPLE[id];
 
-  const remain = sorted.filter(m=>m.id!==id);
-  const remainTotal = remain.reduce((s,m)=>s+m.iviPct, 0); // = 100 - leaving.iviPct
-  const p = PEOPLE[id];
+  document.getElementById('sim-result').innerHTML=
+    `<b style="color:var(--red)">−${leaving.iviPct.toFixed(2)}%</b> giá trị tổ chức · ${leaving.procs.size} quy trình thiếu người · ${leaving.stepsResp} bước phụ trách cần assign lại · SW avg: ${Math.round(leaving.swAvg*100)}%`;
 
-  document.getElementById('sim-result').innerHTML =
-    `<b style="color:var(--red)">−${leaving.iviPct.toFixed(2)}%</b> giá trị tổ chức mất ngay lập tức · 
-    ${leaving.procs.size} quy trình thiếu người · Các bước phụ trách: <b>${leaving.stepsResp}</b> bước cần assign lại`;
+  document.getElementById('sim-bar').innerHTML=
+    remain.map(m=>{
+      const pp=PEOPLE[m.id],np=m.iviPct/remainTotal*100;
+      return `<div title="${pp.name}: ${np.toFixed(2)}% (was ${m.iviPct.toFixed(2)}%)" style="width:${np}%;background:${DCOL[pp.dept]};opacity:.8;min-width:1px"></div>`;
+    }).join('') +
+    `<div style="background:var(--red);opacity:.35;width:${leaving.iviPct}%;border-left:1px dashed rgba(248,113,113,.5)" title="Khoảng trống ${leaving.iviPct.toFixed(2)}%"></div>`;
 
-  // Redraw proportion bar excluding leaving person
-  const simBar = document.getElementById('sim-bar');
-  simBar.innerHTML = remain.map(m=>{
-    const pp=PEOPLE[m.id];
-    const newPct = m.iviPct/remainTotal*100;
-    return `<div title="${pp.name}: ${newPct.toFixed(2)}% (was ${m.iviPct.toFixed(2)}%)"
-      style="width:${newPct}%;background:${DCOL[pp.dept]};opacity:.8;min-width:1px"></div>`;
-  }).join('') + `<div style="background:var(--red);opacity:.4;width:${leaving.iviPct}%;border-left:1px dashed rgba(248,113,113,.5)" title="Khoảng trống (${leaving.iviPct.toFixed(2)}%)"></div>`;
-
-  document.getElementById('sim-caption').textContent =
-    `Thanh màu đỏ = khoảng trống ${leaving.iviPct.toFixed(2)}% cần lấp đầy. Phần còn lại được tái chuẩn hóa = 100% capacity mới.`;
+  document.getElementById('sim-caption').textContent=
+    `Thanh đỏ = khoảng trống ${leaving.iviPct.toFixed(2)}% cần lấp đầy. Các quy trình ảnh hưởng: ${[...leaving.procs].join(', ')}.`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════════════
+buildObjectivesTab();
 buildProcList();
 buildAssignTab();
 </script>
