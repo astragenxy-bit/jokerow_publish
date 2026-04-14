@@ -3,1132 +3,1053 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TalentGraph ONA · IVI v5 — Khối Sản Xuất FDI</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>TalentGraph ONA · IVI v6 — Khối Sản Xuất FDI</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#080C14;--s1:#0E1420;--s2:#141B2C;--s3:#1A2238;--s4:#202844;
-  --amber:#F4A020;--amb2:rgba(244,160,32,.12);--amb3:rgba(244,160,32,.28);
-  --teal:#22D3C8;--tea2:rgba(34,211,200,.1);
-  --green:#34D399;--grn2:rgba(52,211,153,.1);
-  --red:#F87171;--red2:rgba(248,113,113,.1);
-  --purple:#A78BFA;--pur2:rgba(167,139,250,.1);
-  --blue:#60A5FA;
-  --text:#D1D9E8;--muted:#4E5D78;--sub:#8895AA;
-  --brd:rgba(255,255,255,.05);--brd2:rgba(255,255,255,.1);
-  --prod:#F4A020;--eng:#22D3C8;--qc:#34D399;--sc:#A78BFA;--hse:#F87171;--mgmt:#60A5FA;--hr:#94A3B8;
-  /* objective colors */
-  --oQ:#34D399;--oP:#F4A020;--oC:#A78BFA;--oD:#60A5FA;--oS:#F87171;
+  --amber:#F4A020;--a2:rgba(244,160,32,.12);--a3:rgba(244,160,32,.28);
+  --teal:#22D3C8;--t2:rgba(34,211,200,.1);
+  --green:#34D399;--g2:rgba(52,211,153,.1);
+  --red:#F87171;--r2:rgba(248,113,113,.1);
+  --purple:#A78BFA;--p2:rgba(167,139,250,.1);
+  --blue:#60A5FA;--b2:rgba(96,165,250,.1);
+  --txt:#D1D9E8;--mut:#4E5D78;--sub:#8895AA;
+  --br:rgba(255,255,255,.05);--br2:rgba(255,255,255,.1);
+  --cprod:#F4A020;--ceng:#22D3C8;--cqc:#34D399;--csc:#A78BFA;--chse:#F87171;--cmgmt:#60A5FA;--chr:#94A3B8;
 }
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:13px;overflow:hidden}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:'IBM Plex Sans',sans-serif;font-size:13px;overflow:hidden}
 ::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-thumb{background:var(--s4);border-radius:2px}
-
-/* HEADER */
-.hdr{height:48px;background:var(--s1);border-bottom:1px solid var(--brd);display:flex;align-items:center;padding:0 18px;gap:12px}
-.logo{font-weight:700;font-size:15px;color:var(--text)}.logo b{color:var(--amber)}
-.hdr-tag{background:var(--amb2);border:1px solid var(--amb3);border-radius:3px;padding:2px 8px;font-size:10px;color:var(--amber);font-weight:600;letter-spacing:.5px}
-.hdr-r{margin-left:auto;display:flex;gap:8px;align-items:center}
-.badge{padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
-.b-iso{background:var(--tea2);border:1px solid rgba(34,211,200,.25);color:var(--teal)}
-.b-pdpl{background:var(--red2);border:1px solid rgba(248,113,113,.2);color:var(--red)}
-.b-v5{background:var(--amb2);border:1px solid var(--amber);color:var(--amber)}
-
-/* TABS */
-.tabs{height:38px;background:var(--s1);border-bottom:1px solid var(--brd);display:flex;padding:0 18px;gap:1px;align-items:flex-end}
-.tab{padding:7px 14px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-radius:3px 3px 0 0;border:1px solid transparent;border-bottom:none;transition:all .15s}
+.hdr{height:48px;background:var(--s1);border-bottom:1px solid var(--br);display:flex;align-items:center;padding:0 18px;gap:12px}
+.logo{font-weight:700;font-size:15px;color:var(--txt)}.logo b{color:var(--amber)}
+.htag{background:var(--a2);border:1px solid var(--a3);border-radius:3px;padding:2px 8px;font-size:10px;color:var(--amber);font-weight:600}
+.hbr{margin-left:auto;display:flex;gap:8px}
+.bdg{padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.bi{background:var(--t2);border:1px solid rgba(34,211,200,.25);color:var(--teal)}
+.bp{background:var(--r2);border:1px solid rgba(248,113,113,.2);color:var(--red)}
+.bv{background:var(--a2);border:1px solid var(--amber);color:var(--amber)}
+.tabs{height:38px;background:var(--s1);border-bottom:1px solid var(--br);display:flex;padding:0 18px;gap:1px;align-items:flex-end}
+.tab{padding:7px 13px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);cursor:pointer;border-radius:3px 3px 0 0;border:1px solid transparent;border-bottom:none;transition:all .15s;user-select:none}
 .tab:hover{color:var(--sub)}
-.tab.active{color:var(--amber);background:var(--bg);border-color:var(--brd)}
-.tab-n{font-size:9px;opacity:.35;margin-right:3px}
-.tab-new{font-size:8px;color:var(--green);margin-left:4px;font-weight:700}
-
+.tab.active{color:var(--amber);background:var(--bg);border-color:var(--br)}
+.tn{font-size:9px;opacity:.35;margin-right:3px}
+.tnew{font-size:8px;color:var(--green);margin-left:3px;font-weight:700}
 .main{height:calc(100vh - 86px);overflow:hidden}
-.view{display:none;height:100%;overflow-y:auto}
-.view.on{display:block}
-.vgrid{display:none;height:100%}
-.vgrid.on{display:grid}
-
-/* ═══ TAB 1: MỤC TIÊU ════════════════════════════════════════════════ */
-.obj-wrap{padding:20px;max-width:1100px}
-.pg-title{font-size:18px;font-weight:700;margin-bottom:4px}
-.pg-sub{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:6px}
-.insight-bar{background:var(--s2);border:1px solid var(--amb3);border-left:3px solid var(--amber);border-radius:0 4px 4px 0;padding:10px 14px;font-size:12px;color:rgba(244,160,32,.85);line-height:1.6;margin-bottom:20px}
-
-/* Objective cards row */
-.obj-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:24px}
-.obj-card{background:var(--s2);border:1px solid var(--brd);border-radius:6px;padding:12px 14px;border-top:2px solid}
-.obj-card-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
-.obj-card-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.3}
-.obj-weight-row{display:flex;align-items:center;gap:8px}
-.obj-weight-val{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;min-width:42px}
+.view{display:none;height:100%;overflow-y:auto}.view.on{display:block}
+.vgrid{display:none;height:100%}.vgrid.on{display:grid}
+/* shared */
+.wrap{padding:20px;max-width:1060px}
+.ptitle{font-size:18px;font-weight:700;margin-bottom:4px}
+.psub{font-size:12px;color:var(--mut);line-height:1.6;margin-bottom:12px}
+.ibar{background:var(--s2);border:1px solid var(--a3);border-left:3px solid var(--amber);border-radius:0 4px 4px 0;padding:10px 14px;font-size:12px;color:rgba(244,160,32,.85);line-height:1.6;margin-bottom:18px}
+.btn{padding:8px 18px;background:var(--amber);color:#000;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:700;border:none;border-radius:4px;cursor:pointer}
+.btn:hover{background:#fbb040}
+.smsg{display:none;margin-top:10px;font-size:12px;color:var(--green)}
+/* Obj tab */
+.ocards{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:18px}
+.ocard{background:var(--s2);border:1px solid var(--br);border-top:2px solid;border-radius:6px;padding:12px}
+.olbl{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:3px}
+.onm{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:8px;line-height:1.3}
+.owrow{display:flex;align-items:center;gap:8px}
+.owval{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:700;min-width:38px}
 input[type=range]{-webkit-appearance:none;height:3px;background:var(--s3);border-radius:2px;outline:none;cursor:pointer;flex:1}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;cursor:pointer}
-.obj-bar{height:4px;border-radius:2px;margin-top:8px;transition:width .3s}
-.obj-total{font-size:11px;color:var(--muted);margin-bottom:20px}
-.obj-total b{font-family:'IBM Plex Mono',monospace}
-.obj-total.warn{color:var(--red)}
-
-/* Process-Objective heatmap */
-.heat-section{margin-bottom:24px}
-.heat-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
-.heat-sub{font-size:11px;color:var(--muted);margin-bottom:12px;line-height:1.5}
-.heat-table{width:100%;border-collapse:collapse}
-.heat-table th{padding:7px 10px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);text-align:center}
-.heat-table th.proc-th{text-align:left;min-width:220px}
-.heat-table td{padding:5px 6px;border-bottom:1px solid rgba(255,255,255,.02);text-align:center;position:relative}
-.heat-table tr:hover td{background:var(--s2)}
-.heat-proc-name{font-size:11px;font-weight:500;text-align:left;padding-left:10px}
-.heat-proc-id{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-right:6px}
-.heat-cell{width:42px;height:28px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;cursor:pointer;margin:0 auto;transition:all .15s;user-select:none}
-.heat-cell:hover{transform:scale(1.1);z-index:2}
-.heat-sw{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:var(--amber)}
-.heat-sw-bar{height:3px;border-radius:2px;background:var(--amber);margin-top:3px;transition:width .3s}
-
-/* Obj badge mini */
-.obj-badge{display:inline-flex;padding:1px 5px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:.3px}
-
-/* ═══ TAB 2: QUY TRÌNH ═══════════════════════════════════════════════ */
-.proc-wrap{padding:20px 20px 0}
-.proc-lane{margin-bottom:16px;background:var(--s2);border:1px solid var(--brd);border-radius:6px;overflow:hidden}
-.proc-lane-hdr{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--brd);background:var(--s1);cursor:pointer;user-select:none}
-.proc-code{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber);background:var(--amb2);padding:2px 6px;border-radius:3px;flex-shrink:0}
-.proc-name{font-weight:600;font-size:13px;flex:1}
-.proc-iso{font-size:10px;color:var(--teal);background:var(--tea2);padding:1px 6px;border-radius:3px}
-.proc-sw-badge{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--amber)}
-.proc-crit{display:flex;gap:2px}
-.crit-dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}.crit-dot.off{background:var(--s4)}
-.proc-toggle{color:var(--muted);font-size:12px;transition:transform .2s}
-.proc-lane.open .proc-toggle{transform:rotate(180deg)}
-.proc-steps{display:none;padding:14px;overflow-x:auto}
-.proc-lane.open .proc-steps{display:block}
-.steps-row{display:flex;align-items:flex-start;gap:0;min-width:max-content}
-.step-card{background:var(--s3);border:1px solid var(--brd);border-radius:5px;padding:10px;width:170px;flex-shrink:0}
-.step-num{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:4px}
-.step-name{font-size:11px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.3;min-height:28px}
-.step-resp-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
-.person-chip{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:600;margin-bottom:2px;cursor:pointer}
-.person-chip:hover{filter:brightness(1.2)}
-.person-chip .av{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700}
-.step-parts-lbl{font-size:9px;color:var(--muted);margin-bottom:3px;margin-top:4px}
-.step-parts-row{display:flex;flex-wrap:wrap;gap:3px}
-.step-arrow{display:flex;align-items:center;padding:0 4px;color:var(--muted);flex-shrink:0;margin-top:18px}
-.step-arrow svg{width:20px;height:10px}
-
-/* ═══ TAB 3: PHÂN CÔNG ════════════════════════════════════════════════ */
-.assign-wrap{padding:20px;max-width:900px}
-.proc-select-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.proc-btn{padding:6px 12px;background:var(--s2);border:1px solid var(--brd2);border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;color:var(--sub);transition:all .15s}
-.proc-btn:hover,.proc-btn.active{background:var(--amb2);border-color:var(--amber);color:var(--amber)}
-.assign-table{width:100%;border-collapse:collapse;margin-bottom:16px}
-.assign-table th{padding:7px 10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);background:var(--s1)}
-.assign-table td{padding:7px 10px;border-bottom:1px solid var(--brd);vertical-align:top}
-.assign-table tr:hover td{background:var(--s2)}
-.step-id{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
-.assign-crit{display:flex;gap:2px}
-.assign-crit-dot{width:7px;height:7px;border-radius:50%}
-.person-sel{display:flex;flex-wrap:wrap;gap:4px}
-.ps-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;cursor:pointer;background:var(--s3);border:1px solid var(--brd);color:var(--sub);transition:all .1s}
-.ps-chip.resp{border-style:solid;border-width:1.5px}
-.ps-chip.part{border-style:dashed}
-.ps-chip.none{opacity:.3}
-.btn-submit{padding:9px 20px;background:var(--amber);color:#000;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:700;border:none;border-radius:4px;cursor:pointer}
-.btn-submit:hover{background:#fbb040}
-
-/* ═══ TAB 4: ONA NETWORK ═════════════════════════════════════════════ */
-#tab-ona{grid-template-columns:1fr 300px;grid-template-rows:1fr 130px}
-.net-canvas{position:relative;overflow:hidden}
-.net-canvas svg{width:100%;height:100%}
-.net-info-box{position:absolute;top:10px;left:12px;background:rgba(8,12,20,.88);border:1px solid var(--brd2);border-radius:5px;padding:10px 12px;font-size:11px;line-height:1.7;color:var(--sub)}
-.net-info-box b{color:var(--amber);font-family:'IBM Plex Mono',monospace}
-.net-filters{position:absolute;top:10px;right:12px;display:flex;gap:4px;flex-direction:column}
-.nf{padding:3px 8px;background:rgba(8,12,20,.88);border:1px solid var(--brd);border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center}
-.nf:hover,.nf.on{background:var(--amb2);border-color:var(--amber);color:var(--amber)}
-.net-legend{position:absolute;bottom:8px;left:12px;display:flex;gap:12px;flex-wrap:wrap}
-.nl-item{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--muted)}
-.nl-dot{width:7px;height:7px;border-radius:50%}
-
-.dp{background:var(--s1);border-left:1px solid var(--brd);padding:14px;overflow-y:auto}
-.dp-empty{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);text-align:center}
-.dp-empty-ico{font-size:24px;opacity:.2}
-.dp-show{display:none}
-.dp-show.on{display:block}
-.dp-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-bottom:8px;font-family:'IBM Plex Mono',monospace}
-.dp-nm{font-size:15px;font-weight:700;margin-bottom:1px}
-.dp-rl{font-size:11px;color:var(--muted);margin-bottom:6px}
-.dp-typebadge{display:inline-flex;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}
-.ivi-row{display:flex;align-items:baseline;gap:6px;margin-bottom:10px}
-.ivi-n{font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:700;color:var(--amber)}
-.ivi-sub-row{font-size:9px;color:var(--muted);margin-top:-6px;margin-bottom:10px}
-.ivi-bars{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
-.ib-row{display:grid;grid-template-columns:96px 1fr 26px;gap:5px;align-items:center;font-size:10px}
-.ib-lbl{color:var(--muted)}
-.ib-track{background:var(--s3);border-radius:2px;height:3px;overflow:hidden}
-.ib-fill{height:100%;border-radius:2px;transition:width .5s}
-.ib-val{font-family:'IBM Plex Mono',monospace;font-size:9px;text-align:right}
-.dp-mets{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px}
-.dp-met{background:var(--s2);border-radius:4px;padding:7px 9px}
-.dp-met-v{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700}
-.dp-met-l{font-size:9px;color:var(--muted);margin-top:1px;line-height:1.3}
-.dp-proc-list{font-size:10px;color:var(--muted);line-height:1.7}
-.dp-insight{border-radius:4px;padding:9px 11px;font-size:10px;line-height:1.6;margin-top:8px}
-
-.ona-metrics{border-top:1px solid var(--brd);overflow-x:auto;background:var(--s1);grid-column:1/3}
-.ona-metrics table{width:100%;border-collapse:collapse;font-size:10px}
-.ona-metrics th{padding:6px 10px;text-align:left;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);white-space:nowrap;background:var(--s1)}
-.ona-metrics td{padding:5px 10px;border-bottom:1px solid rgba(255,255,255,.02);white-space:nowrap;cursor:pointer}
-.ona-metrics tr:hover td{background:var(--s2)}
-.tbl-bar{display:inline-block;height:3px;border-radius:2px;vertical-align:middle}
-.tbl-badge{padding:1px 5px;border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.3px}
-
-/* ═══ TAB 5: IVI% ════════════════════════════════════════════════════ */
-.ivi-wrap{padding:20px}
-.ivi-formula-block{background:var(--s2);border:1px solid var(--brd2);border-radius:5px;padding:12px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);margin-bottom:20px;line-height:1.8}
-.ivi-formula-block .cm{color:var(--muted)}
-.ivi-formula-block b{color:var(--amber)}
-.ivi-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:24px}
-.ivi-card{background:var(--s2);border:1px solid var(--brd);border-radius:6px;padding:12px 14px;cursor:pointer;transition:all .15s}
-.ivi-card:hover{border-color:var(--brd2)}
-.ivi-card.top3{border-color:var(--amber)}
-.ivi-card-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.ivi-card-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;flex-shrink:0}
-.ivi-card-nm{font-size:12px;font-weight:600}
-.ivi-card-rl{font-size:10px;color:var(--muted)}
-.ivi-card-score{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:700;margin-left:auto;white-space:nowrap}
-.ivi-mini-bar{display:grid;grid-template-columns:56px 1fr 28px;gap:4px;align-items:center;margin-bottom:3px}
-.ivi-mini-lbl{font-size:9px;color:var(--muted)}
-.ivi-mini-track{background:var(--s3);border-radius:2px;height:3px;overflow:hidden}
-.ivi-mini-fill{height:100%;border-radius:2px}
-.ivi-mini-val{font-family:'IBM Plex Mono',monospace;font-size:9px;text-align:right}
-
-/* TOOLTIP */
-.tip{position:fixed;background:var(--s1);border:1px solid var(--brd2);border-radius:5px;padding:8px 12px;font-size:11px;pointer-events:none;opacity:0;transition:opacity .1s;z-index:999;min-width:140px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.obar{height:3px;border-radius:2px;margin-top:7px;transition:width .3s}
+.ototal{font-size:11px;color:var(--mut);margin-bottom:16px}
+.ototal b{font-family:'IBM Plex Mono',monospace}
+/* Heatmap */
+.ht{font-size:12px;font-weight:600;margin-bottom:3px}
+.hs{font-size:11px;color:var(--mut);margin-bottom:10px}
+.heat{width:100%;border-collapse:collapse}
+.heat th{padding:6px 8px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--br);text-align:center}
+.heat th.pl{text-align:left;min-width:200px}
+.heat td{padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.02);text-align:center}
+.heat tr:hover td{background:var(--s2)}
+.hpn{font-size:11px;font-weight:500;text-align:left;padding-left:8px}
+.hpid{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--mut);margin-right:5px}
+.hcell{width:40px;height:26px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;cursor:pointer;margin:0 auto;transition:all .15s;user-select:none}
+.hcell:hover{transform:scale(1.12)}
+.hsw{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:var(--amber)}
+.hswb{height:3px;border-radius:2px;background:var(--amber);margin:3px auto 0;transition:width .3s}
+.obadge{display:inline-flex;padding:1px 5px;border-radius:2px;font-size:9px;font-weight:700}
+/* Survey tab */
+.ncards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.ncard{background:var(--s2);border:1px solid var(--br);border-top:2px solid;border-radius:6px;padding:14px}
+.nicon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;color:#fff;font-weight:700}
+.nnm{font-size:13px;font-weight:700;color:var(--txt);margin-bottom:4px}
+.ndesc{font-size:11px;color:var(--mut);line-height:1.5}
+.nw{font-size:9px;margin-top:8px;font-family:'IBM Plex Mono',monospace}
+.qrow{background:var(--s2);border-left:3px solid var(--teal);padding:10px 16px;margin-bottom:16px;font-size:12px;color:var(--sub);font-style:italic}
+/* Proc tab */
+.plane{margin-bottom:14px;background:var(--s2);border:1px solid var(--br);border-radius:6px;overflow:hidden}
+.phdr{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--br);background:var(--s1);cursor:pointer;user-select:none}
+.pcode{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber);background:var(--a2);padding:2px 6px;border-radius:3px;flex-shrink:0}
+.pnm{font-weight:600;font-size:13px;flex:1}
+.piso{font-size:10px;color:var(--teal);background:var(--t2);padding:1px 6px;border-radius:3px}
+.psw{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--amber)}
+.pcrit{display:flex;gap:2px}
+.cd{width:6px;height:6px;border-radius:50%;background:var(--amber)}.cd.off{background:var(--s4)}
+.ptog{color:var(--mut);font-size:12px;transition:transform .2s;margin-left:6px}
+.plane.open .ptog{transform:rotate(180deg)}
+.psteps{display:none;padding:12px;overflow-x:auto}.plane.open .psteps{display:block}
+.srow{display:flex;align-items:flex-start;gap:0;min-width:max-content}
+.sc{background:var(--s3);border:1px solid var(--br);border-radius:5px;padding:10px;width:166px;flex-shrink:0}
+.snum{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--mut);margin-bottom:3px}
+.snm{font-size:11px;font-weight:600;color:var(--txt);margin-bottom:7px;line-height:1.3;min-height:26px}
+.srlbl{font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:600;margin-bottom:2px;cursor:pointer}
+.chip:hover{filter:brightness(1.2)}
+.chip .av{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700}
+.splbl{font-size:9px;color:var(--mut);margin:4px 0 2px}
+.sprow{display:flex;flex-wrap:wrap;gap:3px}
+.sarr{display:flex;align-items:center;padding:0 4px;color:var(--mut);flex-shrink:0;margin-top:16px}
+.sarr svg{width:20px;height:10px}
+/* Assign tab */
+.pbtns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.pbtn{padding:5px 10px;background:var(--s2);border:1px solid var(--br2);border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;color:var(--sub);transition:all .15s}
+.pbtn:hover,.pbtn.active{background:var(--a2);border-color:var(--amber);color:var(--amber)}
+.atbl{width:100%;border-collapse:collapse;margin-bottom:14px}
+.atbl th{padding:7px 8px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--br);background:var(--s1)}
+.atbl td{padding:6px 8px;border-bottom:1px solid var(--br);vertical-align:top}
+.atbl tr:hover td{background:var(--s2)}
+.aid{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--mut)}
+.acrit{display:flex;gap:2px}
+.acd{width:6px;height:6px;border-radius:50%}
+.psel{display:flex;flex-wrap:wrap;gap:3px}
+.pc{display:inline-flex;align-items:center;gap:2px;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:600;cursor:pointer;background:var(--s3);border:1px solid var(--br);color:var(--sub);transition:all .1s}
+.pc.resp{border-style:solid;border-width:1.5px}
+.pc.part{border-style:dashed}
+.pc.none{opacity:.28}
+/* ONA tab */
+#tab-ona{grid-template-columns:1fr 296px;grid-template-rows:1fr 124px}
+.nc{position:relative;overflow:hidden}.nc svg{width:100%;height:100%}
+.nibox{position:absolute;top:10px;left:12px;background:rgba(8,12,20,.88);border:1px solid var(--br2);border-radius:5px;padding:10px 12px;font-size:11px;line-height:1.7;color:var(--sub)}
+.nibox b{color:var(--amber);font-family:'IBM Plex Mono',monospace}
+.nfilt{position:absolute;top:10px;right:12px;display:flex;gap:4px;flex-direction:column}
+.nf{padding:3px 8px;background:rgba(8,12,20,.88);border:1px solid var(--br);border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.4px;color:var(--mut);cursor:pointer;transition:all .15s;text-align:center}
+.nf:hover,.nf.on{background:var(--a2);border-color:var(--amber);color:var(--amber)}
+.nleg{position:absolute;bottom:8px;left:12px;display:flex;gap:10px;flex-wrap:wrap}
+.nli{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--mut)}
+.nld{width:7px;height:7px;border-radius:50%}
+.dp{background:var(--s1);border-left:1px solid var(--br);padding:14px;overflow-y:auto}
+.dpe{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--mut);text-align:center}
+.dpei{font-size:24px;opacity:.2}
+.dps{display:none}.dps.on{display:block}
+.dpav{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-bottom:8px;font-family:'IBM Plex Mono',monospace}
+.dpnm{font-size:14px;font-weight:700;margin-bottom:1px}
+.dprl{font-size:11px;color:var(--mut);margin-bottom:6px}
+.dptyp{display:inline-flex;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}
+.ivisc{font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:700;color:var(--amber)}
+.ivimeta{font-size:9px;color:var(--mut);margin-bottom:10px}
+.ibars{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.ibr{display:grid;grid-template-columns:96px 1fr 26px;gap:5px;align-items:center;font-size:10px}
+.ibl{color:var(--mut)}.itrack{background:var(--s3);border-radius:2px;height:3px;overflow:hidden}
+.ifill{height:100%;border-radius:2px;transition:width .5s}
+.ival{font-family:'IBM Plex Mono',monospace;font-size:9px;text-align:right}
+.dpmets{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px}
+.dpm{background:var(--s2);border-radius:4px;padding:7px 9px}
+.dpmv{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700}
+.dpml{font-size:9px;color:var(--mut);margin-top:1px;line-height:1.3}
+.dpprocs{font-size:10px;color:var(--mut);line-height:1.7;margin-bottom:8px}
+.dpins{border-radius:4px;padding:8px 10px;font-size:10px;line-height:1.6}
+.nwbox{background:var(--s3);border-radius:4px;padding:7px 9px;margin-top:6px;font-size:9px}
+.nwgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:4px}
+.nwitem{display:flex;align-items:center;gap:4px}
+.nwdot{width:6px;height:6px;border-radius:50%}
+.onam{border-top:1px solid var(--br);overflow-x:auto;background:var(--s1);grid-column:1/3}
+.onam table{width:100%;border-collapse:collapse;font-size:10px}
+.onam th{padding:6px 9px;font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--br);white-space:nowrap;background:var(--s1)}
+.onam td{padding:5px 9px;border-bottom:1px solid rgba(255,255,255,.02);white-space:nowrap;cursor:pointer}
+.onam tr:hover td{background:var(--s2)}
+.tbar{display:inline-block;height:3px;border-radius:2px;vertical-align:middle}
+.tbdg{padding:1px 5px;border-radius:2px;font-size:8px;font-weight:700}
+/* IVI tab */
+.iform{background:var(--s2);border:1px solid var(--br2);border-radius:5px;padding:12px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);margin-bottom:18px;line-height:1.8}
+.iform .cm{color:var(--mut)}.iform b{color:var(--amber)}
+.icards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:20px}
+.icard{background:var(--s2);border:1px solid var(--br);border-radius:6px;padding:12px 14px;cursor:pointer;transition:border-color .15s}
+.icard:hover{border-color:var(--br2)}.icard.t3{border-color:var(--amber)}
+.ictop{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.icav{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'IBM Plex Mono',monospace;flex-shrink:0}
+.icnm{font-size:12px;font-weight:600}.icrl{font-size:10px;color:var(--mut)}
+.icsc{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:700;margin-left:auto;white-space:nowrap}
+.imb{display:grid;grid-template-columns:56px 1fr 28px;gap:4px;align-items:center;margin-bottom:3px}
+.imbl{font-size:9px;color:var(--mut)}
+.imbt{background:var(--s3);border-radius:2px;height:3px;overflow:hidden}
+.imbf{height:100%;border-radius:2px}
+.imbv{font-family:'IBM Plex Mono',monospace;font-size:9px;text-align:right}
+/* tip */
+.tip{position:fixed;background:var(--s1);border:1px solid var(--br2);border-radius:5px;padding:8px 12px;font-size:11px;pointer-events:none;opacity:0;transition:opacity .1s;z-index:999;min-width:130px;box-shadow:0 6px 20px rgba(0,0,0,.5)}
 .tip.on{opacity:1}
-.tip-nm{font-weight:700;margin-bottom:2px}
-.tip-rl{color:var(--muted);line-height:1.4}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.proc-lane,.ivi-card,.dp-show.on,.obj-card{animation:fadeUp .2s ease}
+.tipnm{font-weight:700;margin-bottom:2px}
+.tiprl{color:var(--mut);line-height:1.4}
+@keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.plane,.icard,.dps.on,.ocard,.ncard{animation:fu .2s ease}
 </style>
 </head>
 <body>
-
 <header class="hdr">
   <div class="logo">Talent<b>Graph</b></div>
-  <div class="hdr-tag">ONA · IVI v5</div>
-  <span style="font-size:11px;color:var(--muted)">VinaTech Electronics · 20 nhân sự · 6 quy trình</span>
-  <div class="hdr-r">
-    <span class="badge b-iso">ISO 9001:2015</span>
-    <span class="badge b-pdpl">PDPL 2026</span>
-    <span class="badge b-v5">v5 · Objective-weighted</span>
+  <div class="htag">ONA · IVI v6</div>
+  <span style="font-size:11px;color:var(--mut)">VinaTech Electronics · 20 nhân sự · 6 quy trình</span>
+  <div class="hbr">
+    <span class="bdg bi">ISO 9001:2015</span>
+    <span class="bdg bp">PDPL 2026</span>
+    <span class="bdg bv">v6 · 4-Network ONA</span>
   </div>
 </header>
-
 <nav class="tabs">
-  <div class="tab active" onclick="go('obj',this)"><span class="tab-n">01</span>MỤC TIÊU<span class="tab-new">MỚI</span></div>
-  <div class="tab" onclick="go('proc',this)"><span class="tab-n">02</span>QUY TRÌNH</div>
-  <div class="tab" onclick="go('assign',this)"><span class="tab-n">03</span>PHÂN CÔNG</div>
-  <div class="tab" onclick="go('ona',this)"><span class="tab-n">04</span>MẠNG ONA</div>
-  <div class="tab" onclick="go('ivi',this)"><span class="tab-n">05</span>IVI%</div>
+  <div class="tab active" onclick="go('obj',this)"><span class="tn">01</span>MỤC TIÊU</div>
+  <div class="tab" onclick="go('survey',this)"><span class="tn">02</span>KHẢO SÁT<span class="tnew">ONA</span></div>
+  <div class="tab" onclick="go('proc',this)"><span class="tn">03</span>QUY TRÌNH</div>
+  <div class="tab" onclick="go('assign',this)"><span class="tn">04</span>PHÂN CÔNG</div>
+  <div class="tab" onclick="go('ona',this)"><span class="tn">05</span>MẠNG ONA</div>
+  <div class="tab" onclick="go('ivi',this)"><span class="tn">06</span>IVI%</div>
 </nav>
-
 <div class="main">
 
-<!-- ══ TAB 1: MỤC TIÊU ══════════════════════════════════════════════ -->
+<!-- TAB 01: MỤC TIÊU -->
 <div id="tab-obj" class="view on">
-<div class="obj-wrap">
-  <div class="pg-title">Mục tiêu bộ phận sản xuất</div>
-  <div class="pg-sub">Định nghĩa mục tiêu chiến lược của nhà máy và tỷ trọng quan trọng (tổng = 100%). Thay đổi tỷ trọng → IVI% của toàn bộ nhân sự tự động tái tính.</div>
-  <div class="insight-bar">
-    ◈ <b>Nguyên lý v5:</b> Mỗi quy trình ISO được đánh giá mức độ đóng góp vào từng mục tiêu (0.0–1.0). Trọng số chiến lược của quy trình = Σ(trọng số mục tiêu × mức đóng góp). IVI cá nhân phản ánh họ tham gia quy trình nào, tại bước nào, và quy trình đó quan trọng đến đâu với mục tiêu chung.
-  </div>
-
-  <!-- Objective weight cards -->
-  <div class="obj-cards" id="obj-cards"></div>
-  <div class="obj-total" id="obj-total"></div>
-
-  <!-- Process–Objective heatmap -->
-  <div class="heat-section">
-    <div class="heat-title">Ma trận ảnh hưởng: Quy trình → Mục tiêu</div>
-    <div class="heat-sub">Nhấp vào ô để điều chỉnh mức độ đóng góp (0.0 → 0.2 → 0.4 → 0.6 → 0.8 → 1.0). Cột cuối = Trọng số chiến lược tổng hợp của quy trình.</div>
-    <table class="heat-table" id="heat-table">
-      <thead id="heat-head"></thead>
-      <tbody id="heat-body"></tbody>
-    </table>
-  </div>
-
-  <button class="btn-submit" style="margin-top:8px" onclick="applyObjectives()">Áp dụng → Tái tính IVI% toàn bộ</button>
-  <div id="obj-msg" style="display:none;margin-top:10px;font-size:12px;color:var(--green)">✓ IVI% đã được tái tính theo mục tiêu mới.</div>
+<div class="wrap">
+  <div class="ptitle">Mục tiêu bộ phận sản xuất</div>
+  <div class="psub">Định nghĩa mục tiêu chiến lược và tỷ trọng. Thay đổi → toàn bộ IVI% tái tính.</div>
+  <div class="ibar">◈ <b>Nguyên lý v6:</b> IVI = f(Process×SW, Skill, Market, Network, Learn). SW(proc) = Σ(obj.weight × proc_obj_influence). NetworkScore = Σ(4 survey indegrees × weight). Tổng IVI% toàn org = 100%.</div>
+  <div class="ocards" id="ocards"></div>
+  <div class="ototal" id="ototal"></div>
+  <div class="ht">Ma trận ảnh hưởng: Quy trình → Mục tiêu</div>
+  <div class="hs">Nhấp ô để cycle (0.0→0.2→0.4→0.6→0.8→1.0). Cột cuối = Trọng số chiến lược tổng hợp.</div>
+  <table class="heat"><thead id="hhead"></thead><tbody id="hbody"></tbody></table>
+  <button class="btn" style="margin-top:12px" onclick="applyObj()">Áp dụng → Tái tính IVI%</button>
+  <div class="smsg" id="omsg">✓ Đã cập nhật IVI%.</div>
 </div>
 </div>
 
-<!-- ══ TAB 2: QUY TRÌNH ══════════════════════════════════════════════ -->
-<div id="tab-proc" class="view">
-<div class="proc-wrap">
-  <div class="pg-title" style="margin-bottom:4px">Bản đồ quy trình ISO</div>
-  <div class="pg-sub" style="margin-bottom:12px">Mỗi quy trình có trọng số chiến lược (SW) tính từ ma trận mục tiêu. ONA được sinh từ phân công nhân sự vào các bước.</div>
-  <div id="proc-list"></div>
-</div>
-</div>
-
-<!-- ══ TAB 3: PHÂN CÔNG ══════════════════════════════════════════════ -->
-<div id="tab-assign" class="view">
-<div class="assign-wrap">
-  <div class="pg-title" style="margin-bottom:4px">Form phân công nhân sự vào quy trình</div>
-  <div class="pg-sub" style="margin-bottom:16px">Chọn quy trình → click chip để toggle Responsible/Participant → Submit cập nhật ONA + IVI.</div>
-  <div class="proc-select-row" id="proc-btns"></div>
-  <div style="display:flex;gap:14px;margin-bottom:12px;font-size:11px;color:var(--muted)">
-    <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:8px;border-radius:2px;border:1.5px solid rgba(200,200,200,.5)"></div>Viền liền = Phụ trách</div>
-    <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:8px;border-radius:2px;border:1px dashed rgba(200,200,200,.3)"></div>Viền đứt = Tham gia</div>
-  </div>
-  <div style="overflow-x:auto">
-    <table class="assign-table">
-      <thead><tr><th>Bước</th><th>Tên bước</th><th>Quan trọng</th><th>Phụ trách</th><th>Tham gia</th></tr></thead>
-      <tbody id="assign-tbody"></tbody>
-    </table>
-  </div>
-  <button class="btn-submit" onclick="submitAssign()">Cập nhật → Tái tính ONA + IVI</button>
-  <div id="assign-msg" style="display:none;margin-top:10px;font-size:12px;color:var(--green)">✓ Đã cập nhật. Chuyển sang tab Mạng ONA để xem kết quả.</div>
-</div>
-</div>
-
-<!-- ══ TAB 4: ONA NETWORK ════════════════════════════════════════════ -->
-<div id="tab-ona" class="vgrid">
-  <div class="net-canvas" id="netCanvas">
-    <div class="net-info-box">
-      ONA derived từ <b id="edge-count">0</b> edges<br>
-      <b>6 quy trình · 32 bước</b><br>
-      <span style="font-size:9px;color:var(--muted)">Nhấp node → chi tiết →</span>
+<!-- TAB 02: KHẢO SÁT ONA -->
+<div id="tab-survey" class="view">
+<div class="wrap">
+  <div class="ptitle">Khảo sát ONA — 4 loại mạng lưới</div>
+  <div class="psub">Phương pháp Rob Cross (i4cp / Harvard). Kết quả tạo survey-based edges trong ONA, bổ sung cho process-based edges từ ISO.</div>
+  <div class="ncards">
+    <div class="ncard" style="border-top-color:#60A5FA">
+      <div class="nicon" style="background:#60A5FA">?</div>
+      <div class="nnm">Advice Network</div>
+      <div class="ndesc">Ai được hỏi khi gặp vấn đề khó?</div>
+      <div class="nw" style="color:#60A5FA">indegree weight: 35%</div>
     </div>
-    <div class="net-filters" id="net-filters"></div>
-    <div class="net-legend">
-      <div class="nl-item"><div class="nl-dot" style="background:var(--prod)"></div>Sản xuất</div>
-      <div class="nl-item"><div class="nl-dot" style="background:var(--eng)"></div>Kỹ thuật</div>
-      <div class="nl-item"><div class="nl-dot" style="background:var(--qc)"></div>Chất lượng</div>
-      <div class="nl-item"><div class="nl-dot" style="background:var(--sc)"></div>Supply</div>
-      <div class="nl-item"><div class="nl-dot" style="background:var(--hse)"></div>HSE</div>
-      <div class="nl-item"><div class="nl-dot" style="background:var(--mgmt)"></div>Mgmt</div>
-      <div class="nl-item" style="margin-left:8px"><div style="width:14px;height:1px;background:rgba(255,255,255,.25)"></div>Cùng bước</div>
-      <div class="nl-item"><div style="width:14px;height:1px;border-top:1px dashed rgba(244,160,32,.5)"></div>Bàn giao</div>
+    <div class="ncard" style="border-top-color:#22D3C8">
+      <div class="nicon" style="background:#22D3C8">⇄</div>
+      <div class="nnm">Collaboration</div>
+      <div class="ndesc">Ai làm việc trực tiếp với ai?</div>
+      <div class="nw" style="color:#22D3C8">indegree weight: 30%</div>
+    </div>
+    <div class="ncard" style="border-top-color:#F4A020">
+      <div class="nicon" style="background:#F4A020">★</div>
+      <div class="nnm">Trust Network</div>
+      <div class="ndesc">Ai được chia sẻ thông tin nhạy cảm?</div>
+      <div class="nw" style="color:#F4A020">indegree weight: 25%</div>
+    </div>
+    <div class="ncard" style="border-top-color:#34D399">
+      <div class="nicon" style="background:#34D399">↑</div>
+      <div class="nnm">Energy Network</div>
+      <div class="ndesc">Ai truyền cảm hứng cho đồng nghiệp?</div>
+      <div class="nw" style="color:#34D399">indegree weight: 10%</div>
+    </div>
+  </div>
+  <div class="qrow">"ONA là tia X vào bên trong tổ chức" — <b style="color:var(--txt);font-style:normal">Rob Cross, i4cp (cựu Harvard)</b>
+    <div style="margin-top:4px;font-style:normal;font-size:11px">Sơ đồ tổ chức: <b style="color:var(--mut)">"Ai báo cáo cho ai"</b> &nbsp;·&nbsp; ONA: <b style="color:var(--teal)">"Ai thực sự vận hành tổ chức"</b></div>
+  </div>
+  <div style="font-size:12px;font-weight:600;margin-bottom:10px">Kết quả khảo sát — Indegree Rankings</div>
+  <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead><tr>
+        <th style="padding:7px 9px;text-align:left;font-size:9px;font-weight:700;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--br);background:var(--s1)">Nhân sự</th>
+        <th style="padding:7px 9px;text-align:left;font-size:9px;font-weight:700;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--br);background:var(--s1)">Phòng ban</th>
+        <th style="padding:7px 9px;text-align:center;font-size:9px;font-weight:700;color:#60A5FA;border-bottom:1px solid var(--br);background:var(--s1)">? Advice</th>
+        <th style="padding:7px 9px;text-align:center;font-size:9px;font-weight:700;color:#22D3C8;border-bottom:1px solid var(--br);background:var(--s1)">⇄ Collab</th>
+        <th style="padding:7px 9px;text-align:center;font-size:9px;font-weight:700;color:#F4A020;border-bottom:1px solid var(--br);background:var(--s1)">★ Trust</th>
+        <th style="padding:7px 9px;text-align:center;font-size:9px;font-weight:700;color:#34D399;border-bottom:1px solid var(--br);background:var(--s1)">↑ Energy</th>
+        <th style="padding:7px 9px;text-align:center;font-size:9px;font-weight:700;color:var(--amber);border-bottom:1px solid var(--br);background:var(--s1)">Network Score</th>
+      </tr></thead>
+      <tbody id="stbody"></tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- TAB 03: QUY TRÌNH -->
+<div id="tab-proc" class="view">
+<div class="wrap" style="max-width:100%">
+  <div class="ptitle" style="margin-bottom:4px">Bản đồ quy trình ISO</div>
+  <div class="psub">SW = Trọng số chiến lược tổng hợp của quy trình với mục tiêu bộ phận. ONA được sinh từ phân công nhân sự vào các bước.</div>
+  <div id="proclist"></div>
+</div>
+</div>
+
+<!-- TAB 04: PHÂN CÔNG -->
+<div id="tab-assign" class="view">
+<div class="wrap">
+  <div class="ptitle" style="margin-bottom:4px">Phân công nhân sự vào quy trình</div>
+  <div class="psub">Click chip để toggle Responsible (viền liền) / Participant (viền đứt).</div>
+  <div class="pbtns" id="pbtns"></div>
+  <div style="overflow-x:auto">
+    <table class="atbl"><thead><tr>
+      <th>Bước</th><th>Tên bước</th><th>Crit</th><th>Phụ trách</th><th>Tham gia</th>
+    </tr></thead><tbody id="atbody"></tbody></table>
+  </div>
+  <button class="btn" onclick="submitAssign()">Cập nhật → Tái tính ONA + IVI</button>
+  <div class="smsg" id="amsg">✓ Cập nhật xong.</div>
+</div>
+</div>
+
+<!-- TAB 05: MẠNG ONA -->
+<div id="tab-ona" class="vgrid">
+  <div class="nc" id="netC">
+    <div class="nibox">ONA từ <b id="ecnt">0</b> edges · <b>6 proc · 32 bước + survey</b><br><span style="font-size:9px">Nhấp node → chi tiết</span></div>
+    <div class="nfilt" id="nfilt"></div>
+    <div class="nleg" id="nleg">
+      <div class="nli"><div class="nld" style="background:var(--cprod)"></div>SX</div>
+      <div class="nli"><div class="nld" style="background:var(--ceng)"></div>KT</div>
+      <div class="nli"><div class="nld" style="background:var(--cqc)"></div>QC</div>
+      <div class="nli"><div class="nld" style="background:var(--csc)"></div>SC</div>
+      <div class="nli"><div class="nld" style="background:var(--chse)"></div>HSE</div>
+      <div class="nli" style="margin-left:8px;padding-left:8px;border-left:1px solid var(--br)"><div style="width:14px;height:1px;background:rgba(255,255,255,.2)"></div>Process</div>
+      <div class="nli"><div style="width:14px;height:1px;background:#60A5FA;opacity:.8"></div>Advice</div>
+      <div class="nli"><div style="width:14px;height:1px;background:#22D3C8;opacity:.8"></div>Collab</div>
+      <div class="nli"><div style="width:14px;height:1px;background:#F4A020;opacity:.75"></div>Trust</div>
+      <div class="nli"><div style="width:14px;height:1px;background:#34D399;opacity:.75"></div>Energy</div>
+      <div class="nli"><div style="width:14px;height:1px;border-top:1px dashed rgba(244,160,32,.6)"></div>Bàn giao</div>
     </div>
   </div>
   <div class="dp" id="dp">
-    <div class="dp-empty" id="dp-empty">
-      <div class="dp-empty-ico">◎</div>
-      <div style="font-size:11px;font-weight:600;color:var(--text)">Chọn một nhân sự</div>
-      <div style="font-size:10px;line-height:1.5;max-width:180px">Nhấp vào node để xem vị trí ONA và điểm IVI% chi tiết</div>
-    </div>
-    <div class="dp-show" id="dp-show">
-      <div class="dp-av" id="dp-av"></div>
-      <div class="dp-nm" id="dp-nm"></div>
-      <div class="dp-rl" id="dp-rl"></div>
-      <div class="dp-typebadge" id="dp-type"></div>
-      <div class="ivi-row"><div class="ivi-n" id="dp-ivi-n"></div><div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px">IVI%</div><div style="font-size:9px;color:var(--muted)">tỷ trọng tổ chức</div></div></div>
-      <div class="ivi-sub-row" id="dp-ivi-sub"></div>
-      <div class="ivi-bars" id="dp-ivi-bars"></div>
-      <div class="dp-mets" id="dp-mets"></div>
-      <div class="dp-proc-list" id="dp-procs"></div>
-      <div class="dp-insight" id="dp-insight"></div>
+    <div class="dpe" id="dpe"><div class="dpei">◎</div><div style="font-size:11px;font-weight:600;color:var(--txt)">Chọn một nhân sự</div><div style="font-size:10px;max-width:180px">Nhấp node để xem IVI% và 4-network breakdown</div></div>
+    <div class="dps" id="dpshow">
+      <div class="dpav" id="dpav"></div><div class="dpnm" id="dpnm"></div><div class="dprl" id="dprl"></div>
+      <div class="dptyp" id="dptype"></div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px">
+        <div class="ivisc" id="dpivi"></div>
+        <div><div style="font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px">IVI%</div></div>
+      </div>
+      <div class="ivimeta" id="dpivimeta"></div>
+      <div class="ibars" id="dpbars"></div>
+      <div class="dpmets" id="dpmets"></div>
+      <div class="nwbox">
+        <div style="color:var(--mut);text-transform:uppercase;letter-spacing:.5px;font-size:9px;margin-bottom:4px">Survey Networks (indegree)</div>
+        <div class="nwgrid" id="dpnw"></div>
+      </div>
+      <div class="dpprocs" id="dpprocs"></div>
+      <div class="dpins" id="dpins"></div>
     </div>
   </div>
-  <div class="ona-metrics">
+  <div class="onam">
     <table><thead><tr>
-      <th>Nhân sự</th><th>Phòng ban</th><th>Vị trí ONA</th>
-      <th>Quy trình</th><th>Bước PT</th><th>Degree</th><th>SW avg</th><th>IVI%</th><th>Nếu nghỉ</th>
-    </tr></thead><tbody id="ona-tbody"></tbody></table>
+      <th>Nhân sự</th><th>Dept</th><th>ONA Type</th><th>Proc</th><th>Steps</th><th>Degree</th><th>SW avg</th><th>Net.Score</th><th>IVI%</th><th>Nếu nghỉ</th>
+    </tr></thead><tbody id="ontbody"></tbody></table>
   </div>
 </div>
 
-<!-- ══ TAB 5: IVI% ════════════════════════════════════════════════════ -->
+<!-- TAB 06: IVI% -->
 <div id="tab-ivi" class="view">
-<div class="ivi-wrap">
-  <div class="pg-title" style="margin-bottom:4px">IVI% — Tỷ trọng giá trị cá nhân trong tổ chức</div>
-  <div class="pg-sub" style="margin-bottom:12px">IVI = tỷ trọng % trong tổng giá trị tổ chức. Tổng = 100%. Phản ánh sự tham gia quy trình <b>có trọng số theo mục tiêu chiến lược</b>.</div>
-
-  <div class="ivi-formula-block">
-<span class="cm">// v5: IVI% = tỷ trọng của cá nhân trong tổng org value</span>
-raw_score = <b>ProcessValue_weighted</b>×0.40 + SkillGraph×0.25 + MarketSignal×0.20 + LearnVelocity×0.15
-
-<span class="cm">// ProcessValue_weighted = Σ_steps [ step.crit × proc.crit × <b>SW(proc)</b> × role_w ]</span>
-<span class="cm">// SW(proc) = Σ_objectives [ obj.weight × proc_obj_influence ]  ← điểm mới v5</span>
-<span class="cm">// role_w: Responsible=1.0, Participant=0.5</span>
-
-IVI% = raw_score / Σ(tất_cả_raw_score) × 100  <span class="cm">← Tổng = 100%</span>
+<div class="wrap">
+  <div class="ptitle" style="margin-bottom:4px">IVI% — Tỷ trọng giá trị cá nhân trong tổ chức</div>
+  <div class="psub" style="margin-bottom:10px">IVI = phần trăm đóng góp trong tổng org value. Tổng = 100%.</div>
+  <div class="iform">
+<span class="cm">// v6 IVI% formula</span>
+raw = <b>ProcVal×SW</b>×0.35 + Skill×0.22 + Market×0.18 + <b>NetworkScore</b>×0.15 + Learn×0.10
+<span class="cm">// ProcVal×SW  = Σ_steps(step.crit × proc.crit × SW(proc) × role_w)  · resp=1.0, part=0.5</span>
+<span class="cm">// SW(proc)    = Σ_obj(obj.weight × influence)  ← từ ma trận mục tiêu</span>
+<span class="cm">// NetworkScore= advice×0.35 + collab×0.30 + trust×0.25 + energy×0.10  ← từ khảo sát ONA</span>
+IVI% = raw / Σ(all_raw) × 100    <span class="cm">← Tổng = 100%</span></div>
+  <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--mut);margin-bottom:6px">
+    <span>Phân bổ giá trị tổ chức (100%)</span><span id="ibarnt" style="color:var(--amber)"></span>
   </div>
-
-  <!-- Stacked proportion bar -->
-  <div style="margin-bottom:6px">
-    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:6px">
-      <span>Phân bổ giá trị tổ chức (100%) — weighted by objectives</span>
-      <span id="ivi-bar-note" style="color:var(--amber)"></span>
-    </div>
-    <div id="ivi-stack-bar" style="display:flex;height:28px;border-radius:4px;overflow:hidden;gap:1px"></div>
-    <div id="ivi-bar-legend" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:9px;color:var(--muted)"></div>
+  <div id="ibar" style="display:flex;height:26px;border-radius:4px;overflow:hidden;gap:1px;margin-bottom:8px"></div>
+  <div id="ibarleg" style="display:flex;flex-wrap:wrap;gap:8px;font-size:9px;color:var(--mut);margin-bottom:14px"></div>
+  <div id="idepts" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:14px"></div>
+  <div id="ialert" style="margin-bottom:14px"></div>
+  <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:10px">
+    <div style="font-size:12px;font-weight:600">Xếp hạng cá nhân</div>
+    <div style="font-size:10px;color:var(--mut)">Headcount avg = <span id="havg"></span>%</div>
   </div>
-
-  <div id="ivi-dept-row" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:16px"></div>
-  <div id="ivi-alert" style="margin-bottom:16px"></div>
-
-  <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:12px">
-    <div style="font-size:12px;font-weight:600;color:var(--text)">Xếp hạng cá nhân</div>
-    <div style="font-size:10px;color:var(--muted)">Headcount avg = <span id="head-avg"></span>% · Thay đổi mục tiêu → IVI% tự động cập nhật</div>
-  </div>
-  <div class="ivi-cards" id="ivi-cards"></div>
-
-  <!-- Simulate departure -->
-  <div style="margin-top:24px;background:var(--s2);border:1px solid var(--brd);border-radius:6px;padding:14px 16px">
+  <div class="icards" id="icards"></div>
+  <div style="margin-top:20px;background:var(--s2);border:1px solid var(--br);border-radius:6px;padding:14px">
     <div style="font-size:12px;font-weight:600;margin-bottom:10px">Mô phỏng: Nếu nhân sự nghỉ việc</div>
     <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
-      <select id="sim-select" onchange="simulateDeparture()" style="background:var(--s3);border:1px solid var(--brd2);border-radius:4px;padding:6px 10px;color:var(--text);font-size:12px;flex:1"></select>
-      <div id="sim-result" style="font-size:12px;color:var(--sub);flex:2"></div>
+      <select id="simsel" onchange="simDep()" style="background:var(--s3);border:1px solid var(--br2);border-radius:4px;padding:6px 10px;color:var(--txt);font-size:12px;flex:1"></select>
+      <div id="simres" style="font-size:12px;color:var(--sub);flex:2"></div>
     </div>
-    <div id="sim-bar" style="display:flex;height:18px;border-radius:3px;overflow:hidden;gap:1px"></div>
-    <div style="font-size:9px;color:var(--muted);margin-top:5px" id="sim-caption"></div>
+    <div id="simbar" style="display:flex;height:18px;border-radius:3px;overflow:hidden;gap:1px"></div>
+    <div id="simcap" style="font-size:9px;color:var(--mut);margin-top:5px"></div>
   </div>
 </div>
 </div>
 
-</div><!-- .main -->
+</div>
 <div class="tip" id="tip"></div>
 
 <script>
-// ═══════════════════════════════════════════════════════════════════════
-// MASTER DATA
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════ DATA ═══════════════════════════════════════════
 const DCOL={prod:'#F4A020',eng:'#22D3C8',qc:'#34D399',sc:'#A78BFA',hse:'#F87171',mgmt:'#60A5FA',hr:'#94A3B8'};
 const DNAME={prod:'Sản xuất',eng:'Kỹ thuật',qc:'Chất lượng',sc:'Supply Chain',hse:'HSE',mgmt:'Ban GĐ',hr:'HR'};
 
-// ── MỤC TIÊU BỘ PHẬN SẢN XUẤT ──────────────────────────────────────
-const OBJECTIVES = {
-  Q:{id:'Q', name:'Chất lượng sản phẩm',     short:'Chất lượng',  col:'#34D399', weight:0.30},
-  P:{id:'P', name:'Năng suất & sản lượng',    short:'Năng suất',   col:'#F4A020', weight:0.25},
-  C:{id:'C', name:'Kiểm soát chi phí',        short:'Chi phí',     col:'#A78BFA', weight:0.20},
-  D:{id:'D', name:'Giao hàng đúng tiến độ',   short:'Tiến độ',     col:'#60A5FA', weight:0.15},
-  S:{id:'S', name:'An toàn lao động (HSE)',   short:'An toàn',     col:'#F87171', weight:0.10},
+const OBJS={
+  Q:{id:'Q',name:'Chất lượng sản phẩm',short:'Chất lượng',col:'#34D399',weight:.30},
+  P:{id:'P',name:'Năng suất & sản lượng',short:'Năng suất',col:'#F4A020',weight:.25},
+  C:{id:'C',name:'Kiểm soát chi phí',short:'Chi phí',col:'#A78BFA',weight:.20},
+  D:{id:'D',name:'Giao hàng đúng hạn',short:'Tiến độ',col:'#60A5FA',weight:.15},
+  S:{id:'S',name:'An toàn lao động',short:'An toàn',col:'#F87171',weight:.10},
 };
 
-// ── MA TRẬN ảnh hưởng: process → objective (0.0–1.0) ────────────────
-// Giá trị = mức độ quy trình này đóng góp vào mục tiêu tương ứng
-const PROC_OBJ = {
-  P01:{Q:0.8, P:0.6, C:0.7, D:0.8, S:0.2}, // Incoming material control
-  P02:{Q:0.4, P:1.0, C:0.8, D:1.0, S:0.1}, // Production planning
-  P03:{Q:0.6, P:1.0, C:0.6, D:0.8, S:0.5}, // Production line operation
-  P04:{Q:1.0, P:0.3, C:0.4, D:0.6, S:0.2}, // FQC
-  P05:{Q:0.9, P:0.2, C:0.8, D:0.4, S:0.3}, // NCR control
-  P06:{Q:0.3, P:0.8, C:0.7, D:0.6, S:1.0}, // Maintenance
+const POBJM={
+  P01:{Q:.8,P:.6,C:.7,D:.8,S:.2},
+  P02:{Q:.4,P:1.,C:.8,D:1.,S:.1},
+  P03:{Q:.6,P:1.,C:.6,D:.8,S:.5},
+  P04:{Q:1.,P:.3,C:.4,D:.6,S:.2},
+  P05:{Q:.9,P:.2,C:.8,D:.4,S:.3},
+  P06:{Q:.3,P:.8,C:.7,D:.6,S:1.},
 };
 
-// ── PEOPLE ─────────────────────────────────────────────────────────
-const PEOPLE={
-  mgr1:{id:'mgr1',name:'Yamamoto Kenji',  short:'Yamamoto',  role:'Plant Manager',        dept:'mgmt',init:'YK'},
-  mgr2:{id:'mgr2',name:'Nguyễn Thị Lan',  short:'N.T.Lan',   role:'Operations Director',  dept:'mgmt',init:'NL'},
-  mgr3:{id:'mgr3',name:'Park Min-jun',     short:'Park',      role:'Quality Director',     dept:'mgmt',init:'PJ'},
-  prd1:{id:'prd1',name:'Trần Văn Hùng',   short:'T.V.Hùng',  role:'Production Lead',      dept:'prod', init:'TH'},
-  prd2:{id:'prd2',name:'Lê Thị Hoa',      short:'L.T.Hoa',   role:'Line Supervisor A',    dept:'prod', init:'LH'},
-  prd3:{id:'prd3',name:'Phạm Minh Đức',   short:'P.M.Đức',   role:'Line Supervisor B',    dept:'prod', init:'PD'},
-  prd4:{id:'prd4',name:'Bùi Thị Ngân',    short:'B.T.Ngân',  role:'Senior Operator',      dept:'prod', init:'BN'},
-  prd5:{id:'prd5',name:'Đinh Văn Toàn',   short:'Đ.V.Toàn',  role:'Machine Operator',     dept:'prod', init:'DT'},
-  eng1:{id:'eng1',name:'Võ Quang Minh',   short:'V.Q.Minh',  role:'Chief Engineer',       dept:'eng',  init:'VM'},
-  eng2:{id:'eng2',name:'Hoàng Thị Bích',  short:'H.T.Bích',  role:'Process Engineer',     dept:'eng',  init:'HB'},
-  eng3:{id:'eng3',name:'Nguyễn Văn Khánh',short:'N.V.Khánh', role:'Maintenance Spec.',    dept:'eng',  init:'NK'},
-  qc1:{id:'qc1', name:'Kim So-young',     short:'Kim S.',    role:'QC Supervisor',        dept:'qc',   init:'KS'},
-  qc2:{id:'qc2', name:'Trần Thị Mai',     short:'T.T.Mai',   role:'QC Inspector Lead',    dept:'qc',   init:'TM'},
-  qc3:{id:'qc3', name:'Lê Văn Sơn',       short:'L.V.Sơn',   role:'QC Analyst',           dept:'qc',   init:'LS'},
-  sc1:{id:'sc1', name:'Đỗ Minh Tuấn',     short:'Đ.M.Tuấn',  role:'Supply Chain Lead',    dept:'sc',   init:'DT2'},
-  sc2:{id:'sc2', name:'Nguyễn Thị Thảo',  short:'N.T.Thảo',  role:'Procurement Spec.',    dept:'sc',   init:'NT'},
-  hse1:{id:'hse1',name:'Lý Văn Nam',      short:'L.V.Nam',   role:'HSE Manager',          dept:'hse',  init:'LN'},
-  hse2:{id:'hse2',name:'Trần Thị Phương', short:'T.T.Phương',role:'HSE Officer',          dept:'hse',  init:'TP'},
-  hr1:{id:'hr1', name:'Chu Thị Lan',      short:'C.T.Lan',   role:'HR Manager',           dept:'hr',   init:'CL'},
-  hr2:{id:'hr2', name:'Vũ Minh Quân',     short:'V.M.Quân',  role:'HR Specialist',        dept:'hr',   init:'VQ'},
+const PPL={
+  mgr1:{id:'mgr1',name:'Yamamoto Kenji',short:'Yamamoto',role:'Plant Manager',dept:'mgmt',init:'YK'},
+  mgr2:{id:'mgr2',name:'Nguyễn Thị Lan',short:'N.T.Lan',role:'Operations Director',dept:'mgmt',init:'NL'},
+  mgr3:{id:'mgr3',name:'Park Min-jun',short:'Park',role:'Quality Director',dept:'mgmt',init:'PJ'},
+  prd1:{id:'prd1',name:'Trần Văn Hùng',short:'T.V.Hùng',role:'Production Lead',dept:'prod',init:'TH'},
+  prd2:{id:'prd2',name:'Lê Thị Hoa',short:'L.T.Hoa',role:'Line Supervisor A',dept:'prod',init:'LH'},
+  prd3:{id:'prd3',name:'Phạm Minh Đức',short:'P.M.Đức',role:'Line Supervisor B',dept:'prod',init:'PD'},
+  prd4:{id:'prd4',name:'Bùi Thị Ngân',short:'B.T.Ngân',role:'Senior Operator',dept:'prod',init:'BN'},
+  prd5:{id:'prd5',name:'Đinh Văn Toàn',short:'Đ.V.Toàn',role:'Machine Operator',dept:'prod',init:'DT'},
+  eng1:{id:'eng1',name:'Võ Quang Minh',short:'V.Q.Minh',role:'Chief Engineer',dept:'eng',init:'VM'},
+  eng2:{id:'eng2',name:'Hoàng Thị Bích',short:'H.T.Bích',role:'Process Engineer',dept:'eng',init:'HB'},
+  eng3:{id:'eng3',name:'Nguyễn Văn Khánh',short:'N.V.Khánh',role:'Maintenance Spec.',dept:'eng',init:'NK'},
+  qc1:{id:'qc1',name:'Kim So-young',short:'Kim S.',role:'QC Supervisor',dept:'qc',init:'KS'},
+  qc2:{id:'qc2',name:'Trần Thị Mai',short:'T.T.Mai',role:'QC Inspector Lead',dept:'qc',init:'TM'},
+  qc3:{id:'qc3',name:'Lê Văn Sơn',short:'L.V.Sơn',role:'QC Analyst',dept:'qc',init:'LS'},
+  sc1:{id:'sc1',name:'Đỗ Minh Tuấn',short:'Đ.M.Tuấn',role:'Supply Chain Lead',dept:'sc',init:'DT2'},
+  sc2:{id:'sc2',name:'Nguyễn Thị Thảo',short:'N.T.Thảo',role:'Procurement Spec.',dept:'sc',init:'NT'},
+  hse1:{id:'hse1',name:'Lý Văn Nam',short:'L.V.Nam',role:'HSE Manager',dept:'hse',init:'LN'},
+  hse2:{id:'hse2',name:'Trần Thị Phương',short:'T.T.Phương',role:'HSE Officer',dept:'hse',init:'TP'},
+  hr1:{id:'hr1',name:'Chu Thị Lan',short:'C.T.Lan',role:'HR Manager',dept:'hr',init:'CL'},
+  hr2:{id:'hr2',name:'Vũ Minh Quân',short:'V.M.Quân',role:'HR Specialist',dept:'hr',init:'VQ'},
 };
 
 const PROCS=[
-  {id:'P01',name:'Kiểm soát nguyên vật liệu đầu vào',iso:'ISO 9001 §8.4.3',crit:4,steps:[
+  {id:'P01',name:'Kiểm soát NVL đầu vào',iso:'ISO 9001 §8.4.3',crit:4,steps:[
     {id:'P01S1',name:'Tiếp nhận hàng từ NCC',resp:'sc1',parts:['sc2','prd3'],crit:3},
     {id:'P01S2',name:'Kiểm tra số lượng & chứng từ',resp:'sc2',parts:['sc1'],crit:2},
     {id:'P01S3',name:'IQC — Kiểm tra chất lượng đầu vào',resp:'qc2',parts:['qc1','sc1'],crit:5},
     {id:'P01S4',name:'Phê duyệt / Từ chối NVL',resp:'qc1',parts:['mgr3','sc1'],crit:5},
     {id:'P01S5',name:'Nhập kho & cập nhật WMS',resp:'sc2',parts:['prd3'],crit:2},
-  ]},{id:'P02',name:'Lập kế hoạch sản xuất',iso:'ISO 9001 §8.1',crit:5,steps:[
+  ]},
+  {id:'P02',name:'Lập kế hoạch sản xuất',iso:'ISO 9001 §8.1',crit:5,steps:[
     {id:'P02S1',name:'Nhận đơn hàng từ khách hàng',resp:'mgr2',parts:['sc1'],crit:3},
     {id:'P02S2',name:'Đánh giá năng lực sản xuất',resp:'prd1',parts:['eng1','mgr2'],crit:4},
     {id:'P02S3',name:'Lập kế hoạch & phân bổ nguồn lực',resp:'prd1',parts:['prd2','prd3','sc1'],crit:5},
     {id:'P02S4',name:'Phê duyệt kế hoạch sản xuất',resp:'mgr1',parts:['mgr2','prd1'],crit:4},
     {id:'P02S5',name:'Ban hành kế hoạch cho bộ phận',resp:'mgr2',parts:['prd1','prd2','prd3','sc1'],crit:3},
-  ]},{id:'P03',name:'Vận hành dây chuyền sản xuất',iso:'ISO 9001 §8.5.1',crit:5,steps:[
+  ]},
+  {id:'P03',name:'Vận hành dây chuyền sản xuất',iso:'ISO 9001 §8.5.1',crit:5,steps:[
     {id:'P03S1',name:'Setup thiết bị & dụng cụ SX',resp:'eng1',parts:['eng3','prd1'],crit:4},
     {id:'P03S2',name:'Cấp phát NVL vào line',resp:'prd3',parts:['sc1','prd1'],crit:3},
     {id:'P03S3',name:'Sản xuất / Lắp ráp linh kiện',resp:'prd2',parts:['prd4','prd5','prd1'],crit:5},
     {id:'P03S4',name:'IPQC — Kiểm tra trong quá trình',resp:'eng2',parts:['qc2','prd2'],crit:5},
-    {id:'P03S5',name:'Sửa chữa / Rework sản phẩm lỗi',resp:'qc3',parts:['prd4','eng1'],crit:3},
+    {id:'P03S5',name:'Rework sản phẩm lỗi',resp:'qc3',parts:['prd4','eng1'],crit:3},
     {id:'P03S6',name:'Bàn giao bán thành phẩm sang QC',resp:'prd1',parts:['eng2','qc1'],crit:4},
-  ]},{id:'P04',name:'Kiểm soát chất lượng thành phẩm (FQC)',iso:'ISO 9001 §8.6',crit:5,steps:[
+  ]},
+  {id:'P04',name:'Kiểm soát chất lượng thành phẩm',iso:'ISO 9001 §8.6',crit:5,steps:[
     {id:'P04S1',name:'Nhận bàn giao từ dây chuyền SX',resp:'qc1',parts:['prd1','eng2'],crit:3},
     {id:'P04S2',name:'Kiểm tra ngoại quan 100%',resp:'qc2',parts:['qc3','qc1'],crit:4},
     {id:'P04S3',name:'Kiểm tra chức năng & thông số',resp:'qc2',parts:['eng2','qc3'],crit:5},
-    {id:'P04S4',name:'Lấy mẫu kiểm tra thống kê (AQL)',resp:'qc3',parts:['mgr3'],crit:4},
+    {id:'P04S4',name:'Lấy mẫu kiểm tra (AQL)',resp:'qc3',parts:['mgr3'],crit:4},
     {id:'P04S5',name:'Phê duyệt xuất kho thành phẩm',resp:'mgr3',parts:['qc1','mgr1'],crit:5},
     {id:'P04S6',name:'Ghi nhận kết quả kiểm tra',resp:'qc3',parts:['qc2'],crit:2},
-  ]},{id:'P05',name:'Kiểm soát sản phẩm không phù hợp (NCR)',iso:'ISO 9001 §8.7',crit:4,steps:[
-    {id:'P05S1',name:'Phát hiện & ghi nhận phiếu NCR',resp:'qc2',parts:['qc3','prd2'],crit:3},
+  ]},
+  {id:'P05',name:'Kiểm soát sản phẩm không phù hợp',iso:'ISO 9001 §8.7',crit:4,steps:[
+    {id:'P05S1',name:'Phát hiện & ghi nhận NCR',resp:'qc2',parts:['qc3','prd2'],crit:3},
     {id:'P05S2',name:'Cách ly & gắn thẻ sản phẩm lỗi',resp:'qc1',parts:['prd1'],crit:4},
     {id:'P05S3',name:'Phân tích nguyên nhân gốc rễ (RCA)',resp:'eng2',parts:['eng1','qc1','prd1'],crit:5},
     {id:'P05S4',name:'Quyết định xử lý (rework/scrap)',resp:'mgr3',parts:['eng2','prd1'],crit:5},
     {id:'P05S5',name:'Thực hiện hành động khắc phục (CA)',resp:'eng1',parts:['eng2','prd2'],crit:4},
     {id:'P05S6',name:'Xác nhận hiệu quả CA & đóng NCR',resp:'qc1',parts:['mgr3'],crit:3},
-  ]},{id:'P06',name:'Quản lý bảo trì thiết bị (PM/CM)',iso:'ISO 9001 §7.1.3',crit:4,steps:[
-    {id:'P06S1',name:'Lập kế hoạch bảo trì định kỳ (PM)',resp:'eng1',parts:['eng3','prd1'],crit:3},
+  ]},
+  {id:'P06',name:'Quản lý bảo trì thiết bị (PM/CM)',iso:'ISO 9001 §7.1.3',crit:4,steps:[
+    {id:'P06S1',name:'Lập kế hoạch bảo trì định kỳ',resp:'eng1',parts:['eng3','prd1'],crit:3},
     {id:'P06S2',name:'Thực hiện bảo trì phòng ngừa',resp:'eng3',parts:['hse1','hse2'],crit:4},
     {id:'P06S3',name:'Xử lý sự cố hỏng hóc (CM)',resp:'eng3',parts:['eng1','prd1'],crit:5},
     {id:'P06S4',name:'Ghi chép nhật ký thiết bị',resp:'eng3',parts:['eng1'],crit:3},
     {id:'P06S5',name:'Nghiệm thu bảo trì & kiểm tra AT',resp:'eng1',parts:['eng3','hse1'],crit:4},
-  ]}
+  ]},
 ];
 
-const STATIC_IVI={
+const SIVL={
   mgr1:{skill:70,mkt:80,lrn:68},mgr2:{skill:78,mkt:85,lrn:76},mgr3:{skill:75,mkt:80,lrn:72},
   prd1:{skill:85,mkt:80,lrn:78},prd2:{skill:72,mkt:68,lrn:74},prd3:{skill:68,mkt:65,lrn:72},
   prd4:{skill:76,mkt:65,lrn:80},prd5:{skill:54,mkt:50,lrn:62},
   eng1:{skill:86,mkt:78,lrn:76},eng2:{skill:82,mkt:86,lrn:88},eng3:{skill:94,mkt:76,lrn:86},
-  qc1:{skill:80,mkt:78,lrn:76}, qc2:{skill:74,mkt:74,lrn:78}, qc3:{skill:62,mkt:60,lrn:68},
-  sc1:{skill:74,mkt:80,lrn:74}, sc2:{skill:64,mkt:68,lrn:70},
+  qc1:{skill:80,mkt:78,lrn:76},qc2:{skill:74,mkt:74,lrn:78},qc3:{skill:62,mkt:60,lrn:68},
+  sc1:{skill:74,mkt:80,lrn:74},sc2:{skill:64,mkt:68,lrn:70},
   hse1:{skill:74,mkt:70,lrn:72},hse2:{skill:62,mkt:58,lrn:66},
-  hr1:{skill:70,mkt:72,lrn:74}, hr2:{skill:40,mkt:36,lrn:48},
+  hr1:{skill:70,mkt:72,lrn:74},hr2:{skill:40,mkt:36,lrn:48},
 };
 
-const NT_INFO={
-  hub:    {label:'Central Hub',     col:'#F4A020',bg:'rgba(244,160,32,.15)'},
-  broker: {label:'Broker/Bridge',   col:'#22D3C8',bg:'rgba(34,211,200,.15)'},
+// Survey data: 4 network types
+const SURV={
+  mgr1:{adv:['eng1','eng3','mgr2'],     col:['mgr2','mgr3','prd1'],      tru:['mgr2'],          ene:['mgr2','prd1']},
+  mgr2:{adv:['eng1','eng2','sc1'],      col:['mgr1','prd1','sc1','hr1'], tru:['mgr1','eng1'],    ene:['prd1','eng2']},
+  mgr3:{adv:['eng2','qc1','eng1'],      col:['qc1','qc2','mgr1'],        tru:['qc1'],            ene:['qc1','eng2']},
+  prd1:{adv:['eng1','eng2','eng3'],     col:['prd2','prd3','eng1','qc1'],tru:['eng1','mgr2'],    ene:['eng2','prd4']},
+  prd2:{adv:['eng2','prd1','qc2'],      col:['prd1','prd4','prd5','eng2'],tru:['prd1'],          ene:['prd1','eng2']},
+  prd3:{adv:['prd1','eng1','sc1'],      col:['prd1','sc1','sc2'],         tru:['prd1'],           ene:['prd1']},
+  prd4:{adv:['prd2','eng3','eng2'],     col:['prd2','prd1','eng3'],       tru:['prd2'],           ene:['eng2','prd2']},
+  prd5:{adv:['prd2','prd1'],            col:['prd2','prd3'],              tru:['prd2'],           ene:['prd2']},
+  eng1:{adv:['eng3','eng2'],            col:['eng2','eng3','prd1','hse1'],tru:['mgr1','eng2'],   ene:['eng2','eng3']},
+  eng2:{adv:['eng1','eng3','qc1'],      col:['eng1','qc1','qc2','prd1'], tru:['eng1','qc1'],     ene:['eng1','qc1']},
+  eng3:{adv:['eng1'],                   col:['eng1','hse1','hse2'],       tru:['eng1'],           ene:['eng1']},
+  qc1: {adv:['eng2','mgr3'],            col:['qc2','eng2','prd1','mgr3'],tru:['mgr3','eng2'],    ene:['eng2','qc2']},
+  qc2: {adv:['qc1','eng2'],             col:['qc1','qc3','eng2','prd2'], tru:['qc1'],            ene:['qc1','eng2']},
+  qc3: {adv:['qc1','qc2','eng2'],       col:['qc2','qc1'],               tru:['qc2'],            ene:['qc1']},
+  sc1: {adv:['prd1','eng1','sc2'],      col:['sc2','prd1','mgr2','prd3'],tru:['mgr2'],           ene:['prd1']},
+  sc2: {adv:['sc1','prd3'],             col:['sc1','prd3'],              tru:['sc1'],            ene:['sc1']},
+  hse1:{adv:['eng1','eng3'],            col:['eng1','eng3','hse2','prd1'],tru:['eng1'],          ene:['eng1']},
+  hse2:{adv:['hse1','eng3'],            col:['hse1','eng3'],             tru:['hse1'],           ene:['hse1']},
+  hr1: {adv:['mgr2','mgr1'],            col:['mgr2','mgr1','hr2'],       tru:['mgr2'],           ene:['mgr2']},
+  hr2: {adv:['hr1'],                    col:['hr1'],                     tru:[],                 ene:['hr1']},
+};
+
+const NTI={
+  hub:    {label:'Central Hub',      col:'#F4A020',bg:'rgba(244,160,32,.15)'},
+  broker: {label:'Broker/Bridge',    col:'#22D3C8',bg:'rgba(34,211,200,.15)'},
   expert: {label:'Peripheral Expert',col:'#A78BFA',bg:'rgba(167,139,250,.15)'},
-  silo:   {label:'Isolated Node',   col:'#F87171',bg:'rgba(248,113,113,.15)'},
-  peripheral:{label:'Peripheral',   col:'#8895AA',bg:'rgba(136,149,170,.1)'},
+  silo:   {label:'Isolated Node',    col:'#F87171',bg:'rgba(248,113,113,.15)'},
+  peripheral:{label:'Peripheral',    col:'#8895AA',bg:'rgba(136,149,170,.1)'},
 };
-const NT_INSIGHT={
-  hub:'Central Hub — tham gia nhiều quy trình quan trọng và được giao nhiều bước phụ trách. Kiểm tra quá tải. IVI% cao vì quy trình họ dẫn dắt đóng góp nhiều cho mục tiêu chiến lược.',
-  broker:'Broker Bridge — mắt xích duy nhất nối 2 nhóm chức năng trong quy trình. Undervalued nhất tổ chức. IVI% phản ánh vai trò cầu nối không thể thay thế.',
-  expert:'Peripheral Expert — ít bước nhưng là người duy nhất phụ trách bước kỹ thuật chuyên sâu trong quy trình có trọng số cao (e.g., P06 Bảo trì = trọng số An toàn cao).',
-  silo:'Isolated Node — hầu như không có trong bất kỳ bước quy trình nào. IVI% thấp phản ánh đóng góp thực tế vào mục tiêu tổ chức còn hạn chế.',
-  peripheral:'Peripheral Node — tham gia chọn lọc. IVI% cân bằng. Tiềm năng tăng nếu được assign thêm bước trong quy trình có trọng số mục tiêu cao.',
+const NTINS={
+  hub:'Central Hub — nhiều quy trình và được giao bước phụ trách chiến lược. Kiểm tra burnout risk. Nếu vắng mặt, nhiều quy trình gián đoạn đồng thời.',
+  broker:'Broker Bridge — mắt xích duy nhất nối 2 nhóm. Trust hoặc Betweenness centrality cao. Undervalued nhất tổ chức — nếu nghỉ workflow đứt.',
+  expert:'Peripheral Expert — ít kết nối nhưng phụ trách bước kỹ thuật chuyên sâu trong quy trình trọng số cao. Knowledge concentration risk.',
+  silo:'Isolated Node — hầu như không trong quy trình và ít được nominate trong survey. Cần role review hoặc onboarding bổ sung.',
+  peripheral:'Peripheral Node — tham gia chọn lọc. Tiềm năng tăng IVI% nếu được assign thêm bước trong quy trình có SW cao.',
 };
 
-// ═══════════════════════════════════════════════════════════════════════
-// STRATEGIC WEIGHT COMPUTATION
-// ═══════════════════════════════════════════════════════════════════════
-function computeSW(procId){
-  const po = PROC_OBJ[procId];
-  if(!po) return 1;
-  return Object.keys(OBJECTIVES).reduce((sum, oid)=>{
-    return sum + OBJECTIVES[oid].weight * (po[oid]||0);
-  }, 0);
-  // SW ranges ~0.2–0.8, normalize to meaningful range
+// ═══════════════════ COMPUTE SW ═════════════════════════════════════
+function getSW(pid){
+  const po=POBJM[pid]; if(!po) return 1;
+  return Object.keys(OBJS).reduce((s,o)=>s+OBJS[o].weight*(po[o]||0),0);
 }
+function getSWAll(){const r={};PROCS.forEach(p=>{r[p.id]=getSW(p.id);});return r;}
 
-function getSWAll(){
-  const sw={};
-  PROCS.forEach(p=>{ sw[p.id]=computeSW(p.id); });
-  return sw;
-}
-
-// ═══════════════════════════════════════════════════════════════════════
-// ONA EDGES
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════ DERIVE EDGES ═══════════════════════════════════
 function deriveEdges(){
-  const edgeMap={};
-  function addEdge(a,b,type,weight){
+  const em={};
+  function addE(a,b,type,w){
     if(a===b)return;
     const k=a<b?`${a}|${b}`:`${b}|${a}`;
-    if(!edgeMap[k]) edgeMap[k]={a,b,types:new Set(),weight:0};
-    edgeMap[k].types.add(type);
-    edgeMap[k].weight+=weight;
+    if(!em[k]) em[k]={a,b,types:new Set(),w:0};
+    em[k].types.add(type); em[k].w+=w;
   }
   const sw=getSWAll();
   PROCS.forEach(proc=>{
     const pc=proc.crit, psw=sw[proc.id];
     proc.steps.forEach((step,i)=>{
-      const sc=step.crit;
-      const all=[step.resp,...step.parts];
-      for(let x=0;x<all.length;x++)
-        for(let y=x+1;y<all.length;y++)
-          addEdge(all[x],all[y],'copart',(sc/5)*(pc/5)*psw*2);
+      const sc=step.crit, all=[step.resp,...step.parts];
+      for(let x=0;x<all.length;x++) for(let y=x+1;y<all.length;y++)
+        addE(all[x],all[y],'process',(sc/5)*(pc/5)*psw*2);
       if(i<proc.steps.length-1){
         const nr=proc.steps[i+1].resp;
-        if(step.resp!==nr) addEdge(step.resp,nr,'handoff',(sc/5)*(pc/5)*psw*1.5);
+        if(step.resp!==nr) addE(step.resp,nr,'handoff',(sc/5)*(pc/5)*psw*1.5);
       }
     });
   });
-  return Object.values(edgeMap);
+  Object.keys(SURV).forEach(from=>{
+    const s=SURV[from];
+    (s.adv||[]).forEach(to=>addE(from,to,'advice',1.2));
+    (s.col||[]).forEach(to=>addE(from,to,'collab',1.0));
+    (s.tru||[]).forEach(to=>addE(from,to,'trust',1.5));
+    (s.ene||[]).forEach(to=>addE(from,to,'energy',0.8));
+  });
+  return Object.values(em);
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// COMPUTE IVI METRICS (v5)
-// ═══════════════════════════════════════════════════════════════════════
-function computeMetrics(){
+// ═══════════════════ COMPUTE METRICS ════════════════════════════════
+function computeM(){
   const m={};
-  Object.keys(PEOPLE).forEach(id=>{
-    m[id]={id,procs:new Set(),stepsResp:0,stepsPart:0,procVal:0,degree:0,btw:0,swSum:0,swCount:0};
+  Object.keys(PPL).forEach(id=>{
+    m[id]={id,procs:new Set(),stepsResp:0,stepsPart:0,procVal:0,degree:0,btw:0,swSum:0,swCnt:0,
+           advIn:0,colIn:0,truIn:0,eneIn:0};
+  });
+  Object.keys(SURV).forEach(from=>{
+    const s=SURV[from];
+    (s.adv||[]).forEach(to=>{if(m[to])m[to].advIn++;});
+    (s.col||[]).forEach(to=>{if(m[to])m[to].colIn++;});
+    (s.tru||[]).forEach(to=>{if(m[to])m[to].truIn++;});
+    (s.ene||[]).forEach(to=>{if(m[to])m[to].eneIn++;});
   });
   const edges=deriveEdges();
-  edges.forEach(e=>{ m[e.a]&&m[e.a].degree++; m[e.b]&&m[e.b].degree++; });
-
+  edges.forEach(e=>{if(m[e.a])m[e.a].degree++;if(m[e.b])m[e.b].degree++;});
   const sw=getSWAll();
   PROCS.forEach(proc=>{
     const psw=sw[proc.id];
     proc.steps.forEach(step=>{
       if(m[step.resp]){
-        m[step.resp].procs.add(proc.id);
-        m[step.resp].stepsResp++;
-        // v5: weighted by SW
-        m[step.resp].procVal += step.crit * proc.crit * psw * 1.0;
-        m[step.resp].swSum += psw; m[step.resp].swCount++;
+        m[step.resp].procs.add(proc.id); m[step.resp].stepsResp++;
+        m[step.resp].procVal+=step.crit*proc.crit*psw*1.0;
+        m[step.resp].swSum+=psw; m[step.resp].swCnt++;
       }
       step.parts.forEach(p=>{
         if(m[p]){
-          m[p].procs.add(proc.id);
-          m[p].stepsPart++;
-          m[p].procVal += step.crit * proc.crit * psw * 0.5;
-          m[p].swSum += psw; m[p].swCount++;
+          m[p].procs.add(proc.id); m[p].stepsPart++;
+          m[p].procVal+=step.crit*proc.crit*psw*0.5;
+          m[p].swSum+=psw; m[p].swCnt++;
         }
       });
     });
   });
-
   edges.forEach(e=>{
-    const pa=PEOPLE[e.a], pb=PEOPLE[e.b];
-    if(pa&&pb&&pa.dept!==pb.dept){ m[e.a].btw+=e.weight; m[e.b].btw+=e.weight; }
+    const pa=PPL[e.a],pb=PPL[e.b];
+    if(pa&&pb&&pa.dept!==pb.dept){if(m[e.a])m[e.a].btw+=e.w;if(m[e.b])m[e.b].btw+=e.w;}
   });
   const maxPV=Math.max(...Object.values(m).map(x=>x.procVal),1);
   const maxBtw=Math.max(...Object.values(m).map(x=>x.btw),1);
+  const maxAdv=Math.max(...Object.values(m).map(x=>x.advIn),1);
+  const maxCol=Math.max(...Object.values(m).map(x=>x.colIn),1);
+  const maxTru=Math.max(...Object.values(m).map(x=>x.truIn),1);
+  const maxEne=Math.max(...Object.values(m).map(x=>x.eneIn),1);
 
   Object.values(m).forEach(pm=>{
-    const procScore=(pm.procVal/maxPV)*100;
-    const base=STATIC_IVI[pm.id]||{skill:55,mkt:55,lrn:55};
+    const ps=(pm.procVal/maxPV)*100;
+    const base=SIVL[pm.id]||{skill:55,mkt:55,lrn:55};
     pm.skill=base.skill; pm.mkt=base.mkt; pm.lrn=base.lrn;
-    pm.procScore=Math.round(procScore);
-    pm.swAvg=pm.swCount>0?(pm.swSum/pm.swCount):0;
-    pm.iviRaw=procScore*0.40+base.skill*0.25+base.mkt*0.20+base.lrn*0.15;
-    pm.btwNorm=pm.btw/maxBtw;
+    pm.procScore=Math.round(ps);
+    pm.swAvg=pm.swCnt>0?(pm.swSum/pm.swCnt):0;
+    pm.advS=Math.round(pm.advIn/maxAdv*100);
+    pm.colS=Math.round(pm.colIn/maxCol*100);
+    pm.truS=Math.round(pm.truIn/maxTru*100);
+    pm.eneS=Math.round(pm.eneIn/maxEne*100);
+    pm.netScore=Math.round(pm.advS*0.35+pm.colS*0.30+pm.truS*0.25+pm.eneS*0.10);
+    pm.btwN=pm.btw/maxBtw;
+    pm.iviRaw=ps*0.35+base.skill*0.22+base.mkt*0.18+pm.netScore*0.15+base.lrn*0.10;
     if(pm.id==='hr2') pm.type='silo';
-    else if(pm.btwNorm>0.35) pm.type='broker';
-    else if(pm.degree>=8) pm.type='hub';
+    else if(pm.btwN>0.35||pm.truS>=70) pm.type='broker';
+    else if(pm.degree>=8||pm.advS>=70) pm.type='hub';
     else if(pm.procs.size<=1&&pm.stepsResp>=2) pm.type='expert';
     else pm.type='peripheral';
   });
-
-  const totalRaw=Object.values(m).reduce((s,pm)=>s+pm.iviRaw,0);
+  const tot=Object.values(m).reduce((s,pm)=>s+pm.iviRaw,0);
   Object.values(m).forEach(pm=>{
-    pm.iviPct=parseFloat((pm.iviRaw/totalRaw*100).toFixed(2));
-    pm.ivi=pm.iviPct;
+    pm.iviPct=parseFloat((pm.iviRaw/tot*100).toFixed(2));
   });
   return m;
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// TAB SWITCHING
-// ═══════════════════════════════════════════════════════════════════════
-function go(name,el){
+// ═══════════════════ TAB SWITCHING ══════════════════════════════════
+function go(nm,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.view,.vgrid').forEach(v=>v.classList.remove('on'));
-  document.getElementById('tab-'+name).classList.add('on');
-  if(name==='ona'&&!window.onaInited){initONA();window.onaInited=true;}
-  if(name==='ivi'&&!window.iviInited){initIVI();window.iviInited=true;}
-  if(name==='proc') buildProcList();
+  document.getElementById('tab-'+nm).classList.add('on');
+  if(nm==='survey') buildSurvey();
+  if(nm==='proc')   buildProc();
+  if(nm==='ona'&&!window.onaOk){initONA();window.onaOk=true;}
+  if(nm==='ivi'&&!window.iviOk){initIVI();window.iviOk=true;}
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// TAB 1: OBJECTIVES
-// ═══════════════════════════════════════════════════════════════════════
-function buildObjectivesTab(){
-  // Objective cards with sliders
-  const oids=Object.keys(OBJECTIVES);
-  document.getElementById('obj-cards').innerHTML=oids.map(oid=>{
-    const o=OBJECTIVES[oid];
-    const pct=Math.round(o.weight*100);
-    return `<div class="obj-card" style="border-top-color:${o.col}">
-      <div class="obj-card-label" style="color:${o.col}">${o.id} — ${o.short}</div>
-      <div class="obj-card-name">${o.name}</div>
-      <div class="obj-weight-row">
-        <div class="obj-weight-val" id="wv-${oid}" style="color:${o.col}">${pct}%</div>
-        <input type="range" min="0" max="100" step="5" value="${pct}" id="ws-${oid}"
-          style="accent-color:${o.col}"
-          oninput="updateObjWeight('${oid}',this.value)">
+// ═══════════════════ TAB 01: OBJECTIVES ════════════════════════════
+function buildObj(){
+  const oids=Object.keys(OBJS);
+  document.getElementById('ocards').innerHTML=oids.map(o=>{
+    const ob=OBJS[o],pct=Math.round(ob.weight*100);
+    return `<div class="ocard" style="border-top-color:${ob.col}">
+      <div class="olbl" style="color:${ob.col}">${ob.id} · ${ob.short}</div>
+      <div class="onm">${ob.name}</div>
+      <div class="owrow">
+        <div class="owval" id="wv-${o}" style="color:${ob.col}">${pct}%</div>
+        <input type="range" min="0" max="100" step="5" value="${pct}" id="ws-${o}" style="accent-color:${ob.col}" oninput="updW('${o}',this.value)">
       </div>
-      <div class="obj-bar" style="background:${o.col};width:${pct}%" id="ob-${oid}"></div>
+      <div class="obar" style="background:${ob.col};width:${pct}%" id="ob-${o}"></div>
     </div>`;
   }).join('');
-  updateObjTotal();
-  buildHeatmap();
+  updTotal();
+  buildHeat();
+}
+function updW(o,v){
+  OBJS[o].weight=parseInt(v)/100;
+  document.getElementById('wv-'+o).textContent=v+'%';
+  document.getElementById('ob-'+o).style.width=v+'%';
+  updTotal(); refreshHeat();
+}
+function updTotal(){
+  const t=Object.values(OBJS).reduce((s,o)=>s+o.weight,0);
+  const pct=Math.round(t*100);
+  const ok=Math.abs(pct-100)<=2;
+  document.getElementById('ototal').innerHTML=`Tổng trọng số: <b style="color:${ok?'#34D399':'#F87171'}">${pct}%</b> ${ok?'✓':'⚠ cần điều chỉnh về 100%'}`;
 }
 
-function updateObjWeight(oid,val){
-  OBJECTIVES[oid].weight=parseInt(val)/100;
-  document.getElementById('wv-'+oid).textContent=val+'%';
-  document.getElementById('ob-'+oid).style.width=val+'%';
-  updateObjTotal();
-  refreshHeatmapSW();
+const HLV=[0,.2,.4,.6,.8,1.];
+function heatBg(v){
+  if(v===0) return 'rgba(255,255,255,.04)';
+  return `rgba(244,160,32,${0.12+v*0.6})`;
 }
-
-function updateObjTotal(){
-  const total=Object.values(OBJECTIVES).reduce((s,o)=>s+o.weight,0);
-  const el=document.getElementById('obj-total');
-  const pct=Math.round(total*100);
-  el.innerHTML=`Tổng trọng số: <b style="color:${Math.abs(pct-100)<=2?'#34D399':'#F87171'}">${pct}%</b> ${Math.abs(pct-100)<=2?'✓ hợp lệ':'⚠ cần điều chỉnh về 100%'}`;
-  el.className='obj-total'+(Math.abs(pct-100)>2?' warn':'');
-}
-
-// Heatmap
-const HEAT_LEVELS=[0,0.2,0.4,0.6,0.8,1.0];
-function heatBg(val){
-  if(val===0) return 'rgba(255,255,255,.04)';
-  const a=0.15+val*0.55;
-  return `rgba(244,160,32,${a})`;
-}
-
-function buildHeatmap(){
-  const oids=Object.keys(OBJECTIVES);
-  // Header
-  document.getElementById('heat-head').innerHTML=`<tr>
-    <th class="proc-th">Quy trình</th>
-    ${oids.map(o=>`<th title="${OBJECTIVES[o].name}"><span style="color:${OBJECTIVES[o].col}">${OBJECTIVES[o].id}</span><br><span style="font-size:8px;color:var(--muted)">${OBJECTIVES[o].short}</span></th>`).join('')}
-    <th>SW <span style="font-size:8px;font-weight:400;color:var(--muted)">Trọng số<br>chiến lược</span></th>
+function buildHeat(){
+  const oids=Object.keys(OBJS);
+  document.getElementById('hhead').innerHTML=`<tr>
+    <th class="pl">Quy trình</th>
+    ${oids.map(o=>`<th title="${OBJS[o].name}"><span style="color:${OBJS[o].col}">${o}</span><br><span style="font-size:8px;color:var(--mut)">${OBJS[o].short}</span></th>`).join('')}
+    <th>SW<br><span style="font-size:8px;color:var(--mut)">Chiến lược</span></th>
   </tr>`;
-
-  document.getElementById('heat-body').innerHTML=PROCS.map(proc=>{
-    const sw=computeSW(proc.id);
-    const swPct=Math.round(sw*100);
+  document.getElementById('hbody').innerHTML=PROCS.map(proc=>{
+    const sw=getSW(proc.id), swp=Math.round(sw*100);
     return `<tr>
-      <td class="heat-proc-name"><span class="heat-proc-id">${proc.id}</span>${proc.name}</td>
-      ${oids.map(oid=>{
-        const val=PROC_OBJ[proc.id][oid]||0;
-        const idx=HEAT_LEVELS.indexOf(val);
-        return `<td><div class="heat-cell" id="hc-${proc.id}-${oid}" title="${proc.name} → ${OBJECTIVES[oid].name}: ${val}"
-          style="background:${heatBg(val)};color:${val>0.4?'rgba(0,0,0,.8)':'var(--sub)'}"
-          onclick="cycleHeatCell('${proc.id}','${oid}')">${val.toFixed(1)}</div></td>`;
+      <td class="hpn"><span class="hpid">${proc.id}</span>${proc.name}</td>
+      ${oids.map(o=>{
+        const v=POBJM[proc.id][o]||0;
+        return `<td><div class="hcell" id="hc-${proc.id}-${o}" style="background:${heatBg(v)};color:${v>0.4?'rgba(0,0,0,.8)':'var(--sub)'}" onclick="cycleH('${proc.id}','${o}')">${v.toFixed(1)}</div></td>`;
       }).join('')}
-      <td style="text-align:center">
-        <div class="heat-sw" id="sw-${proc.id}">${swPct}%</div>
-        <div class="heat-sw-bar" id="swb-${proc.id}" style="width:${swPct}%;max-width:60px;margin:3px auto 0"></div>
+      <td style="text-align:center"><div class="hsw" id="sw-${proc.id}">${swp}%</div><div class="hswb" id="swb-${proc.id}" style="width:${Math.min(swp,80)}px"></div></td>
+    </tr>`;
+  }).join('');
+}
+function cycleH(pid,o){
+  const v=POBJM[pid][o]||0, i=HLV.indexOf(v);
+  const nv=HLV[(i+1)%HLV.length];
+  POBJM[pid][o]=nv;
+  const cell=document.getElementById(`hc-${pid}-${o}`);
+  cell.textContent=nv.toFixed(1);
+  cell.style.background=heatBg(nv);
+  cell.style.color=nv>0.4?'rgba(0,0,0,.8)':'var(--sub)';
+  refreshHeat();
+}
+function refreshHeat(){
+  PROCS.forEach(p=>{
+    const sw=getSW(p.id), pct=Math.round(sw*100);
+    const e=document.getElementById('sw-'+p.id), b=document.getElementById('swb-'+p.id);
+    if(e)e.textContent=pct+'%';
+    if(b)b.style.width=Math.min(pct,80)+'px';
+  });
+}
+function applyObj(){
+  window.onaOk=false; window.iviOk=false;
+  buildProc();
+  const msg=document.getElementById('omsg');
+  msg.style.display='block'; setTimeout(()=>msg.style.display='none',3000);
+}
+
+// ═══════════════════ TAB 02: SURVEY ════════════════════════════════
+function buildSurvey(){
+  const m=computeM();
+  const sorted=Object.values(m).sort((a,b)=>b.netScore-a.netScore);
+  const maxA=Math.max(...sorted.map(x=>x.advIn),1);
+  const maxC=Math.max(...sorted.map(x=>x.colIn),1);
+  const maxT=Math.max(...sorted.map(x=>x.truIn),1);
+  const maxE=Math.max(...sorted.map(x=>x.eneIn),1);
+  function cell(v,mx,col){
+    const pct=Math.round(v/mx*100);
+    return `<td style="padding:6px 8px;text-align:center;border-bottom:1px solid rgba(255,255,255,.02)">
+      <div style="display:inline-flex;align-items:center;gap:5px">
+        <div style="width:${8+Math.round(pct/5)}px;height:3px;background:${col};border-radius:2px;opacity:${0.2+pct/120}"></div>
+        <b style="font-family:'IBM Plex Mono',monospace;color:${col};font-size:11px">${v}</b>
+      </div></td>`;
+  }
+  document.getElementById('stbody').innerHTML=sorted.map(m=>{
+    const p=PPL[m.id];
+    return `<tr style="cursor:pointer" onclick="go('ona',document.querySelectorAll('.tab')[4]);setTimeout(()=>showDet('${m.id}'),350)">
+      <td style="padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.02)"><b>${p.name}</b></td>
+      <td style="padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.02);color:${DCOL[p.dept]};font-size:10px;font-weight:600">${DNAME[p.dept]}</td>
+      ${cell(m.advIn,maxA,'#60A5FA')}${cell(m.colIn,maxC,'#22D3C8')}
+      ${cell(m.truIn,maxT,'#F4A020')}${cell(m.eneIn,maxE,'#34D399')}
+      <td style="padding:6px 8px;text-align:center;border-bottom:1px solid rgba(255,255,255,.02)">
+        <b style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:${m.netScore>=70?'#34D399':m.netScore>=45?'#F4A020':'#8895AA'}">${m.netScore}</b>
+        <div style="font-size:9px;color:var(--mut)">/100</div>
       </td>
     </tr>`;
   }).join('');
 }
 
-function cycleHeatCell(procId,oid){
-  const cur=PROC_OBJ[procId][oid]||0;
-  const idx=HEAT_LEVELS.indexOf(cur);
-  const next=HEAT_LEVELS[(idx+1)%HEAT_LEVELS.length];
-  PROC_OBJ[procId][oid]=next;
-  const cell=document.getElementById(`hc-${procId}-${oid}`);
-  cell.textContent=next.toFixed(1);
-  cell.style.background=heatBg(next);
-  cell.style.color=next>0.4?'rgba(0,0,0,.8)':'var(--sub)';
-  refreshHeatmapSW();
+// ═══════════════════ TAB 03: PROCESS MAP ══════════════════════════
+function pChip(id,isR){
+  const p=PPL[id]; if(!p)return '';
+  const c=DCOL[p.dept];
+  const brd=isR?`border:1.5px solid ${c}`:`border:1px dashed ${c}77`;
+  return `<div class="chip" style="background:${c}22;${brd};color:${c}" onclick="showDet('${id}')">
+    <div class="av" style="background:${c}33;color:${c}">${p.init}</div>${p.short}</div>`;
 }
-
-function refreshHeatmapSW(){
-  PROCS.forEach(proc=>{
-    const sw=computeSW(proc.id);
-    const pct=Math.round(sw*100);
-    const el=document.getElementById('sw-'+proc.id);
-    const bar=document.getElementById('swb-'+proc.id);
-    if(el) el.textContent=pct+'%';
-    if(bar) bar.style.width=pct+'%';
-  });
-}
-
-function applyObjectives(){
-  window.onaInited=false; window.iviInited=false;
-  const msg=document.getElementById('obj-msg');
-  msg.style.display='block';
-  buildProcList();
-  setTimeout(()=>msg.style.display='none',3000);
-}
-
-// ═══════════════════════════════════════════════════════════════════════
-// TAB 2: PROCESS MAP
-// ═══════════════════════════════════════════════════════════════════════
-function personChip(id,isResp){
-  const p=PEOPLE[id]; if(!p) return '';
-  const col=DCOL[p.dept];
-  const border=isResp?`border:1.5px solid ${col}`:`border:1px dashed ${col}77`;
-  return `<div class="person-chip" style="background:${col}22;${border};color:${col}" title="${p.name}" onclick="showDetailById('${id}')">
-    <div class="av" style="background:${col}33;color:${col}">${p.init}</div>${p.short}
-  </div>`;
-}
-
-function buildProcList(){
-  const sw=getSWAll();
-  document.getElementById('proc-list').innerHTML=PROCS.map((proc,pi)=>{
-    const swPct=Math.round(sw[proc.id]*100);
-    // objective tags for this proc
-    const objTags=Object.keys(OBJECTIVES).filter(oid=>(PROC_OBJ[proc.id][oid]||0)>=0.6)
-      .map(oid=>`<span class="obj-badge" style="background:${OBJECTIVES[oid].col}22;color:${OBJECTIVES[oid].col};border:1px solid ${OBJECTIVES[oid].col}44">${OBJECTIVES[oid].short}</span>`).join('');
-    return `<div class="proc-lane${pi<2?' open':''}" id="pl-${proc.id}">
-      <div class="proc-lane-hdr" onclick="toggleLane('${proc.id}')">
-        <span class="proc-code">${proc.id}</span>
-        <span class="proc-name">${proc.name}</span>
-        <span class="proc-iso">${proc.iso}</span>
-        <span style="font-size:10px;color:var(--muted);margin-left:4px">${objTags}</span>
-        <div class="proc-crit">${[1,2,3,4,5].map(i=>`<div class="crit-dot${i<=proc.crit?'':' off'}"></div>`).join('')}</div>
-        <span class="proc-sw-badge" title="Strategic Weight">SW:${swPct}%</span>
-        <span style="font-size:10px;color:var(--muted)">${proc.steps.length} bước</span>
-        <span class="proc-toggle">▾</span>
+function buildProc(){
+  const sw=getSWAll(), oids=Object.keys(OBJS);
+  document.getElementById('proclist').innerHTML=PROCS.map((proc,pi)=>{
+    const swp=Math.round(sw[proc.id]*100);
+    const tags=oids.filter(o=>(POBJM[proc.id][o]||0)>=0.6)
+      .map(o=>`<span class="obadge" style="background:${OBJS[o].col}22;color:${OBJS[o].col};border:1px solid ${OBJS[o].col}44">${OBJS[o].short}</span>`).join('');
+    return `<div class="plane${pi<2?' open':''}" id="pl-${proc.id}">
+      <div class="phdr" onclick="togLane('${proc.id}')">
+        <span class="pcode">${proc.id}</span>
+        <span class="pnm">${proc.name}</span>
+        <span class="piso">${proc.iso}</span>
+        <span style="font-size:10px;margin-left:4px">${tags}</span>
+        <div class="pcrit">${[1,2,3,4,5].map(i=>`<div class="cd${i<=proc.crit?'':' off'}"></div>`).join('')}</div>
+        <span class="psw">SW:${swp}%</span>
+        <span style="font-size:10px;color:var(--mut)">${proc.steps.length}步</span>
+        <span class="ptog">▾</span>
       </div>
-      <div class="proc-steps">
-        <div class="steps-row">
+      <div class="psteps">
+        <div class="srow">
           ${proc.steps.map((step,si)=>`
-            ${si>0?`<div class="step-arrow"><svg viewBox="0 0 20 10"><line x1="0" y1="5" x2="16" y2="5" stroke="rgba(255,255,255,.2)" stroke-width="1"/><polygon points="14,2 20,5 14,8" fill="rgba(255,255,255,.2)"/></svg></div>`:''}
-            <div class="step-card">
-              <div class="step-num">${step.id} · ${'★'.repeat(step.crit)}${'☆'.repeat(5-step.crit)}</div>
-              <div class="step-name">${step.name}</div>
-              <div class="step-resp-lbl">Phụ trách</div>
-              ${personChip(step.resp,true)}
-              ${step.parts.length?`<div class="step-parts-lbl">Tham gia</div><div class="step-parts-row">${step.parts.map(p=>personChip(p,false)).join('')}</div>`:''}
+            ${si>0?`<div class="sarr"><svg viewBox="0 0 20 10"><line x1="0" y1="5" x2="16" y2="5" stroke="rgba(255,255,255,.2)" stroke-width="1"/><polygon points="14,2 20,5 14,8" fill="rgba(255,255,255,.2)"/></svg></div>`:''}
+            <div class="sc">
+              <div class="snum">${step.id} · ${'★'.repeat(step.crit)}${'☆'.repeat(5-step.crit)}</div>
+              <div class="snm">${step.name}</div>
+              <div class="srlbl">Phụ trách</div>${pChip(step.resp,true)}
+              ${step.parts.length?`<div class="splbl">Tham gia</div><div class="sprow">${step.parts.map(p=>pChip(p,false)).join('')}</div>`:''}
             </div>`).join('')}
         </div>
       </div>
     </div>`;
   }).join('');
 }
+function togLane(id){document.getElementById('pl-'+id).classList.toggle('open');}
 
-function toggleLane(id){
-  document.getElementById('pl-'+id).classList.toggle('open');
+// ═══════════════════ TAB 04: ASSIGN ════════════════════════════════
+let curP='P01';
+function buildAssign(){
+  document.getElementById('pbtns').innerHTML=PROCS.map(p=>
+    `<div class="pbtn${p.id===curP?' active':''}" onclick="selP('${p.id}',this)">${p.id}</div>`).join('');
+  renderA();
 }
-
-// ═══════════════════════════════════════════════════════════════════════
-// TAB 3: ASSIGN
-// ═══════════════════════════════════════════════════════════════════════
-let curProc='P01';
-function buildAssignTab(){
-  document.getElementById('proc-btns').innerHTML=PROCS.map(p=>
-    `<div class="proc-btn${p.id===curProc?' active':''}" onclick="selProc('${p.id}',this)">${p.id}</div>`).join('');
-  renderAssignTable();
-}
-function selProc(id,el){
-  curProc=id;
-  document.querySelectorAll('.proc-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  renderAssignTable();
-}
-function renderAssignTable(){
-  const proc=PROCS.find(p=>p.id===curProc);
-  document.getElementById('assign-tbody').innerHTML=proc.steps.map(step=>`
+function selP(id,el){curP=id;document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderA();}
+function renderA(){
+  const proc=PROCS.find(p=>p.id===curP);
+  document.getElementById('atbody').innerHTML=proc.steps.map(step=>`
     <tr>
-      <td class="step-id">${step.id}</td>
+      <td class="aid">${step.id}</td>
       <td style="font-size:12px;font-weight:500">${step.name}</td>
-      <td><div class="assign-crit">${[1,2,3,4,5].map(i=>`<div class="assign-crit-dot" style="background:${i<=step.crit?'#F4A020':'#1A2238'}"></div>`).join('')}</div></td>
-      <td><div class="person-sel">${Object.keys(PEOPLE).map(pid=>{
-        const p=PEOPLE[pid],isR=(p.id===step.resp),col=DCOL[p.dept];
-        return `<div class="ps-chip resp${isR?'':' none'}" style="${isR?`background:${col}18;border-color:${col};color:${col}`:`border-color:${col}44;color:${col}66`}" onclick="toggleResp('${step.id}','${pid}')" title="${p.name}">${p.init}</div>`;
+      <td><div class="acrit">${[1,2,3,4,5].map(i=>`<div class="acd" style="background:${i<=step.crit?'#F4A020':'#1A2238'}"></div>`).join('')}</div></td>
+      <td><div class="psel">${Object.keys(PPL).map(pid=>{
+        const p=PPL[pid],isR=(p.id===step.resp),c=DCOL[p.dept];
+        return `<div class="pc resp${isR?'':' none'}" style="${isR?`background:${c}18;border-color:${c};color:${c}`:`border-color:${c}44;color:${c}66`}" onclick="togR('${step.id}','${pid}')">${p.init}</div>`;
       }).join('')}</div></td>
-      <td><div class="person-sel">${Object.keys(PEOPLE).map(pid=>{
-        const p=PEOPLE[pid],isP=step.parts.includes(p.id),col=DCOL[p.dept];
-        return `<div class="ps-chip part${isP?'':' none'}" style="${isP?`background:${col}10;border-color:${col}66;color:${col}`:`border-color:${col}33;color:${col}44`}" onclick="togglePart('${step.id}','${pid}')" title="${p.name}">${p.init}</div>`;
+      <td><div class="psel">${Object.keys(PPL).map(pid=>{
+        const p=PPL[pid],isP=step.parts.includes(p.id),c=DCOL[p.dept];
+        return `<div class="pc part${isP?'':' none'}" style="${isP?`background:${c}10;border-color:${c}66;color:${c}`:`border-color:${c}33;color:${c}44`}" onclick="togPt('${step.id}','${pid}')">${p.init}</div>`;
       }).join('')}</div></td>
     </tr>`).join('');
 }
-function toggleResp(sid,pid){
-  PROCS.forEach(pr=>pr.steps.forEach(s=>{ if(s.id===sid)s.resp=pid; }));
-  renderAssignTable();
-}
-function togglePart(sid,pid){
-  PROCS.forEach(pr=>pr.steps.forEach(s=>{
-    if(s.id===sid){ const i=s.parts.indexOf(pid); i>=0?s.parts.splice(i,1):s.parts.push(pid); }
-  }));
-  renderAssignTable();
-}
-function submitAssign(){
-  window.onaInited=false; window.iviInited=false;
-  const msg=document.getElementById('assign-msg');
-  msg.style.display='block';
-  setTimeout(()=>msg.style.display='none',3000);
-}
+function togR(sid,pid){PROCS.forEach(pr=>pr.steps.forEach(s=>{if(s.id===sid)s.resp=pid;}));renderA();}
+function togPt(sid,pid){PROCS.forEach(pr=>pr.steps.forEach(s=>{if(s.id===sid){const i=s.parts.indexOf(pid);i>=0?s.parts.splice(i,1):s.parts.push(pid);}}));renderA();}
+function submitAssign(){window.onaOk=false;window.iviOk=false;const m=document.getElementById('amsg');m.style.display='block';setTimeout(()=>m.style.display='none',3000);}
 
-// ═══════════════════════════════════════════════════════════════════════
-// TAB 4: ONA NETWORK
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════ TAB 05: ONA ════════════════════════════════════
 let simRef;
 function initONA(){
-  const metrics=computeMetrics();
-  const edges=deriveEdges();
-  document.getElementById('edge-count').textContent=edges.length;
-
-  const fEl=document.getElementById('net-filters');
+  const metrics=computeM(), edges=deriveEdges();
+  document.getElementById('ecnt').textContent=edges.length;
+  const fEl=document.getElementById('nfilt');
   fEl.innerHTML=['ALL',...PROCS.map(p=>p.id)].map(f=>
-    `<div class="nf${f==='ALL'?' on':''}" id="nf-${f}" onclick="filterONA('${f}',this)">${f}</div>`).join('');
-
-  const panel=document.getElementById('netCanvas');
-  const W=panel.clientWidth,H=panel.clientHeight;
-  const svg=d3.select('#netCanvas').append('svg').attr('width',W).attr('height',H);
+    `<div class="nf${f==='ALL'?' on':''}" id="nf-${f}" onclick="filtONA('${f}',this)">${f}</div>`).join('');
+  const panel=document.getElementById('netC');
+  const W=panel.clientWidth, H=panel.clientHeight;
+  const svg=d3.select('#netC').append('svg').attr('width',W).attr('height',H);
   svg.append('defs').html(`<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
     <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(244,160,32,.5)" stroke-width="1.5"/></marker>
     <filter id="glow"><feGaussianBlur stdDeviation="4" result="c"/><feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`);
-
-  const nodes=Object.values(PEOPLE).map(p=>({...p,...metrics[p.id]}));
-  const links=edges.map(e=>({source:e.a,target:e.b,types:e.types,weight:e.weight}));
-  const isH=l=>l.types.has('handoff');
-
+  const nodes=Object.values(PPL).map(p=>({...p,...metrics[p.id]}));
+  const links=edges.map(e=>({source:e.a,target:e.b,types:e.types,w:e.w}));
   simRef=d3.forceSimulation(nodes)
-    .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>isH(d)?100:65).strength(d=>isH(d)?.5:.8))
+    .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.types.has('handoff')?95:62).strength(.75))
     .force('charge',d3.forceManyBody().strength(-260))
     .force('center',d3.forceCenter(W/2,H/2))
-    .force('collision',d3.forceCollide(d=>metrics[d.id]?.degree>=8?22:17));
-
-  const linkEl=svg.append('g').selectAll('line').data(links).enter().append('line')
-    .attr('stroke',d=>isH(d)?'rgba(244,160,32,.4)':'rgba(255,255,255,.08)')
-    .attr('stroke-width',d=>Math.min(d.weight*.4+.5,3))
-    .attr('stroke-dasharray',d=>isH(d)?'5,3':null)
-    .attr('marker-end',d=>isH(d)?'url(#arr)':null);
-
-  const rScale=d=>{const t=metrics[d.id]?.type;return t==='hub'?18:t==='broker'?15:t==='expert'?14:t==='silo'?8:11;};
-
-  const nodeEl=svg.append('g').selectAll('.nd').data(nodes).enter().append('g').attr('class','nd')
-    .style('cursor','pointer')
+    .force('collision',d3.forceCollide(d=>metrics[d.id]?.degree>=8?22:16));
+  const eCol=d=>{
+    if(d.types.has('handoff')) return 'rgba(244,160,32,.55)';
+    if(d.types.has('trust'))   return 'rgba(244,160,32,.38)';
+    if(d.types.has('advice'))  return 'rgba(96,165,250,.38)';
+    if(d.types.has('energy'))  return 'rgba(52,211,153,.32)';
+    if(d.types.has('collab'))  return 'rgba(34,211,200,.32)';
+    return 'rgba(255,255,255,.07)';
+  };
+  const eW=d=>{if(d.types.has('trust'))return 2;if(d.types.has('advice'))return 1.5;return Math.min(d.w*.35+.5,3);};
+  const lnk=svg.append('g').selectAll('line').data(links).enter().append('line')
+    .attr('stroke',eCol).attr('stroke-width',eW)
+    .attr('stroke-dasharray',d=>d.types.has('handoff')?'5,3':null)
+    .attr('marker-end',d=>d.types.has('handoff')?'url(#arr)':null);
+  const rSc=d=>{const t=metrics[d.id]?.type;return t==='hub'?18:t==='broker'?15:t==='expert'?14:t==='silo'?8:11;};
+  const ndEl=svg.append('g').selectAll('.nd').data(nodes).enter().append('g').attr('class','nd').style('cursor','pointer')
     .call(d3.drag()
-      .on('start',(e,d)=>{if(!e.active)simRef.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y})
-      .on('drag', (e,d)=>{d.fx=e.x;d.fy=e.y})
-      .on('end',  (e,d)=>{if(!e.active)simRef.alphaTarget(0);d.fx=null;d.fy=null}))
-    .on('click',(e,d)=>showDetailById(d.id))
+      .on('start',(e,d)=>{if(!e.active)simRef.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y;})
+      .on('drag', (e,d)=>{d.fx=e.x;d.fy=e.y;})
+      .on('end',  (e,d)=>{if(!e.active)simRef.alphaTarget(0);d.fx=null;d.fy=null;}))
+    .on('click',(e,d)=>showDet(d.id))
     .on('mouseover',(e,d)=>{
-      const t=document.getElementById('tip'),m=metrics[d.id];
-      t.innerHTML=`<div class="tip-nm">${d.name}</div><div class="tip-rl">${d.role} · ${DNAME[d.dept]}<br>Quy trình: <b style="color:#F4A020">${m?.procs?.size||0}</b> · SW avg: <b style="color:#F4A020">${Math.round((m?.swAvg||0)*100)}%</b><br>IVI: <b style="color:#F4A020">${m?.iviPct?.toFixed(2)||0}%</b> · ${NT_INFO[m?.type||'peripheral'].label}</div>`;
-      t.style.left=(e.clientX+12)+'px';t.style.top=(e.clientY-8)+'px';
-      t.classList.add('on');
+      const t=document.getElementById('tip'),mm=metrics[d.id];
+      t.innerHTML=`<div class="tipnm">${d.name}</div><div class="tiprl">${d.role} · ${DNAME[d.dept]}<br>IVI: <b style="color:#F4A020">${mm?.iviPct?.toFixed(2)||0}%</b> · Net: <b style="color:#60A5FA">${mm?.netScore||0}</b><br>${NTI[mm?.type||'peripheral'].label}</div>`;
+      t.style.left=(e.clientX+12)+'px'; t.style.top=(e.clientY-8)+'px'; t.classList.add('on');
     })
     .on('mouseout',()=>document.getElementById('tip').classList.remove('on'));
-
-  nodeEl.append('circle')
-    .attr('r',rScale)
-    .attr('fill',d=>DCOL[d.dept])
-    .attr('fill-opacity',d=>metrics[d.id]?.type==='silo'?.18:.78)
-    .attr('stroke',d=>DCOL[d.dept])
-    .attr('stroke-width',d=>metrics[d.id]?.type==='broker'?2.5:1.5)
+  ndEl.append('circle').attr('r',rSc)
+    .attr('fill',d=>DCOL[d.dept]).attr('fill-opacity',d=>metrics[d.id]?.type==='silo'?.18:.78)
+    .attr('stroke',d=>DCOL[d.dept]).attr('stroke-width',d=>metrics[d.id]?.type==='broker'?2.5:1.5)
     .attr('stroke-opacity',d=>metrics[d.id]?.type==='silo'?.25:1)
-    .attr('filter',d=>{const t=metrics[d.id]?.type;return(t==='hub'||t==='expert')?'url(#glow)':null});
-
-  nodeEl.append('text').text(d=>d.init)
-    .attr('text-anchor','middle').attr('dominant-baseline','central')
+    .attr('filter',d=>{const t=metrics[d.id]?.type;return(t==='hub'||t==='expert')?'url(#glow)':null;});
+  ndEl.append('text').text(d=>d.init).attr('text-anchor','middle').attr('dominant-baseline','central')
     .attr('fill',d=>metrics[d.id]?.type==='silo'?`${DCOL[d.dept]}55`:'rgba(0,0,0,.75)')
     .attr('font-family','IBM Plex Mono,monospace').attr('font-weight','700').attr('font-size','8px').attr('pointer-events','none');
-
-  nodeEl.append('text').text(d=>d.short.split(/[\s.]/)[0])
-    .attr('dy','3.2em').attr('text-anchor','middle')
+  ndEl.append('text').text(d=>d.short.split(/[\s.]/)[0]).attr('dy','3.2em').attr('text-anchor','middle')
     .attr('fill','rgba(209,217,232,.45)').attr('font-family','IBM Plex Sans,sans-serif').attr('font-size','9px').attr('pointer-events','none');
-
   simRef.on('tick',()=>{
-    linkEl.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-    nodeEl.attr('transform',d=>`translate(${d.x},${d.y})`);
+    lnk.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+    ndEl.attr('transform',d=>`translate(${d.x},${d.y})`);
   });
-
   buildONATable(metrics);
-  window._onaNodeEl=nodeEl; window._onaMetrics=metrics;
+  window._ndEl=ndEl; window._mm=metrics;
 }
-
-function filterONA(procId,el){
-  document.querySelectorAll('.nf').forEach(n=>n.classList.remove('on'));
-  el.classList.add('on');
-  const m=window._onaMetrics;
-  if(!m||!window._onaNodeEl) return;
-  window._onaNodeEl.selectAll('circle').attr('fill-opacity',d=>{
-    if(procId==='ALL') return m[d.id]?.type==='silo'?.18:.78;
-    return m[d.id]?.procs?.has(procId)?.88:.06;
+function filtONA(pid,el){
+  document.querySelectorAll('.nf').forEach(n=>n.classList.remove('on')); el.classList.add('on');
+  const mm=window._mm; if(!mm||!window._ndEl)return;
+  window._ndEl.selectAll('circle').attr('fill-opacity',d=>{
+    if(pid==='ALL')return mm[d.id]?.type==='silo'?.18:.78;
+    return mm[d.id]?.procs?.has(pid)?.9:.05;
   });
-  window._onaNodeEl.selectAll('text').attr('fill-opacity',d=>{
-    if(procId==='ALL') return 1;
-    return m[d.id]?.procs?.has(procId)?1:.06;
-  });
+  window._ndEl.selectAll('text').attr('fill-opacity',d=>pid==='ALL'?1:mm[d.id]?.procs?.has(pid)?1:.05);
 }
-
-function showDetailById(id){
-  const p=PEOPLE[id], m=(window._onaMetrics||computeMetrics())[id];
-  if(!p||!m) return;
-  document.getElementById('dp-empty').style.display='none';
-  document.getElementById('dp-show').classList.add('on');
-
-  const av=document.getElementById('dp-av');
+function showDet(id){
+  const p=PPL[id], m=(window._mm||computeM())[id]; if(!p||!m)return;
+  document.getElementById('dpe').style.display='none';
+  document.getElementById('dpshow').classList.add('on');
+  const av=document.getElementById('dpav');
   av.textContent=p.init; av.style.background=DCOL[p.dept]+'22'; av.style.color=DCOL[p.dept]; av.style.border=`2px solid ${DCOL[p.dept]}66`;
-  document.getElementById('dp-nm').textContent=p.name;
-  document.getElementById('dp-rl').textContent=`${p.role} · ${DNAME[p.dept]}`;
-
-  const nt=NT_INFO[m.type];
-  const tb=document.getElementById('dp-type');
+  document.getElementById('dpnm').textContent=p.name;
+  document.getElementById('dprl').textContent=`${p.role} · ${DNAME[p.dept]}`;
+  const nt=NTI[m.type];
+  const tb=document.getElementById('dptype');
   tb.textContent=nt.label; tb.style.background=nt.bg; tb.style.color=nt.col; tb.style.border=`1px solid ${nt.col}33`;
-
-  document.getElementById('dp-ivi-n').textContent=m.iviPct.toFixed(2)+'%';
-  const headPct=(1/Object.keys(PEOPLE).length*100);
-  const ratio=(m.iviPct/headPct).toFixed(1);
-  document.getElementById('dp-ivi-sub').textContent=`SW avg: ${Math.round(m.swAvg*100)}% · ${ratio}× headcount avg · Quy trình: ${m.procs.size}`;
-
-  const bars=[
-    {l:'Process × SW (40%)', v:m.procScore, c:'#F4A020'},
-    {l:'Skill Graph (25%)',   v:m.skill,     c:'#22D3C8'},
-    {l:'Market Signal (20%)',v:m.mkt,        c:'#A78BFA'},
-    {l:'Learn Velocity (15%)',v:m.lrn,       c:'#34D399'},
-  ];
-  document.getElementById('dp-ivi-bars').innerHTML=bars.map(b=>`
-    <div class="ib-row">
-      <div class="ib-lbl">${b.l}</div>
-      <div class="ib-track"><div class="ib-fill" style="width:${b.v}%;background:${b.c}"></div></div>
-      <div class="ib-val" style="color:${b.c}">${b.v}</div>
-    </div>`).join('');
-
-  document.getElementById('dp-mets').innerHTML=`
-    <div class="dp-met"><div class="dp-met-v" style="color:${DCOL[p.dept]}">${m.procs.size}</div><div class="dp-met-l">Quy trình<br>tham gia</div></div>
-    <div class="dp-met"><div class="dp-met-v" style="color:var(--amber)">${m.stepsResp}</div><div class="dp-met-l">Bước<br>phụ trách</div></div>
-    <div class="dp-met"><div class="dp-met-v" style="color:var(--sub)">${m.stepsPart}</div><div class="dp-met-l">Bước<br>tham gia</div></div>
-    <div class="dp-met"><div class="dp-met-v" style="color:var(--teal)">${Math.round(m.swAvg*100)}%</div><div class="dp-met-l">SW avg<br>chiến lược</div></div>`;
-
-  const procNames=[...m.procs].map(pid=>{
-    const proc=PROCS.find(x=>x.id===pid);
-    const sw=Math.round(computeSW(pid)*100);
-    return proc?`<b>${proc.id}</b> ${proc.name} <span style="color:var(--amber);font-size:9px">[SW:${sw}%]</span>`:pid;
-  });
-  document.getElementById('dp-procs').innerHTML=`<div style="font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px">Quy trình tham gia & trọng số chiến lược</div>`+
-    (procNames.length?procNames.map(n=>`<div>▸ ${n}</div>`).join(''):'<div style="color:var(--muted)">Không tham gia quy trình nào</div>');
-
-  const ins=document.getElementById('dp-insight');
-  ins.textContent=NT_INSIGHT[m.type]; ins.style.background=nt.bg; ins.style.border=`1px solid ${nt.col}30`; ins.style.color=nt.col;
+  document.getElementById('dpivi').textContent=m.iviPct.toFixed(2)+'%';
+  const ha=(1/Object.keys(PPL).length*100), ratio=(m.iviPct/ha).toFixed(1);
+  document.getElementById('dpivimeta').textContent=`SW avg: ${Math.round(m.swAvg*100)}% · ${ratio}× avg · Net: ${m.netScore}`;
+  document.getElementById('dpbars').innerHTML=[
+    {l:'Process×SW (35%)',v:m.procScore,c:'#F4A020'},
+    {l:'Skill (22%)',     v:m.skill,    c:'#22D3C8'},
+    {l:'Market (18%)',   v:m.mkt,      c:'#A78BFA'},
+    {l:'Network (15%)',  v:m.netScore, c:'#60A5FA'},
+    {l:'Learn (10%)',    v:m.lrn,      c:'#34D399'},
+  ].map(b=>`<div class="ibr"><div class="ibl">${b.l}</div><div class="itrack"><div class="ifill" style="width:${b.v}%;background:${b.c}"></div></div><div class="ival" style="color:${b.c}">${b.v}</div></div>`).join('');
+  document.getElementById('dpmets').innerHTML=`
+    <div class="dpm"><div class="dpmv" style="color:${DCOL[p.dept]}">${m.procs.size}</div><div class="dpml">Quy trình<br>tham gia</div></div>
+    <div class="dpm"><div class="dpmv" style="color:var(--amber)">${m.stepsResp}</div><div class="dpml">Bước<br>phụ trách</div></div>
+    <div class="dpm"><div class="dpmv" style="color:var(--sub)">${m.stepsPart}</div><div class="dpml">Bước<br>tham gia</div></div>
+    <div class="dpm"><div class="dpmv" style="color:var(--teal)">${Math.round(m.swAvg*100)}%</div><div class="dpml">SW avg<br>chiến lược</div></div>`;
+  document.getElementById('dpnw').innerHTML=[
+    ['?',m.advIn,'Advice','#60A5FA'],[' ⇄',m.colIn,'Collab','#22D3C8'],
+    ['★',m.truIn,'Trust','#F4A020'],['↑',m.eneIn,'Energy','#34D399'],
+  ].map(([ic,v,l,c])=>`<div class="nwitem"><div class="nwdot" style="background:${c}"></div><span style="color:var(--mut)">${l}:</span><b style="font-family:'IBM Plex Mono',monospace;color:${c};margin-left:3px">${v}</b></div>`).join('');
+  const pnames=[...m.procs].map(pid=>{const pr=PROCS.find(x=>x.id===pid);const sw=Math.round(getSW(pid)*100);return pr?`<b>${pr.id}</b> ${pr.name} <span style="color:var(--amber);font-size:9px">[SW:${sw}%]</span>`:pid;});
+  document.getElementById('dpprocs').innerHTML=`<div style="font-size:9px;text-transform:uppercase;color:var(--mut);margin-bottom:3px">Quy trình tham gia</div>`+(pnames.length?pnames.map(n=>`<div>▸ ${n}</div>`).join(''):'<span style="color:var(--mut)">Không có</span>');
+  const ins=document.getElementById('dpins');
+  ins.textContent=NTINS[m.type]; ins.style.background=nt.bg; ins.style.border=`1px solid ${nt.col}30`; ins.style.color=nt.col;
 }
-
 function buildONATable(metrics){
   const sorted=Object.values(metrics).sort((a,b)=>b.iviPct-a.iviPct);
-  const headAvg=(100/Object.keys(PEOPLE).length).toFixed(1);
-  document.getElementById('ona-tbody').innerHTML=sorted.map(m=>{
-    const p=PEOPLE[m.id],nt=NT_INFO[m.type];
-    const impact=m.type==='expert'?'⚠ Knowledge gap':m.type==='broker'?'↔ Workflow đứt':m.type==='silo'?'Minimal impact':'Cần thay thế';
-    const ratio=(m.iviPct/parseFloat(headAvg)).toFixed(1);
-    return `<tr onclick="showDetailById('${m.id}')">
+  const ha=(100/Object.keys(PPL).length).toFixed(1);
+  document.getElementById('ontbody').innerHTML=sorted.map(m=>{
+    const p=PPL[m.id],nt=NTI[m.type],r=(m.iviPct/parseFloat(ha)).toFixed(1);
+    const imp=m.type==='expert'?'⚠ Knowledge':m.type==='broker'?'↔ Flow đứt':m.type==='silo'?'Minimal':'Cần replace';
+    return `<tr onclick="showDet('${m.id}')">
       <td><b>${p.name}</b></td>
       <td style="color:${DCOL[p.dept]};font-weight:600;font-size:10px">${DNAME[p.dept]}</td>
-      <td><span class="tbl-badge" style="background:${nt.bg};color:${nt.col}">${nt.label}</span></td>
-      <td>${m.procs.size}<span class="tbl-bar" style="width:${m.procs.size*12}px;background:${DCOL[p.dept]};opacity:.5;margin-left:4px"></span></td>
+      <td><span class="tbdg" style="background:${nt.bg};color:${nt.col}">${nt.label}</span></td>
+      <td>${m.procs.size}<span class="tbar" style="width:${m.procs.size*12}px;background:${DCOL[p.dept]};opacity:.5;margin-left:4px"></span></td>
       <td>${m.stepsResp}</td>
       <td>${m.degree}</td>
       <td style="font-family:'IBM Plex Mono',monospace;color:var(--amber)">${Math.round(m.swAvg*100)}%</td>
+      <td style="font-family:'IBM Plex Mono',monospace;color:#60A5FA">${m.netScore}</td>
       <td><b style="color:${m.iviPct>=6?'#34D399':m.iviPct>=4?'#F4A020':'#F87171'}">${m.iviPct.toFixed(2)}%</b>
-        <span style="font-size:9px;color:${parseFloat(ratio)>=1.5?'#34D399':parseFloat(ratio)>=1?'#F4A020':'#F87171'};margin-left:3px">${ratio}×</span></td>
-      <td style="font-size:9px;color:${m.type==='silo'?'var(--muted)':m.type==='expert'?'#A78BFA':m.type==='broker'?'#22D3C8':'var(--sub)'}">−${m.iviPct.toFixed(2)}% · ${impact}</td>
+        <span style="font-size:9px;color:${parseFloat(r)>=1.5?'#34D399':parseFloat(r)>=1?'#F4A020':'#F87171'};margin-left:3px">${r}×</span></td>
+      <td style="font-size:9px;color:${m.type==='silo'?'var(--mut)':m.type==='expert'?'#A78BFA':m.type==='broker'?'#22D3C8':'var(--sub)'}">−${m.iviPct.toFixed(2)}% · ${imp}</td>
     </tr>`;
   }).join('');
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// TAB 5: IVI PROPORTIONAL
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════ TAB 06: IVI% ═══════════════════════════════════
 function initIVI(){
-  const metrics=computeMetrics();
+  const metrics=computeM();
   const sorted=Object.values(metrics).sort((a,b)=>b.iviPct-a.iviPct);
-  const headAvg=(100/sorted.length).toFixed(2);
-  document.getElementById('head-avg').textContent=headAvg;
-
+  const ha=(100/sorted.length).toFixed(2);
+  document.getElementById('havg').textContent=ha;
   // Stacked bar
-  const bar=document.getElementById('ivi-stack-bar');
-  bar.innerHTML=sorted.map(m=>{
-    const p=PEOPLE[m.id];
-    return `<div title="${p.name}: ${m.iviPct.toFixed(2)}%" style="width:${m.iviPct}%;background:${DCOL[p.dept]};opacity:${m.type==='silo'?.25:.85};cursor:pointer;min-width:1px"
-      onmouseover="document.getElementById('ivi-bar-note').textContent='${p.name} — ${m.iviPct.toFixed(2)}% · SW avg:${Math.round(m.swAvg*100)}% · ${NT_INFO[m.type].label}'"
-      onmouseout="document.getElementById('ivi-bar-note').textContent=''"
-      onclick="showIVICard('${m.id}')"></div>`;
+  document.getElementById('ibar').innerHTML=sorted.map(m=>{
+    const p=PPL[m.id];
+    return `<div title="${p.name}: ${m.iviPct.toFixed(2)}%" style="width:${m.iviPct}%;background:${DCOL[p.dept]};opacity:${m.type==='silo'?.22:.85};cursor:pointer;min-width:1px"
+      onmouseover="document.getElementById('ibarnt').textContent='${p.name} — ${m.iviPct.toFixed(2)}% · Net:${m.netScore} · ${NTI[m.type].label}'"
+      onmouseout="document.getElementById('ibarnt').textContent=''"
+      onclick="showIVIcard('${m.id}')"></div>`;
   }).join('');
-
-  document.getElementById('ivi-bar-legend').innerHTML=Object.keys(DCOL).map(d=>{
-    const total=sorted.filter(m=>PEOPLE[m.id].dept===d).reduce((s,m)=>s+m.iviPct,0);
-    if(!total) return '';
-    return `<div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:${DCOL[d]}"></div>${DNAME[d]} ${total.toFixed(1)}%</div>`;
+  document.getElementById('ibarleg').innerHTML=Object.keys(DCOL).map(d=>{
+    const tot=sorted.filter(m=>PPL[m.id].dept===d).reduce((s,m)=>s+m.iviPct,0);
+    if(!tot)return '';
+    return `<div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:${DCOL[d]}"></div>${DNAME[d]} ${tot.toFixed(1)}%</div>`;
   }).join('');
-
   // Dept breakdown
-  const deptEl=document.getElementById('ivi-dept-row');
-  const deptG={};
-  sorted.forEach(m=>{ const d=PEOPLE[m.id].dept; if(!deptG[d]){deptG[d]={total:0,count:0};} deptG[d].total+=m.iviPct; deptG[d].count++; });
-  deptEl.innerHTML=Object.keys(DCOL).map(d=>{
-    if(!deptG[d]) return `<div style="background:var(--s2);border:1px solid var(--brd);border-radius:5px;padding:8px 10px;opacity:.25"><div style="font-size:16px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--muted)">—</div><div style="font-size:9px;color:var(--muted);margin-top:2px">${DNAME[d]}</div></div>`;
-    const g=deptG[d],ph=(g.total/g.count).toFixed(1);
+  const dg={};
+  sorted.forEach(m=>{const d=PPL[m.id].dept;if(!dg[d]){dg[d]={tot:0,cnt:0};}dg[d].tot+=m.iviPct;dg[d].cnt++;});
+  document.getElementById('idepts').innerHTML=Object.keys(DCOL).map(d=>{
+    if(!dg[d])return `<div style="background:var(--s2);border:1px solid var(--br);border-radius:5px;padding:8px 10px;opacity:.25"><div style="font-size:16px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--mut)">—</div><div style="font-size:9px;color:var(--mut);margin-top:2px">${DNAME[d]}</div></div>`;
+    const g=dg[d],ph=(g.tot/g.cnt).toFixed(1);
     return `<div style="background:var(--s2);border:1px solid ${DCOL[d]}33;border-top:2px solid ${DCOL[d]};border-radius:5px;padding:8px 10px">
-      <div style="font-size:17px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:${DCOL[d]}">${g.total.toFixed(1)}%</div>
-      <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.4">${DNAME[d]}<br>${g.count} người · ${ph}%/người</div>
+      <div style="font-size:17px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:${DCOL[d]}">${g.tot.toFixed(1)}%</div>
+      <div style="font-size:9px;color:var(--mut);margin-top:2px;line-height:1.4">${DNAME[d]}<br>${g.cnt}p · ${ph}%/p</div>
     </div>`;
   }).join('');
-
-  // Concentration alert
-  const top3total=sorted.slice(0,3).reduce((s,m)=>s+m.iviPct,0);
-  const ac=top3total>35?'#F87171':top3total>28?'#F4A020':'#34D399';
-  document.getElementById('ivi-alert').innerHTML=`<div style="background:${ac}15;border:1px solid ${ac}33;border-left:3px solid ${ac};border-radius:0 5px 5px 0;padding:10px 14px;font-size:11px;color:${ac};line-height:1.6">
-    <b>Concentration Risk:</b> Top 3 (${sorted.slice(0,3).map(m=>PEOPLE[m.id].short).join(', ')}) chiếm <b>${top3total.toFixed(1)}%</b> giá trị tổ chức.
-    ${top3total>35?'⚠ Quá tập trung — thay đổi objective weights có thể phân bổ lại.':top3total>28?'Trung bình — theo dõi.':'Phân bổ lành mạnh.'}
+  // Alert
+  const t3=sorted.slice(0,3).reduce((s,m)=>s+m.iviPct,0), ac=t3>35?'#F87171':t3>28?'#F4A020':'#34D399';
+  document.getElementById('ialert').innerHTML=`<div style="background:${ac}15;border:1px solid ${ac}33;border-left:3px solid ${ac};border-radius:0 5px 5px 0;padding:10px 14px;font-size:11px;color:${ac};line-height:1.6">
+    <b>Concentration Risk:</b> Top 3 (${sorted.slice(0,3).map(m=>PPL[m.id].short).join(', ')}) chiếm <b>${t3.toFixed(1)}%</b>. ${t3>35?'⚠ Rủi ro tập trung cao.':t3>28?'Trung bình.':'Phân bổ tốt.'}
   </div>`;
-
   // Cards
-  document.getElementById('ivi-cards').innerHTML=sorted.map((m,i)=>{
-    const p=PEOPLE[m.id],nt=NT_INFO[m.type];
-    const ratio=(m.iviPct/parseFloat(headAvg)).toFixed(1);
-    const rCol=parseFloat(ratio)>=1.5?'#34D399':parseFloat(ratio)>=1?'#F4A020':'#F87171';
+  const sw=getSWAll();
+  document.getElementById('icards').innerHTML=sorted.map((m,i)=>{
+    const p=PPL[m.id],nt=NTI[m.type],r=(m.iviPct/parseFloat(ha)).toFixed(1),rc=parseFloat(r)>=1.5?'#34D399':parseFloat(r)>=1?'#F4A020':'#F87171';
     const procs=[...m.procs];
-    const sw=getSWAll();
-    return `<div class="ivi-card${i<3?' top3':''}" id="ivicard-${m.id}" onclick="go('ona',document.querySelectorAll('.tab')[3]);setTimeout(()=>showDetailById('${m.id}'),300)">
-      <div class="ivi-card-top">
-        <div class="ivi-card-av" style="background:${DCOL[p.dept]}22;color:${DCOL[p.dept]};border:${i<3?`2px solid ${DCOL[p.dept]}`:`1px solid ${DCOL[p.dept]}44`}">${p.init}</div>
-        <div style="flex:1">
-          <div class="ivi-card-nm">${p.name}</div>
-          <div class="ivi-card-rl">${p.role}</div>
-          <span class="tbl-badge" style="background:${nt.bg};color:${nt.col};font-size:8px">${nt.label}</span>
+    return `<div class="icard${i<3?' t3':''}" id="ivc-${m.id}" onclick="go('ona',document.querySelectorAll('.tab')[4]);setTimeout(()=>showDet('${m.id}'),300)">
+      <div class="ictop">
+        <div class="icav" style="background:${DCOL[p.dept]}22;color:${DCOL[p.dept]};border:${i<3?`2px solid ${DCOL[p.dept]}`:`1px solid ${DCOL[p.dept]}44`}">${p.init}</div>
+        <div style="flex:1"><div class="icnm">${p.name}</div><div class="icrl">${p.role}</div>
+          <span class="tbdg" style="background:${nt.bg};color:${nt.col};font-size:8px">${nt.label}</span>
         </div>
         <div style="text-align:right">
-          <div class="ivi-card-score" style="color:${m.iviPct>=6?'#34D399':m.iviPct>=4?'#F4A020':'#F87171'}">${m.iviPct.toFixed(2)}%</div>
-          <div style="font-size:9px;color:${rCol}">${ratio}× avg</div>
+          <div class="icsc" style="color:${m.iviPct>=6?'#34D399':m.iviPct>=4?'#F4A020':'#F87171'}">${m.iviPct.toFixed(2)}%</div>
+          <div style="font-size:9px;color:${rc}">${r}× avg</div>
         </div>
       </div>
-      <div style="background:var(--s3);border-radius:2px;height:3px;margin:6px 0 8px;overflow:hidden">
+      <div style="background:var(--s3);border-radius:2px;height:3px;margin:5px 0 7px;overflow:hidden">
         <div style="height:100%;background:${DCOL[p.dept]};width:${Math.min(m.iviPct/sorted[0].iviPct*100,100)}%;border-radius:2px;opacity:.8"></div>
       </div>
-      <div class="ivi-mini-bar"><div class="ivi-mini-lbl">Process×SW</div><div class="ivi-mini-track"><div class="ivi-mini-fill" style="width:${m.procScore}%;background:#F4A020"></div></div><div class="ivi-mini-val" style="color:#F4A020">${m.procScore}</div></div>
-      <div class="ivi-mini-bar"><div class="ivi-mini-lbl">Skill</div><div class="ivi-mini-track"><div class="ivi-mini-fill" style="width:${m.skill}%;background:#22D3C8"></div></div><div class="ivi-mini-val" style="color:#22D3C8">${m.skill}</div></div>
-      <div class="ivi-mini-bar"><div class="ivi-mini-lbl">Market</div><div class="ivi-mini-track"><div class="ivi-mini-fill" style="width:${m.mkt}%;background:#A78BFA"></div></div><div class="ivi-mini-val" style="color:#A78BFA">${m.mkt}</div></div>
-      <div style="font-size:9px;margin-top:8px;padding-top:6px;border-top:1px solid var(--brd)">
-        ${procs.map(pid=>`<span style="background:var(--amb2);color:var(--amber);padding:1px 5px;border-radius:2px;font-size:8px;font-weight:600;margin-right:3px">${pid} <span style="opacity:.6">${Math.round(sw[pid]*100)}%</span></span>`).join('')}
+      <div class="imb"><div class="imbl">Process×SW</div><div class="imbt"><div class="imbf" style="width:${m.procScore}%;background:#F4A020"></div></div><div class="imbv" style="color:#F4A020">${m.procScore}</div></div>
+      <div class="imb"><div class="imbl">Network</div><div class="imbt"><div class="imbf" style="width:${m.netScore}%;background:#60A5FA"></div></div><div class="imbv" style="color:#60A5FA">${m.netScore}</div></div>
+      <div class="imb"><div class="imbl">Skill</div><div class="imbt"><div class="imbf" style="width:${m.skill}%;background:#22D3C8"></div></div><div class="imbv" style="color:#22D3C8">${m.skill}</div></div>
+      <div style="font-size:9px;margin-top:7px;padding-top:5px;border-top:1px solid var(--br)">
+        ${procs.map(pid=>`<span style="background:var(--a2);color:var(--amber);padding:1px 4px;border-radius:2px;font-size:8px;margin-right:2px">${pid}<span style="opacity:.6"> ${Math.round(sw[pid]*100)}%</span></span>`).join('')}
       </div>
-      <div style="font-size:9px;color:var(--red);margin-top:5px">Nếu nghỉ → −${m.iviPct.toFixed(2)}% · ${procs.length} quy trình thiếu người</div>
+      <div style="font-size:9px;color:var(--red);margin-top:4px">Nếu nghỉ → −${m.iviPct.toFixed(2)}% · ${procs.length} quy trình thiếu người</div>
     </div>`;
   }).join('');
-
-  // Simulate departure
-  const sel=document.getElementById('sim-select');
-  sel.innerHTML=sorted.map(m=>`<option value="${m.id}">${PEOPLE[m.id].name} (${m.iviPct.toFixed(2)}%)</option>`).join('');
-  window._iviMetrics=metrics; window._iviSorted=sorted;
-  simulateDeparture();
+  // Simulate
+  document.getElementById('simsel').innerHTML=sorted.map(m=>`<option value="${m.id}">${PPL[m.id].name} (${m.iviPct.toFixed(2)}%)</option>`).join('');
+  window._iviS=sorted; simDep();
+}
+function showIVIcard(id){document.getElementById('ivc-'+id)?.scrollIntoView({behavior:'smooth',block:'center'});}
+function simDep(){
+  const id=document.getElementById('simsel').value;
+  if(!id||!window._iviS)return;
+  const sorted=window._iviS, lv=sorted.find(m=>m.id===id); if(!lv)return;
+  const remain=sorted.filter(m=>m.id!==id), remTot=remain.reduce((s,m)=>s+m.iviPct,0);
+  document.getElementById('simres').innerHTML=`<b style="color:var(--red)">−${lv.iviPct.toFixed(2)}%</b> · ${lv.procs.size} quy trình · ${lv.stepsResp} bước PT · Net:${lv.netScore}`;
+  document.getElementById('simbar').innerHTML=
+    remain.map(m=>{const pp=PPL[m.id],np=m.iviPct/remTot*100;
+      return `<div title="${pp.name}: ${np.toFixed(2)}%" style="width:${np}%;background:${DCOL[pp.dept]};opacity:.8;min-width:1px"></div>`;
+    }).join('')+`<div style="background:var(--red);opacity:.32;width:${lv.iviPct}%;border-left:1px dashed rgba(248,113,113,.5)" title="Gap ${lv.iviPct.toFixed(2)}%"></div>`;
+  document.getElementById('simcap').textContent=`Khoảng trống đỏ = ${lv.iviPct.toFixed(2)}% cần lấp. Quy trình: ${[...lv.procs].join(', ')}.`;
 }
 
-function showIVICard(id){ document.getElementById('ivicard-'+id)?.scrollIntoView({behavior:'smooth',block:'center'}); }
-
-function simulateDeparture(){
-  const id=document.getElementById('sim-select').value;
-  if(!id||!window._iviSorted) return;
-  const sorted=window._iviSorted, leaving=sorted.find(m=>m.id===id);
-  if(!leaving) return;
-  const remain=sorted.filter(m=>m.id!==id);
-  const remainTotal=remain.reduce((s,m)=>s+m.iviPct,0);
-  const p=PEOPLE[id];
-
-  document.getElementById('sim-result').innerHTML=
-    `<b style="color:var(--red)">−${leaving.iviPct.toFixed(2)}%</b> giá trị tổ chức · ${leaving.procs.size} quy trình thiếu người · ${leaving.stepsResp} bước phụ trách cần assign lại · SW avg: ${Math.round(leaving.swAvg*100)}%`;
-
-  document.getElementById('sim-bar').innerHTML=
-    remain.map(m=>{
-      const pp=PEOPLE[m.id],np=m.iviPct/remainTotal*100;
-      return `<div title="${pp.name}: ${np.toFixed(2)}% (was ${m.iviPct.toFixed(2)}%)" style="width:${np}%;background:${DCOL[pp.dept]};opacity:.8;min-width:1px"></div>`;
-    }).join('') +
-    `<div style="background:var(--red);opacity:.35;width:${leaving.iviPct}%;border-left:1px dashed rgba(248,113,113,.5)" title="Khoảng trống ${leaving.iviPct.toFixed(2)}%"></div>`;
-
-  document.getElementById('sim-caption').textContent=
-    `Thanh đỏ = khoảng trống ${leaving.iviPct.toFixed(2)}% cần lấp đầy. Các quy trình ảnh hưởng: ${[...leaving.procs].join(', ')}.`;
-}
-
-// ═══════════════════════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════════════════════
-buildObjectivesTab();
-buildProcList();
-buildAssignTab();
+// ═══════════════════ INIT ════════════════════════════════════════════
+buildObj();
+buildProc();
+buildAssign();
 </script>
 </body>
 </html>
