@@ -1,0 +1,27 @@
+# Node & npm
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Docker
+.dockerignore
+Dockerfile
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build & dist
+dist/
+build/
+
+# Env
+.env
+.env.local

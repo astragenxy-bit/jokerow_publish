@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  talentgraph:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    container_name: talentgraph-ona
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
